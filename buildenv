@@ -165,9 +165,9 @@ zopen_check()
     echo ""
     
     if [ $COMPREHENSIVE_RC -eq 0 ]; then
-      echo "✅ All comprehensive tests passed!"
+      echo "All comprehensive tests passed!"
     else
-      echo "❌ Some comprehensive tests failed (RC: $COMPREHENSIVE_RC)"
+      echo "Some comprehensive tests failed (RC: $COMPREHENSIVE_RC)"
     fi
   else
     echo "Warning: $TEST_SCRIPT not found, skipping"
@@ -188,12 +188,12 @@ zopen_check()
   
   # Return failure if either suite failed
   if [ $COMMUNITY_RC -ne 0 ]; then
-    echo "❌ FAILED: Git community tests failed"
+    echo "FAILED: Git community tests failed"
     return $COMMUNITY_RC
   fi
   
   if [ $COMPREHENSIVE_RC -ne 0 ]; then
-    echo "❌ FAILED: Comprehensive tests failed"
+    echo "FAILED: Comprehensive tests failed"
     return $COMPREHENSIVE_RC
   fi
   
