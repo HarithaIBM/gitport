@@ -125,9 +125,6 @@ zopen_check()
   # Set default if ZOPEN_NUM_JOBS not set
   : ${ZOPEN_NUM_JOBS:=4}
   
-  # Skip tests that hang on TTY access (credential tests require interactive terminal)
-  export GIT_SKIP_TESTS="t0021 t0300 t0301 t0302 t1051 t2003 t2082 t3400 t4150"
-  
   # Run make with -i (ignore errors) test and parallel jobs
   make -i test -j${ZOPEN_NUM_JOBS}
   COMMUNITY_RC=$?
