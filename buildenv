@@ -124,7 +124,13 @@ zopen_check()
   # Run Git community tests (this is what 'make check' does)
   # Set default jobs if ZOPEN_NUM_JOBS not set
   JOBS="${ZOPEN_NUM_JOBS:-4}"
-  make ${ZOPEN_CHECK_OPTS} -j${JOBS}
+  
+  # Build the make command with proper job count
+  if [ -n "$JOBS" ]; then
+    make ${ZOPEN_CHECK_OPTS/-j\$ZOPEN_NUM_JOBS/-j${JOBS}}
+  else
+    make ${ZOPEN_CHECK_OPTS/-j\$ZOPEN_NUM_JOBS/}
+  fi
   COMMUNITY_RC=$?
   
   echo ""
