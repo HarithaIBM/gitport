@@ -101,6 +101,35 @@ zopen_check_results()
 
   echo "${failuretests}" >"$1/$2_check_failures.log"
 
+  # Run custom tests from tests directory
+  REPO_ROOT="$(cd "$1/.." && pwd)"
+  TEST_DIR="${REPO_ROOT}/tests"
+  
+  if [ -d "${TEST_DIR}" ] && [ -x "${TEST_DIR}/run_all_tests.sh" ]; then
+    echo "Running custom tests from ${TEST_DIR}..." >&2
+    TEST_LOG="$1/$2_custom_tests.log"
+    
+    if bash "${TEST_DIR}/run_all_tests.sh" > "${TEST_LOG}" 2>&1; then
+      echo "Custom tests completed successfully" >&2
+    else
+      echo "Custom tests encountered failures" >&2
+    fi
+    
+    # Parse custom test results (TAP format)
+    custom_successes=$(grep -E "^ok [0-9]" "${TEST_LOG}" | wc -l | awk '{print $1}')
+    custom_failuretests=$(grep -E "^not ok [0-9]" "${TEST_LOG}")
+    custom_failures=$(echo "${custom_failuretests}" | wc -l | awk '{print $1}')
+    custom_totalTests=$((custom_failures+custom_successes))
+    
+    echo "${custom_failuretests}" >"$1/$2_custom_test_failures.log"
+    
+    # Add custom test results to totals
+    failures=$((failures+custom_failures))
+    totalTests=$((totalTests+custom_totalTests))
+    
+    echo "Custom tests: ${custom_successes} passed, ${custom_failures} failed out of ${custom_totalTests}" >&2
+  fi
+
 cat <<ZZ
 actualFailures:$failures
 totalTests:$totalTests
