@@ -122,6 +122,7 @@ index 96460cc..2a15cf7 100644
 +{
 +	size_t line = 1, col = 0;
 +	size_t fail_pos = src_len;
++	*bad_char_out = 0;  /* Initialize in case iconv_open fails */
 +	iconv_t cd = iconv_open(to, from);
 +
 +	if (cd != (iconv_t)-1) {
