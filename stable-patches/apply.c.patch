@@ -138,11 +138,11 @@ index 4aa1694..887b349 100644
  
 +#ifdef __MVS__
 +	/*
-+	 * On z/OS, we must ensure the attribute system is looking at the 
-+	 * working tree so that EBCDIC/UTF-8 conversion rules are loaded
-+	 * before any index validation checks occur.
++	 * On z/OS, we must ensure the attribute system is configured for
++	 * checkout operations so that EBCDIC/UTF-8 conversion rules and
++	 * file tagging work correctly when applying patches.
 +	 */
-+	git_attr_set_direction(GIT_ATTR_CHECKIN);
++	git_attr_set_direction(GIT_ATTR_CHECKOUT);
 +#endif
 +
  	for (i = 0; i < argc; i++) {
