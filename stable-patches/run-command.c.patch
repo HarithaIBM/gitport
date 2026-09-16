@@ -13,6 +13,15 @@ index c146a56..680ed4c 100644
  void child_process_init(struct child_process *child)
  {
  	struct child_process blank = CHILD_PROCESS_INIT;
+@@ -683,7 +687,7 @@ int start_command(struct child_process *cmd)
+ 	int fderr[2];
+ 	int need_in, need_out, need_err;
+ 	int failed_errno;
+-	const char *str;
++	const char *str = NULL;
+ 
+ 	/*
+ 	 * In case of errors we must keep the promise to close FDs
 @@ -694,6 +698,10 @@ int start_command(struct child_process *cmd)
  			str = "standard input";
  			goto fail_pipe;
