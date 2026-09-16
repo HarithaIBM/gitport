@@ -8,6 +8,7 @@ index 0a6e408..9ae5fca 100644
  
 +#ifdef __MVS__
 +void tag_file_as_working_tree_encoding(struct index_state *istate, const char* path, int fd, int was_converted);
++void tag_file_with_conv_attrs(const struct conv_attrs *ca, int fd, int was_converted);
 +void validate_codeset(struct index_state *istate, const char *path, int* autoconvertToASCII);
 +#endif
 +

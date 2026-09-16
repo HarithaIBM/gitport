@@ -44,18 +44,19 @@ index 4aa1694..887b349 100644
  {
 +#ifdef __MVS__
 +    /*
-+     * On z/OS, skip verification for EBCDIC-tagged files during a 3-way merge.
-+     * Files tagged with IBM-1047 (EBCDIC) cannot be hashed directly, but the
-+     * 3-way merge path handles character set conversion correctly through
-+     * convert_to_git().
++     * On z/OS, for EBCDIC-encoded files during 3-way merge, skip stat matching.
++     * The working tree file is in EBCDIC with different size than the UTF-8 index.
++     * The 3-way merge will read, convert, and properly compare the content.
 +     */
-+    struct conv_attrs ca;
-+    convert_attrs(state->repo->index, &ca, ce->name);
++    if (state->threeway) {
++        struct conv_attrs ca;
++        convert_attrs(state->repo->index, &ca, ce->name);
 +
-+    if (ca.working_tree_encoding &&
-+        !strcmp(ca.working_tree_encoding, "IBM-1047")) {
-+        /* Trust the index entry for EBCDIC files */
-+        return 0;
++        if (ca.working_tree_encoding &&
++            !strcmp(ca.working_tree_encoding, "IBM-1047")) {
++            /* Let 3-way merge handle the verification after conversion */
++            return 0;
++        }
 +    }
 +#endif
  	if (S_ISGITLINK(ce->ce_mode)) {

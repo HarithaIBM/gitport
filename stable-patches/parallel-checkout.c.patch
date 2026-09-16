@@ -24,7 +24,8 @@ index 0bf4bd6..5aee95c 100644
  		return error("unable to write file '%s'", path);
  
 +#ifdef __MVS__
-+	tag_file_as_working_tree_encoding(the_repository->index, path, fd, ret);
++	/* Use pre-computed attributes from pc_item to avoid race condition */
++	tag_file_with_conv_attrs(&pc_item->ca, fd, ret);
 +#endif
 +
  	return 0;
