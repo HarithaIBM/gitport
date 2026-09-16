@@ -70,8 +70,11 @@ ok 4 - testtags
 
 ## Integration Status
 
-✅ All custom tests now pass
+⚠️ **Most custom tests pass** (5 of 6)
 ✅ Tests are integrated into `zopen_check_results` in `buildenv`
+⚠️ One test (`test_pull_encoding_tag_fix.sh`) currently fails - see `tests/WHY_TEST_FAILS.md`
+✅ Test results are combined with standard git test suite results
+✅ TAP format output is properly parsed and counted
 ✅ Test results are combined with standard git test suite results
 ✅ TAP format output is properly parsed and counted
 

@@ -32,14 +32,23 @@ TOTAL=16
 
 cd "$TEST_ROOT"
 
+# Helper function to init git with identity
+init_git_repo() {
+    "$GIT_BIN" init
+    "$GIT_BIN" config user.name "Test User"
+    "$GIT_BIN" config user.email "test@example.com"
+}
+
 # ------------------------------------------------------------------------------
 # Test 1: Clean 3-Way Branch Merge with IBM-1047 Working Tree Encoding
 # ------------------------------------------------------------------------------
 echo ""
 echo "[Test 1/7] Clean 3-way branch merge with IBM-1047 working tree encoding..."
 mkdir test1 && cd test1
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
+"$GIT_BIN" config user.name "Test User"
+"$GIT_BIN" config user.email "test@example.com"
 
 echo "file.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
@@ -84,7 +93,7 @@ cd ..
 echo ""
 echo "[Test 2/7] Conflicting 3-way branch merge with IBM-1047..."
 mkdir test2 && cd test2
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 echo "conflict.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
@@ -134,7 +143,7 @@ cd ..
 echo ""
 echo "[Test 3/7] 3-way merge strategies -Xours and -Xtheirs with IBM-1047..."
 mkdir test3 && cd test3
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 echo "strat.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
@@ -178,7 +187,7 @@ cd ..
 echo ""
 echo "[Test 4/7] Multi-file 3-way merge with mixed encodings..."
 mkdir test4 && cd test4
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 "$GIT_BIN" config core.utf8ccsid 1208
 
@@ -242,7 +251,7 @@ cd ..
 echo ""
 echo "[Test 5/7] git apply --3way with IBM-1047 encoding..."
 mkdir test5 && cd test5
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 echo "merged.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
@@ -291,7 +300,7 @@ cd ..
 echo ""
 echo "[Test 6/7] 3-way merge transliteration (core.iconvtranslit=true)..."
 mkdir test6 && cd test6
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 "$GIT_BIN" config core.iconvtranslit true
 
@@ -340,7 +349,7 @@ cd ..
 echo ""
 echo "[Test 7/7] 3-way merge with transliteration disabled (core.iconvtranslit=false)..."
 mkdir test7 && cd test7
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 "$GIT_BIN" config core.iconvtranslit false
 
@@ -391,7 +400,7 @@ echo "---------------------------------------------------"
 
 cd "$TEST_ROOT"
 mkdir test8 && cd test8
-"$GIT_BIN" init
+init_git_repo
 
 # File with 2-byte UTF-8 chars: Ţ=C5A2, ę=C499, ş=C59F, ţ=C5A3
 printf "Ţęşţ\nline2\nline3\n" > utf8_file.txt
@@ -431,7 +440,7 @@ echo "-----------------------------------------------"
 
 cd "$TEST_ROOT"
 mkdir test9 && cd test9
-"$GIT_BIN" init
+init_git_repo
 
 # Chinese characters (3-byte UTF-8): 你=E4BDA0, 好=E5A5BD, 再=E5868D, 见=E8A781
 printf "你好世界\nline2\nline3\n" > cjk_file.txt
@@ -471,7 +480,7 @@ echo "------------------------------------------"
 
 cd "$TEST_ROOT"
 mkdir test10 && cd test10
-"$GIT_BIN" init
+init_git_repo
 
 # Emoji (4-byte UTF-8): 😀=F09F9880, 🌍=F09F8C8D
 printf "Hello😀World\nline2\nline3\n" > emoji_file.txt
@@ -592,7 +601,7 @@ cd ..
 echo ""
 echo "[Test 12/14] Three different encodings in merge (IBM-1047, UTF-8, ISO-8859-1)..."
 mkdir test12 && cd test12
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 # Base: IBM-1047 (mainframe)
@@ -673,7 +682,7 @@ cd ..
 echo ""
 echo "[Test 13/14] Conflict markers readable in EBCDIC (IBM-1047)..."
 mkdir test13 && cd test13
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 # Base commit
@@ -735,7 +744,7 @@ cd ..
 echo ""
 echo "[Test 14/14] Mixed newlines (LF vs EBCDIC NEL) handling..."
 mkdir test14 && cd test14
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 # Base: EBCDIC with standard LF (0x25 in EBCDIC = LF)
@@ -800,7 +809,7 @@ cd ..
 echo "Test 15: Special Characters Round-Trip (¬ $ @ # &)"
 
 mkdir test15_roundtrip && cd test15_roundtrip
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 # Set up .gitattributes
@@ -860,7 +869,7 @@ cd ..
 echo "Test 16: Special Characters 3-Way Merge (¬ $ @ # &)"
 
 mkdir test16_merge_special && cd test16_merge_special
-"$GIT_BIN" init
+init_git_repo
 "$GIT_BIN" config core.ignorefiletags false
 
 # Set up .gitattributes
