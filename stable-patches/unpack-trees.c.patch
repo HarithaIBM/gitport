@@ -46,6 +46,15 @@ index b42020f..5d249d7 100644
 +	}
 +
 +	/*
++	 * Flush parallel checkout queue to ensure .gitattributes files
++	 * are actually written to disk before we invalidate the cache.
++	 */
++	if (gitattributes_updated && pc_workers > 1) {
++		errs |= run_parallel_checkout(&state, pc_workers, pc_threshold,
++					      progress, &cnt);
++	}
++
++	/*
 +	 * Invalidate attribute cache NOW, after .gitattributes are checked out
 +	 * but BEFORE other files are checked out. This ensures other files get
 +	 * tagged with the NEW encoding from updated .gitattributes.
