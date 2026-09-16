@@ -67,11 +67,14 @@ expectedFailures:2400
 
 ```
 tests/
-├── run_all_tests.sh           # Main test runner (auto-generated)
-├── basicclone.sh              # Test: Basic git clone functionality
-├── stepwiseclone.sh           # Test: Step-by-step clone process
-├── test_3way_merge_encodings.sh  # Test: 3-way merge with encoding handling
-└── testtags.sh                # Test: File tagging functionality
+├── run_all_tests.sh                     # Main test runner (auto-discovers tests)
+├── basicclone.sh                        # Test: Basic git clone functionality
+├── stepwiseclone.sh                     # Test: Step-by-step clone process
+├── test_3way_merge_encodings.sh         # Test: 3-way merge with encoding handling
+├── test_pull_encoding_tag_fix.sh        # Test: Pull encoding tag regression fix
+├── test_parallel_checkout_encoding.sh   # Test: Parallel checkout race condition
+├── test_apply_3way_ebcdic.sh            # Test: git apply --3way with IBM-1047
+└── testtags.sh                          # Test: File tagging functionality
 ```
 
 ## Adding New Tests
