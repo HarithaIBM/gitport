@@ -118,7 +118,11 @@ zopen_check_results()
     # Parse custom test results (TAP format)
     custom_successes=$(grep -E "^ok [0-9]" "${TEST_LOG}" | wc -l | awk '{print $1}')
     custom_failuretests=$(grep -E "^not ok [0-9]" "${TEST_LOG}")
-    custom_failures=$(echo "${custom_failuretests}" | wc -l | awk '{print $1}')
+    if [ -n "${custom_failuretests}" ]; then
+        custom_failures=$(printf '%s\n' "${custom_failuretests}" | wc -l | awk '{print $1}')
+    else
+        custom_failures=0
+    fi
     custom_totalTests=$((custom_failures+custom_successes))
     
     echo "${custom_failuretests}" >"$1/$2_custom_test_failures.log"

@@ -88,11 +88,14 @@ index 96460cc..2a15cf7 100644
 +#endif
 +	}
 +
++#ifdef __MVS__
 +	if (iconv_translit) {
 +		out_encoding_translit = xstrfmt("%s//TRANSLIT", out_encoding);
 +		conv = iconv_open(out_encoding_translit, in_encoding);
 +		free(out_encoding_translit);
-+	} else {
++	} else
++#endif
++	{
 +		conv = iconv_open(out_encoding, in_encoding);
 +	}
 +
