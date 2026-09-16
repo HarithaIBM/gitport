@@ -46,7 +46,7 @@ index 7817aee..69568f1 100644
 +	query.cvtcmd = QUERYCVT;
 +	query.pccsid = 0;
 +	query.fccsid = 0;
-+	int fcntl_ret = fcntl(fd, F_CONTROL_CVT, &query);
++	(void)fcntl(fd, F_CONTROL_CVT, &query);
 +#endif
  	result |= odb_stream_blob_to_fd(the_repository->objects, fd, &ce->oid, filter, 1);
 +#ifdef __MVS__
@@ -84,7 +84,7 @@ index 7817aee..69568f1 100644
 +	query.cvtcmd = QUERYCVT;
 +	query.pccsid = 0;
 +	query.fccsid = 0;
-+	int fcntl_ret = fcntl(fd, F_CONTROL_CVT, &query);
++	(void)fcntl(fd, F_CONTROL_CVT, &query);
 +#endif
  		wrote = write_in_full(fd, new_blob, size);
 +#ifdef __MVS__
