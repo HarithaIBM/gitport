@@ -18,6 +18,9 @@ fi
 
 TEST_ROOT="$(mktemp -d /tmp/git_3way_test.XXXXXX)"
 
+# Cleanup on exit
+trap 'rm -rf "$TEST_ROOT"' EXIT
+
 echo "========================================================================"
 echo "      COMPREHENSIVE 3-WAY MERGE & ENCODING TEST SUITE (OURS & THEIRS)  "
 echo "========================================================================"
@@ -821,7 +824,7 @@ printf "Tilde: ~home\n" >> special.txt
 printf "Caret: x^2\n" >> special.txt
 
 # Record original hex dump
-od -t x1 special.txt | head -10 > /tmp/test15_original_hex.txt
+od -t x1 special.txt | head -10 > "$TEST_ROOT/test15_original_hex.txt"
 
 # Git add and commit (IBM-1047 → UTF-8)
 "$GIT_BIN" add .gitattributes special.txt
@@ -832,9 +835,9 @@ rm special.txt
 "$GIT_BIN" checkout -- special.txt
 
 # Compare hex dumps
-od -t x1 special.txt | head -10 > /tmp/test15_roundtrip_hex.txt
+od -t x1 special.txt | head -10 > "$TEST_ROOT/test15_roundtrip_hex.txt"
 
-if diff -q /tmp/test15_original_hex.txt /tmp/test15_roundtrip_hex.txt > /dev/null; then
+if diff -q "$TEST_ROOT/test15_original_hex.txt" "$TEST_ROOT/test15_roundtrip_hex.txt" > /dev/null; then
   # Verify file is readable
   chtag -p special.txt | grep -q "IBM-1047" || { echo "FAIL: wrong tag"; exit 1; }
   grep -q "¬condition" special.txt || { echo "FAIL: ¬ corrupted"; exit 1; }
@@ -931,12 +934,12 @@ if "$GIT_BIN" merge feature -m "merge special chars" 2>&1 | grep -q "CONFLICT"; 
 fi
 
 # Verify merged file has ALL special characters
-od -t x1 rexx_script.rexx > /tmp/test16_hex.txt
+od -t x1 rexx_script.rexx > "$TEST_ROOT/test16_hex.txt"
 
-grep -q "5b" /tmp/test16_hex.txt || { echo "FAIL: missing $ (0x5B)"; exit 1; }
-grep -q "7c" /tmp/test16_hex.txt || { echo "FAIL: missing @ (0x7C)"; exit 1; }
-grep -q "7b" /tmp/test16_hex.txt || { echo "FAIL: missing # (0x7B)"; exit 1; }
-grep -q "50" /tmp/test16_hex.txt || { echo "FAIL: missing & (0x50)"; exit 1; }
+grep -q "5b" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing $ (0x5B)"; exit 1; }
+grep -q "7c" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing @ (0x7C)"; exit 1; }
+grep -q "7b" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing # (0x7B)"; exit 1; }
+grep -q "50" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing & (0x50)"; exit 1; }
 
 # Verify content
 chtag -p rexx_script.rexx | grep -q "IBM-1047" || { echo "FAIL: wrong tag"; exit 1; }

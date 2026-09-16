@@ -31,17 +31,18 @@ index 7add2f1..95c7497 100644
  	get_pid_path(&pid_path, base_path.buf);
  
  	lk->tempfile = create_tempfile_mode(lock_path.buf, mode);
--	if (lk->tempfile)
 +#ifdef __MVS__
 +	if (lk->tempfile && fstat(lk->tempfile->fd, &st) >= 0 && S_ISREG(st.st_mode))
 +	{
 +		__chgfdccsid(lk->tempfile->fd, utf8_ccsid);
-+
++	}
++#endif
++	if (lk->tempfile)
  		lk->pid_tempfile = create_lock_pid_file(pid_path.buf, mode);
-+		if (lk->pid_tempfile && fstat(lk->pid_tempfile->fd, &st) >= 0 && S_ISREG(st.st_mode))
-+		{
-+			__chgfdccsid(lk->pid_tempfile->fd, utf8_ccsid);
-+		}
++#ifdef __MVS__
++	if (lk->pid_tempfile && fstat(lk->pid_tempfile->fd, &st) >= 0 && S_ISREG(st.st_mode))
++	{
++		__chgfdccsid(lk->pid_tempfile->fd, utf8_ccsid);
 +	}
 +#endif
  
