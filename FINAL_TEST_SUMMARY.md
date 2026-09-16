@@ -237,3 +237,10 @@ Expected result: **All tests pass** ✅
 
 **Status: READY FOR DEPLOYMENT** ✅
 
+
+### 15. ✅ **Git Stash File Tagging (apply.c)**
+**Commit:** `15184c8`  
+**Issue:** `git stash push <file>` tagged files incorrectly (ISO8859-1 instead of IBM-1047)  
+**Fix:** Changed `GIT_ATTR_CHECKIN` to `GIT_ATTR_CHECKOUT` in apply.c  
+**Test:** `git stash push <file>` now correctly tags files per `.gitattributes`  
+
