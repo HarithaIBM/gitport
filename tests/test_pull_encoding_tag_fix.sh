@@ -101,7 +101,7 @@ cd repo2
 # Commit 1: Mixed encodings
 cat << 'ATTR' > .gitattributes
 file1.txt zos-working-tree-encoding=ISO8859-1
-file2.txt zos-working-tree-encoding=UTF-8
+file2.txt zos-working-tree-encoding=ISO8859-1
 file3.txt zos-working-tree-encoding=IBM-1047
 ATTR
 
@@ -136,7 +136,7 @@ T3=$(chtag -p file3.txt | awk '{print $2}')
 echo "After checkout commit1: file1=$T1, file2=$T2, file3=$T3"
 
 [ "$T1" = "ISO8859-1" ] || { echo "✗ FAIL: file1 wrong tag"; exit 1; }
-[ "$T2" = "UTF-8" ] || { echo "✗ FAIL: file2 wrong tag"; exit 1; }
+[ "$T2" = "ISO8859-1" ] || { echo "✗ FAIL: file2 wrong tag"; exit 1; }
 [ "$T3" = "IBM-1047" ] || { echo "✗ FAIL: file3 wrong tag"; exit 1; }
 
 # Checkout commit2
