@@ -58,11 +58,11 @@ index c146a56..680ed4c 100644
  #endif
  
  	if (cmd->pid < 0) {
+ 		trace2_child_exit(cmd, -1);
 +fail_pipe:
 +		if (str)
 +			error("cannot create %s pipe for %s: %s",
 +				str, cmd->args.v[0], strerror(failed_errno));
- 		trace2_child_exit(cmd, -1);
  
  		if (need_in)
 @@ -1161,6 +1173,10 @@ int start_async(struct async *async)
