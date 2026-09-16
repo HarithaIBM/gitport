@@ -80,6 +80,7 @@ cd git/t
 |-------|----------|-----------|-------------|
 | Parallel checkout race | `parallel-checkout.c` | `test_parallel_checkout_encoding.sh` | ✅ New |
 | Apply verification bypass | `apply.c` | `test_apply_3way_ebcdic.sh` | ✅ New |
+| **Unpack-trees timing** | `unpack-trees.c` | `test_pull_encoding_tag_fix.sh` | ✅ **Fixed & Tested** |
 | Apply 3-way basic | `apply.c` | `t0083-apply-3way-zos.sh` | ✅ Existing |
 | 3-way merge encoding | `merge-ort.c` | `test_3way_merge_encodings.sh` | ✅ Existing |
 | Attribute cache | `unpack-trees.c` | `test_pull_encoding_tag_fix.sh` | ✅ Existing |
