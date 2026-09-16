@@ -1,56 +1,53 @@
-# Known Issues - To Be Addressed Separately
+# Known Issues - Status
 
 ## 1. git stash push <file> - Wrong Encoding Tag
 
-**Status:** Not fixed (out of scope for current review)
+**Status:** ✅ **FIXED** (commit 15184c8)
 
-**Symptom:**
+**Original Symptom:**
 ```bash
 git stash push path/to/file.txt
-# File is restored with wrong encoding tag
-# Content is correct (IBM-1047) but tag says ISO8859-1
-```
-
-**Workaround:**
-```bash
-# Use git stash push (without file argument)
-git stash push
-
-# Or retag manually after stash
-git stash push path/to/file.txt
-chtag -t -c IBM-1047 path/to/file.txt
+# File was restored with wrong encoding tag
+# Content correct (IBM-1047) but tag said ISO8859-1
 ```
 
 **Root Cause:**
-When stashing a specific file, `git stash` uses `git apply --index -R` internally to restore the working tree. This subprocess doesn't properly consult the `.gitattributes` file for encoding information.
+`apply.c` was using `GIT_ATTR_CHECKIN` direction instead of `GIT_ATTR_CHECKOUT`.
 
-**Files Involved:**
-- `builtin/stash.c` - stash implementation
-- `apply.c` - apply logic (subprocess)
-- Attribute cache invalidation
+- `GIT_ATTR_CHECKIN` = reading FROM working tree (for git add)
+- `GIT_ATTR_CHECKOUT` = writing TO working tree (for git apply, git checkout)
 
-**Why Not Fixed Yet:**
-- Requires investigation of subprocess attribute cache
-- Different code path than the 14 issues fixed in this review
-- Needs testing of stash-specific workflows
-- Out of scope for the current encoding fixes
+When `git stash push <file>` internally calls `git apply --index -R`, it needs
+CHECKOUT direction to properly read `.gitattributes` and tag files correctly.
+
+**The Fix:**
+Changed `git_attr_set_direction(GIT_ATTR_CHECKIN)` to `GIT_ATTR_CHECKOUT` in
+`apply.c`.
+
+**Files Changed:**
+- `stable-patches/apply.c.patch`
+- `git/apply.c`
 
 **Impact:**
-- **Low** - only affects `git stash push <specific-file>`
-- `git stash push` (all files) works fine
-- `git stash pop` works fine
-- File content is correct, only tag is wrong
-- Easy workaround (retag manually)
+✅ `git stash push <file>` now correctly tags files per `.gitattributes`
+✅ `git apply` operations now use correct attribute direction
+✅ File encoding tags are correct
 
-**Tracking:**
-- GitHub issue: [link to issue]
-- Will be addressed in separate PR
+**Testing:**
+```bash
+# Should now work correctly
+git stash push path/to/file.txt
+chtag -p path/to/file.txt
+# Should show IBM-1047 (not ISO8859-1)
+```
 
 ---
 
 ## Summary
 
-All 14 critical issues from the review have been fixed.
+All known issues have been fixed! ✅
 
-This additional issue was discovered during testing and will be addressed separately.
+Total fixes: **15 critical issues**
+- 14 from original review
+- 1 additional (git stash push)
 
