@@ -251,3 +251,10 @@ Expected result: **All tests pass** ✅
 **Fix:** Check if env var is set before applying config value  
 **Test:** `GIT_ICONV_TRANSLIT=1` now takes precedence over `core.iconvtranslit=false`  
 
+
+### 17. ✅ **Git Rerere Encoding (rerere.c)**
+**Commit:** `f2e2e22`  
+**Issue:** `git rerere` auto-resolve didn't tag files correctly  
+**Fix:** Added z/OS tagging to rerere's merge() function  
+**Test:** `tests/test_rerere_encoding.sh` should now pass  
+
