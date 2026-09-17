@@ -244,3 +244,10 @@ Expected result: **All tests pass** ✅
 **Fix:** Changed `GIT_ATTR_CHECKIN` to `GIT_ATTR_CHECKOUT` in apply.c  
 **Test:** `git stash push <file>` now correctly tags files per `.gitattributes`  
 
+
+### 16. ✅ **GIT_ICONV_TRANSLIT Environment Variable Precedence**
+**Commit:** `1ddb05d`  
+**Issue:** Environment variable `GIT_ICONV_TRANSLIT=1` was being overwritten by config  
+**Fix:** Check if env var is set before applying config value  
+**Test:** `GIT_ICONV_TRANSLIT=1` now takes precedence over `core.iconvtranslit=false`  
+
