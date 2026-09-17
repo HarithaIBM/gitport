@@ -1,0 +1,13 @@
+not ok 4 - test_3way_merge_encodings
+not ok 5 - test_all_file_writing_commands
+not ok 6 - test_all_tagging_commands
+not ok 7 - test_apply_3way_ebcdic
+not ok 8 - test_apply_tagging
+not ok 9 - test_file_tagging_survey
+not ok 10 - test_merge_file_diff_output
+not ok 11 - test_not_symbol_037_1047
+not ok 12 - test_parallel_checkout_encoding
+not ok 13 - test_pull_encoding_tag_fix
+not ok 14 - test_rebase_tagging
+not ok 15 - test_unmappable_unicode
+not ok 16 - testtags

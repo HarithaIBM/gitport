@@ -1,0 +1,562 @@
+TAP version 13
+1..17
+ok 1 - basicclone
+ok 2 - diagnose_codepage_mapping
+ok 3 - stepwiseclone
+not ok 4 - test_3way_merge_encodings
+# Test output:
+# ========================================================================
+#       COMPREHENSIVE 3-WAY MERGE & ENCODING TEST SUITE (OURS & THEIRS)  
+# ========================================================================
+# Git binary: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test root:  /tmp/git_3way_test.8As8HO
+# 
+# [Test 1/7] Clean 3-way branch merge with IBM-1047 working tree encoding...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: will change to "main" in Git 3.0. To configure the initial branch name
+# hint: to use in all of your new repositories, which will suppress this warning,
+# hint: call:
+# hint:
+# hint: 	git config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: 	git branch -m <name>
+# hint:
+# hint: Disable this message with "git config set advice.defaultBranchName false"
+# Initialized empty Git repository in /tmp/git_3way_test.8As8HO/test1/.git/
+# [master (root-commit) 76c1579] base commit
+#  2 files changed, 13 insertions(+)
+#  create mode 100644 .gitattributes
+#  create mode 100644 file.txt
+# Switched to a new branch 'side'
+# [side e6c39ac] theirs commit line 12
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+# Switched to branch 'master'
+# [master 4079566] ours commit line 1
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+# Auto-merging file.txt
+# Merge made by the 'ort' strategy.
+#  file.txt | 2 +-
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+#   -> Test 1 PASSED (Clean 3-way merge correctly merged ours & theirs with IBM-1047 tag)
+# 
+# [Test 2/7] Conflicting 3-way branch merge with IBM-1047...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: will change to "main" in Git 3.0. To configure the initial branch name
+# hint: to use in all of your new repositories, which will suppress this warning,
+# hint: call:
+# hint:
+# hint: 	git config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: 	git branch -m <name>
+# hint:
+# hint: Disable this message with "git config set advice.defaultBranchName false"
+# Initialized empty Git repository in /tmp/git_3way_test.8As8HO/test2/.git/
+# [master (root-commit) ba30cfd] base
+#  2 files changed, 2 insertions(+)
+#  create mode 100644 .gitattributes
+#  create mode 100644 conflict.txt
+# Switched to a new branch 'side'
+# [side 041000d] theirs modification
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+# Switched to branch 'master'
+# [master fd85ee5] ours modification
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+# Auto-merging conflict.txt
+# CONFLICT (content): Merge conflict in conflict.txt
+# Automatic merge failed; fix conflicts and then commit the result.
+#   -> Test 2 PASSED (Conflict properly tagged IBM-1047 and contains conflict markers)
+# 
+# [Test 3/7] 3-way merge strategies -Xours and -Xtheirs with IBM-1047...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: will change to "main" in Git 3.0. To configure the initial branch name
+# hint: to use in all of your new repositories, which will suppress this warning,
+# hint: call:
+# hint:
+# hint: 	git config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: 	git branch -m <name>
+# hint:
+# hint: Disable this message with "git config set advice.defaultBranchName false"
+# Initialized empty Git repository in /tmp/git_3way_test.8As8HO/test3/.git/
+# [master (root-commit) c61cf31] base
+#  2 files changed, 2 insertions(+)
+#  create mode 100644 .gitattributes
+#  create mode 100644 strat.txt
+# Switched to a new branch 'side'
+# [side c7fb0fd] theirs change
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+# Switched to branch 'master'
+# [master 6a2ba96] ours change
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+# Auto-merging strat.txt
+# Merge made by the 'ort' strategy.
+# HEAD is now at 6a2ba96 ours change
+# Auto-merging strat.txt
+# Merge made by the 'ort' strategy.
+#  strat.txt | 2 +-
+#  1 file changed, 1 insertion(+), 1 deletion(-)
+#   -> Test 3 PASSED (-Xours and -Xtheirs resolved cleanly with IBM-1047 tagging)
+# 
+# [Test 4/7] Multi-file 3-way merge with mixed encodings...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: will change to "main" in Git 3.0. To configure the initial branch name
+# hint: to use in all of your new repositories, which will suppress this warning,
+# hint: call:
+# hint:
+# hint: 	git config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: 	git branch -m <name>
+# hint:
+# hint: Disable this message with "git config set advice.defaultBranchName false"
+# Initialized empty Git repository in /tmp/git_3way_test.8As8HO/test4/.git/
+# [master (root-commit) 7dfb986] initial files
+#  4 files changed, 10 insertions(+)
+#  create mode 100644 .gitattributes
+#  create mode 100644 file_ebcdic.txt
+#  create mode 100644 file_iso.txt
+#  create mode 100644 file_utf8.txt
+# Switched to a new branch 'side'
+# [side 21c5fcf] theirs changes
+#  3 files changed, 3 insertions(+), 3 deletions(-)
+# Switched to branch 'master'
+# [master 5053980] ours changes
+#  3 files changed, 3 insertions(+), 3 deletions(-)
+# Auto-merging file_ebcdic.txt
+# Auto-merging file_iso.txt
+# Auto-merging file_utf8.txt
+# Merge made by the 'ort' strategy.
+#  file_ebcdic.txt | 2 +-
+#  file_iso.txt    | 2 +-
+#  file_utf8.txt   | 2 +-
+#  3 files changed, 3 insertions(+), 3 deletions(-)
+#   -> Test 4 PASSED (Multi-file merge maintained respective encodings and tags)
+# 
+# [Test 5/7] git apply --3way with IBM-1047 encoding...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: will change to "main" in Git 3.0. To configure the initial branch name
+# hint: to use in all of your new repositories, which will suppress this warning,
+# hint: call:
+# hint:
+# hint: 	git config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: 	git branch -m <name>
+# hint:
+# hint: Disable this message with "git config set advice.defaultBranchName false"
+# Initialized empty Git repository in /tmp/git_3way_test.8As8HO/test5/.git/
+# [master (root-commit) ec16cd5] setup attributes
+#  1 file changed, 1 insertion(+)
+#  create mode 100644 .gitattributes
+# Applied patch to 'merged.txt' cleanly.
+#   -> Test 5 PASSED (apply --3way correctly resolved and tagged IBM-1047)
+# 
+# [Test 6/7] 3-way merge transliteration (core.iconvtranslit=true)...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: will change to "main" in Git 3.0. To configure the initial branch name
+# hint: to use in all of your new repositories, which will suppress this warning,
+# hint: call:
+# hint:
+# hint: 	git config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: 	git branch -m <name>
+# hint:
+# hint: Disable this message with "git config set advice.defaultBranchName false"
+# Initialized empty Git repository in /tmp/git_3way_test.8As8HO/test6/.git/
+# Applied patch to 'translit.txt' cleanly.
+# error: failed to encode 'translit.txt' from UTF-8 to IBM-1047 at line 3, col 8 (char: 0xc5)
+# FAIL: translit.txt tag wrong
+# rm: FSUMF160 Unable to change back to current working directory "/tmp/git_3way_test.8As8HO/test6": EDC5129I No such file or directory.
+# rm: FSUM7283 rm: fatal error during "-r" option: EDC5129I No such file or directory.
+not ok 5 - test_all_file_writing_commands
+# Test output:
+# ========================================================================
+#       COMPREHENSIVE FILE WRITING COMMANDS TEST                         
+# ========================================================================
+# Git binary: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test root:  /tmp/git_file_write_test.FWJHXC
+# 
+# Testing commands that write files to working tree...
+# Checking if they respect zos-working-tree-encoding and tag correctly
+# 
+# [Test 1] git rerere (already fixed - baseline)
+# 
+#   ✓ PASS: rerere auto-resolve - File tagged as IBM-1047
+# 
+# [Test 2] git apply (regular patch)
+# 
+# error: patch failed: file.txt:1
+# error: file.txt: patch does not apply
+# rm: FSUMF160 Unable to change back to current working directory "/tmp/git_file_write_test.FWJHXC/test2": EDC5129I No such file or directory.
+# rm: FSUM7283 rm: fatal error during "-r" option: EDC5129I No such file or directory.
+not ok 6 - test_all_tagging_commands
+# Test output:
+# ========================================================================
+#          COMPREHENSIVE FILE TAGGING TEST SUITE                         
+# ========================================================================
+# 
+# ========================================================================
+#   Running: merge-file and diff --output
+# ========================================================================
+# ========================================================================
+#       TEST: git merge-file and git diff --output Tagging              
+# ========================================================================
+# Git: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test: /tmp/git_mergefile_diff_test.lUvNs7
+# 
+# [Test 1/4] git merge-file with IBM-1047 encoding
+#   ✗ FAIL: File tagged as binary (expected IBM-1047)
+# 
+# [Test 2/4] git merge-file with UTF-8 encoding
+#   ✗ FAIL: File tagged as binary
+# 
+# [Test 3/4] git diff --output with IBM-1047 encoding
+#   ✓ PASS: Diff file tagged as IBM-1047
+# 
+# [Test 4/4] git diff --output with UTF-8 encoding
+# fatal: Unable to create '/tmp/git_mergefile_diff_test.lUvNs7/t4/.git/index.lock': EDC5133I No space left on device.
+# rm: FSUMF160 Unable to change back to current working directory "/tmp/git_mergefile_diff_test.lUvNs7/t4": EDC5129I No such file or directory.
+# rm: FSUM7283 rm: fatal error during "-r" option: EDC5129I No such file or directory.
+# 
+# ✗ merge-file and diff --output FAILED (exit code: 1)
+# 
+# ========================================================================
+#   Running: git apply
+# ========================================================================
+# ========================================================================
+#                   TEST: git apply File Tagging                         
+# ========================================================================
+# Git: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test: /tmp/git_apply_test.5UEGo5
+# 
+# [Test 1/3] git apply with IBM-1047 encoding
+#   ⚠ SKIP: git apply failed (likely encoding issue in patch)
+# 
+# [Test 2/3] git apply --3way with IBM-1047 encoding
+#   ⚠ SKIP: git apply --3way failed
+# 
+# [Test 3/3] git apply preserves existing tags
+#   ✓ PASS: File tagged as ISO8859-1
+# 
+# ========================================================================
+#   SUMMARY: 1 / 3 TESTS PASSED
+# ========================================================================
+#   ⚠ PARTIAL PASS
+#   Some tests may have been skipped due to patch format issues
+#   This is likely NOT a tagging bug
+# 
+# ✓ git apply PASSED
+# 
+# ========================================================================
+#   Running: git rebase
+# ========================================================================
+# ========================================================================
+#                   TEST: git rebase File Tagging                        
+# ========================================================================
+# Git: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test: /tmp/git_rebase_test.bPq5N9
+# 
+# [Test 1/3] git rebase with IBM-1047 encoding
+#   ✓ PASS: File tagged as IBM-1047
+# 
+# [Test 2/3] git rebase with conflict resolution
+# Auto-merging file.txt
+# CONFLICT (content): Merge conflict in file.txt
+#   ✓ PASS: File tagged as IBM-1047 during conflict
+# 
+# [Test 3/3] git rebase with multiple commits
+#   ✓ PASS: File tagged as IBM-1047
+# 
+# ========================================================================
+#   SUMMARY: 3 / 3 TESTS PASSED
+# ========================================================================
+#   ✓ ALL TESTS PASSED!
+# 
+#   git rebase tags files correctly
+# 
+# ✓ git rebase PASSED
+# 
+# ========================================================================
+#                      FINAL SUMMARY                                      
+# ========================================================================
+# 
+#   ✗ SOME TEST SUITES FAILED:
+# 
+#   - merge-file and diff --output
+# 
+# 
+#   Please check the output above for details
+not ok 7 - test_apply_3way_ebcdic
+# Test output:
+# ========================================================================
+#        GIT APPLY --3WAY WITH IBM-1047 VERIFICATION TEST               
+# ========================================================================
+# Git binary: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test root:  /tmp/git_apply_3way_test.aVPVSp
+# 
+# [Test 1/4] git apply --3way with unmodified IBM-1047 file...
+#   ✗ FAIL: Patch didn't apply correctly
+# line1
+# line2
+# line3
+# 
+# [Test 2/4] git apply --3way detects local modifications...
+# error: repository lacks the necessary blob to perform 3-way merge.
+# Falling back to direct application...
+# error: patch failed: file.txt:1
+# error: file.txt: patch does not apply
+#   ✗ FAIL: 3-way merge didn't preserve both changes
+# line1-MODIFIED
+# line2
+# line3
+# 
+# [Test 3/4] git apply without --3way still validates file...
+#   ✗ FAIL: Non-3way apply should have failed but didn't
+# 
+# [Test 4/4] 3-way merge handles EBCDIC/UTF-8 size differences...
+#   ✗ FAIL: Patch didn't apply
+# 
+# ========================================================================
+#   SUMMARY: 0 / 4 TESTS PASSED
+#   ✗ SOME TESTS FAILED
+not ok 8 - test_apply_tagging
+# Test output:
+# ========================================================================
+#                   TEST: git apply File Tagging                         
+# ========================================================================
+# Git: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test: /tmp/git_apply_test.7bdu0r
+# 
+# [Test 1/3] git apply with IBM-1047 encoding
+#   ⚠ SKIP: git apply failed (likely encoding issue in patch)
+# 
+# [Test 2/3] git apply --3way with IBM-1047 encoding
+# rm: FSUMF160 Unable to change back to current working directory "/tmp/git_apply_test.7bdu0r/t2": EDC5129I No such file or directory.
+# rm: FSUM7283 rm: fatal error during "-r" option: EDC5129I No such file or directory.
+not ok 9 - test_file_tagging_survey
+# Test output:
+# ========================================================================
+#     FILE TAGGING SURVEY - Which commands need fixes?                   
+# ========================================================================
+# Git: git version 2.55.0
+# Test: /tmp/git_tag_survey.qzH800
+# 
+# [1/10] Testing: git rerere
+# Auto-merging f.txt
+# CONFLICT (content): Merge conflict in f.txt
+# Automatic merge failed; fix conflicts and then commit the result.
+# Auto-merging f.txt
+# CONFLICT (content): Merge conflict in f.txt
+# Automatic merge failed; fix conflicts and then commit the result.
+#   ✓ PASS: Tagged as IBM-1047
+# 
+# [2/10] Testing: git apply (regular patch)
+#   ✗ FAIL: Apply failed
+# 
+# [3/10] Testing: git merge-file
+#   ℹ Merge failed (expected), checking tag anyway
+#   ✗ FAIL: Tagged as binary
+# 
+# [4/10] Testing: git diff --output=file
+#   ✓ PASS: Tagged as IBM-1047
+# 
+# [5/10] Testing: git stash apply
+# Auto-merging f.txt
+# CONFLICT (content): Merge conflict in f.txt
+# On branch master
+# Unmerged paths:
+#   (use "git restore --staged <file>..." to unstage)
+#   (use "git add <file>..." to mark resolution)
+# 	both modified:   f.txt
+# 
+# no changes added to commit (use "git add" and/or "git commit -a")
+#   ✓ PASS: Tagged as IBM-1047
+# 
+# [6/10] Testing: git checkout --conflict=diff3
+# Auto-merging f.txt
+# CONFLICT (content): Merge conflict in f.txt
+# Automatic merge failed; fix conflicts and then commit the result.
+#   ✓ PASS: Tagged as IBM-1047
+# 
+# [7/10] Testing: git worktree add
+# HEAD is now at 8639874 b
+#   ✓ PASS: Tagged as IBM-1047
+# 
+# [8/10] Testing: git am (apply mailbox)
+# /tmp/0001-c.patch
+#   ✓ PASS: Tagged as IBM-1047
+# 
+# [9/10] Testing: git restore
+# mkdir: FSUM6404 directory "t9": EDC5133I No space left on device.
+# fatal: not in a git directory
+# fatal: not in a git directory
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_file_tagging_survey.sh: line 310: echo: write error: EDC5133I No space left on device.
+# fatal: not a git repository (or any parent up to mount point /)
+# Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_file_tagging_survey.sh: line 313: f.txt: EDC5133I No space left on device.
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_file_tagging_survey.sh: line 314: f.txt: EDC5133I No space left on device.
+#   ✗ FAIL: Tagged as 
+# 
+# [10/10] Testing: git rebase
+# mkdir: FSUM6404 directory "t10": EDC5133I No space left on device.
+# fatal: not in a git directory
+# fatal: not in a git directory
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_file_tagging_survey.sh: line 337: .gitattributes: EDC5133I No space left on device.
+# fatal: not a git repository (or any parent up to mount point /)
+# Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_file_tagging_survey.sh: line 340: f.txt: EDC5133I No space left on device.
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_file_tagging_survey.sh: line 341: f.txt: EDC5133I No space left on device.
+#   ℹ INFO: Tagged as  (rebase may not have run)
+# 
+# ========================================================================
+#                          SUMMARY                                        
+# ========================================================================
+# 
+#   ✓ rerere               PASS
+#   ✗ apply                FAIL (tagged as apply-failed)
+#   ✗ merge-file           FAIL (tagged as binary)
+#   ✓ diff-output          PASS
+#   ✓ stash-apply          PASS
+#   ✓ checkout-conflict    PASS
+#   ✓ worktree             PASS
+#   ✓ am                   PASS
+#   ✗ restore              FAIL (tagged as )
+#   ℹ rebase               INFO (tagged as )
+# 
+# Results:
+#   Passed: 6
+#   Failed: 3
+#   Skipped: 0
+#   Info: 1
+# 
+# ⚠ 3 command(s) need fixing
+# 
+# Commands that FAILED need investigation:
+#   - apply (tagged as apply-failed instead of IBM-1047)
+#   - merge-file (tagged as binary instead of IBM-1047)
+#   - restore (tagged as  instead of IBM-1047)
+# 
+# ========================================================================
+not ok 10 - test_merge_file_diff_output
+# Test output:
+# ========================================================================
+#       TEST: git merge-file and git diff --output Tagging              
+# ========================================================================
+# Git: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test: /tmp/git_mergefile_diff_test.xjcDza
+# 
+# [Test 1/4] git merge-file with IBM-1047 encoding
+#   ✗ FAIL: File tagged as binary (expected IBM-1047)
+# 
+# [Test 2/4] git merge-file with UTF-8 encoding
+#   ✗ FAIL: File tagged as binary
+# 
+# [Test 3/4] git diff --output with IBM-1047 encoding
+#   ✓ PASS: Diff file tagged as IBM-1047
+# 
+# [Test 4/4] git diff --output with UTF-8 encoding
+#   ✓ PASS: Diff file tagged as ISO8859-1
+# 
+# ========================================================================
+#   SUMMARY: 2 / 4 TESTS PASSED
+# ========================================================================
+#   ✗ SOME TESTS FAILED
+#   2 test(s) failed
+not ok 11 - test_not_symbol_037_1047
+# Test output:
+# ========================================================================
+#           NOT SYMBOL (¬) ENCODING TEST (037 vs 1047)                  
+# ========================================================================
+# Git binary: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test root:  /tmp/git_not_symbol_test.d9GvqU
+# 
+# [Test 1/5] Check iconv support for NOT symbol (¬)...
+#   ✓ iconv can convert ¬ from UTF-8 to IBM-1047
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_not_symbol_037_1047.sh: line 46: xxd: command not found
+#   Result: 0x
+#   ⚠ Warning: Got 0x instead of 0x5f
+# 
+# [Test 2/5] Clone repo with ¬ symbol (UTF-8 → IBM-1047)...
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_not_symbol_037_1047.sh: line 88: xxd: command not found
+#   ⚠ Warning: Cannot find ¬ in UTF-8 encoding
+# Updated 1 path from the index
+#   ✓ Checkout succeeded
+#   File tag: IBM-1047
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_not_symbol_037_1047.sh: line 107: xxd: command not found
+# FSUMA930 grep: Unknown option -o
+# Usage: grep [-E|-F] [-BNbcilnqsvxrR] [-A|-P|-C num] [-S string] [-W option[,option]...] [-e pattern] ... [-f patternfile] ... [pattern] [file ...]
+#   Character: 
+#   ✓ PASS: File correctly tagged as IBM-1047
+# 
+# [Test 3/5] Same test WITH transliteration...
+# Updated 1 path from the index
+#   ✓ Checkout succeeded with transliteration
+#   File tag: IBM-1047
+#   ✓ PASS: File correctly tagged
+# 
+# [Test 4/5] Verify 0xb0 character difference (037 vs 1047)...
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_not_symbol_037_1047.sh: line 199: xxd: command not found
+#   IBM-037 0xb0 → UTF-8: 0x
+# /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_not_symbol_037_1047.sh: line 208: xxd: command not found
+#   IBM-1047 0xb0 → UTF-8: 0x
+#   ✗ FAIL: Same character in both encodings?
+# 
+# [Test 5/5] Test caret (^) which should work correctly...
+# error: unable to create temporary file: EDC5133I No space left on device.
+# fatal: failed to write commit object
+# rm: FSUMF160 Unable to change back to current working directory "/tmp/git_not_symbol_test.d9GvqU/test5": EDC5129I No such file or directory.
+# rm: FSUM7283 rm: fatal error during "-r" option: EDC5129I No such file or directory.
+not ok 12 - test_parallel_checkout_encoding
+# Test output:
+# ========================================================================
+#            PARALLEL CHECKOUT ENCODING TEST SUITE                       
+# ========================================================================
+# Git binary: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test root:  /tmp/git_parallel_checkout_test.A9jCWs
+# 
+# [Test 1/3] Parallel checkout with mixed file encodings...
+# fatal: unable to write loose object file: EDC5133I No space left on device.
+# rm: FSUMF160 Unable to change back to current working directory "/tmp/git_parallel_checkout_test.A9jCWs/test1": EDC5129I No such file or directory.
+# rm: FSUM7283 rm: fatal error during "-r" option: EDC5129I No such file or directory.
+not ok 13 - test_pull_encoding_tag_fix
+# Test output:
+# ========================================================================
+#   GIT ENCODING TAG BUG TEST (.gitattributes attribute cache)
+# ========================================================================
+# Git binary: git version 2.55.0 (/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git)
+# Test root:  /tmp/git_encoding_cache_test.qzSxNN
+# 
+# Test 1: Checkout between commits with different .gitattributes encodings
+# --------------------------------------------------------------------------
+# error: could not lock config file /tmp/git_encoding_cache_test.qzSxNN/repo/.git/config: EDC5133I No space left on device.
+# fatal: could not set 'core.repositoryformatversion' to '0'
+not ok 14 - test_rebase_tagging
+# Test output:
+# Warning: /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/test_rerere_encoding.sh is not executable, skipping
+/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/run_all_tests.sh: line 17: /tmp/test_unmappable_unicode_83894081.out: EDC5133I No space left on device.
+not ok 15 - test_unmappable_unicode
+# Test output:
+sed: can't read /tmp/test_unmappable_unicode_83894081.out: EDC5129I No such file or directory.
+/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/tests/run_all_tests.sh: line 17: /tmp/testtags_83894081.out: EDC5133I No space left on device.
+not ok 16 - testtags
+# Test output:
+sed: can't read /tmp/testtags_83894081.out: EDC5129I No such file or directory.
+# Tests run: 16
+# Passed: 3
+# Failed: 13

@@ -1,0 +1,122 @@
+configure: WARNING: unrecognized options: --with-libiconv-prefix
+configure: Setting lib to 'lib' (the default)
+configure: Will try -pthread then -lpthread to enable POSIX Threads.
+configure: CHECKS for site configuration
+configure: Setting OPENSSLDIR to /home/haritha/zopen_23may/zopen/usr/local/zopen/openssl/openssl-4.0.1.20260609_171819.zos
+configure: Setting LIBPCREDIR to /home/haritha/zopen_23may/zopen/usr/local/zopen/libpcre2/pcre2-10.47.20260227_071314.zos
+checking for gcc... clang
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether clang accepts -g... yes
+checking for clang option to enable C23 features... unsupported
+checking for clang option to enable C11 features... none needed
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for size_t... yes
+checking for working alloca.h... no
+checking for alloca... yes
+configure: Setting CURLDIR to /home/haritha/zopen_23may/zopen/usr/local/zopen/curl/curl-8.22.0.20260902_141721.zos
+configure: Setting ZLIB_PATH to /home/haritha/zopen_23may/zopen/usr/local/zopen/zlib/zlib-v1.3.2.20260430_063317.zos
+configure: CHECKS for programs
+checking whether the compiler supports GNU C... (cached) yes
+checking whether clang accepts -g... (cached) yes
+checking for clang option to enable C23 features... (cached) unsupported
+checking for clang option to enable C11 features... (cached) none needed
+checking for inline... inline
+checking if linker supports -R... no
+checking if linker supports -Wl,-rpath,... no
+checking if linker supports -rpath... no
+checking if linker supports -Wl,+b,... no
+configure: WARNING: linker does not support runtime path to dynamic libraries
+checking for gar... no
+checking for ar... ar
+checking for gtar... gtar
+checking for gnudiff... no
+checking for gdiff... gdiff
+checking for asciidoc... no
+configure: CHECKS for libraries
+checking for SHA1_Init in -lcrypto... yes
+checking for pcre2_config_8 in -lpcre2-8... yes
+checking for curl_global_init in -lcurl... yes
+checking for curl-config... no
+checking for XML_ParserCreate in -lexpat... yes
+checking for iconv in -lc... yes
+checking for deflateBound in -lz... yes
+checking for socket in -lc... yes
+checking for inet_ntop... yes
+checking for inet_pton... yes
+checking for hstrerror... no
+checking for hstrerror in -lresolv... no
+checking for basename in -lc... yes
+checking if libc contains libintl... yes
+checking for libintl.h... yes
+configure: CHECKS for header files
+checking for sys/select.h... yes
+checking for poll.h... yes
+checking for sys/poll.h... yes
+checking for inttypes.h... (cached) yes
+checking for old iconv()... no
+checking whether iconv omits bom for utf-16 and utf-32... no
+configure: CHECKS for typedefs, structures, and compiler characteristics
+checking for socklen_t... yes
+checking for struct itimerval... yes
+checking for struct stat.st_mtimespec.tv_nsec... no
+checking for struct stat.st_mtim.tv_nsec... no
+checking for struct dirent.d_type... no
+checking for struct passwd.pw_gecos... no
+checking for struct sockaddr_storage... yes
+checking for struct addrinfo... yes
+checking for getaddrinfo... yes
+checking for library containing getaddrinfo... none required
+checking how to run the C preprocessor... clang -E
+checking for egrep -e... /bin/grep -E
+checking whether the platform regex supports REG_STARTEND... no
+checking whether system succeeds to read fopen'ed directory... yes
+checking whether snprintf() and/or vsnprintf() return bogus value... no
+checking whether the platform uses typical file type bits... no
+configure: CHECKS for library functions
+checking for libgen.h... yes
+checking for paths.h... yes
+checking for libcharset.h... yes
+checking for strings.h... (cached) yes
+checking for locale_charset in -liconv... yes
+checking for clock_gettime... yes
+checking for library containing clock_gettime... none required
+checking for CLOCK_MONOTONIC... yes
+checking for sync_file_range... no
+checking for setitimer... yes
+checking for library containing setitimer... none required
+checking for strcasestr... yes
+checking for library containing strcasestr... none required
+checking for memmem... yes
+checking for library containing memmem... none required
+checking for strlcpy... no
+checking for strtoumax... yes
+checking for library containing strtoumax... none required
+checking for setenv... yes
+checking for library containing setenv... none required
+checking for unsetenv... yes
+checking for library containing unsetenv... none required
+checking for mkdtemp... no
+checking for initgroups... yes
+checking for library containing initgroups... none required
+checking for getdelim... yes
+checking for library containing getdelim... none required
+checking for BSD sysctl... no
+checking for sysinfo... no
+checking for POSIX Threads with ''... yes
+configure: creating ./config.status
+config.status: creating config.mak.autogen
+config.status: executing config.mak.autogen commands
+configure: WARNING: unrecognized options: --with-libiconv-prefix

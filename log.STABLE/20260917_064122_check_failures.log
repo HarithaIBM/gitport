@@ -1,0 +1,655 @@
+not ok 3 - test-tool env-helper --type=bool
+not ok 5 - run-command formats empty args properly
+not ok 6 - tracing a shell alias with arguments shows trace of prepared command
+not ok 5 - test-tool env-helper reads config thanks to trace2
+not ok 7 - plain with GIT_WORK_TREE
+not ok 9 - plain bare with GIT_WORK_TREE
+not ok 26 - show date (format-local:%Z:1466000000 +0200)
+not ok 14 - GIT_DIR & GIT_WORK_TREE (2)
+not ok 3 - safe.directory in the environment
+not ok 4 - safe.directory in GIT_CONFIG_PARAMETERS
+not ok 36 - implicit bare & --separate-git-dir incompatible
+not ok 11 - filter that does not read is fine
+not ok 27 - superfluous value provided: boolean, abbreviated
+not ok 32 - ambiguously abbreviated option
+not ok 17 - required process filter should filter data
+not ok 31 - diff without repository with attr source
+not ok 18 - required process filter should filter data for various subcommands
+not ok 65 - init with GIT_DEFAULT_REF_FORMAT=garbage
+not ok 4 - xgettext sanity: Comment extraction with --add-comments
+not ok 23 - process filter should restart after unexpected write failure
+not ok 24 - process filter should not be restarted if it signals an error
+not ok 25 - process filter abort stops processing of all further files
+not ok 2 - normal stream, return code 1
+not ok 2 - perf stream, return code 1
+not ok 5 - normal stream, exit code 1
+not ok 7 - BUG messages are written to trace2
+not ok 8 - bug messages with BUG_if_bug() are written to trace2
+not ok 9 - bug messages without explicit BUG_if_bug() are written to trace2
+not ok 10 - bug messages followed by BUG() are written to trace2
+not ok 96 - invalid default branch name
+not ok 103 - init honors GIT_OBJECT_DIRECTORY
+not ok 8 - add -h output and SYNOPSIS agree # TODO known breakage
+not ok 14 - am -h output and SYNOPSIS agree # TODO known breakage
+not ok 7 - promisor lazy-fetching can be re-enabled
+not ok 13 - expect def_params for remote-curl and _run_dashed_
+not ok 14 - expect def_params for http-fetch and _run_dashed_
+not ok 26 - apply -h output and SYNOPSIS agree # TODO known breakage
+not ok 32 - archive -h output and SYNOPSIS agree # TODO known breakage
+not ok 50 - blame -h output and SYNOPSIS agree # TODO known breakage
+not ok 56 - branch -h output and SYNOPSIS agree # TODO known breakage
+not ok 98 - check-ref-format -h output and SYNOPSIS agree # TODO known breakage
+not ok 104 - checkout -h output and SYNOPSIS agree # TODO known breakage
+not ok 116 - checkout-index -h output and SYNOPSIS agree # TODO known breakage
+not ok 140 - clone -h output and SYNOPSIS agree # TODO known breakage
+not ok 146 - column -h output and SYNOPSIS agree # TODO known breakage
+not ok 10 - 3-way not overwriting local changes (our side)
+not ok 14 - set up crlf tests
+not ok 15 - check that appropriate filter is invoke when --path is used
+not ok 16 - gitattributes also work in a subdirectory
+not ok 11 - 3-way not overwriting local changes (their side)
+not ok 17 - --path works in a subdirectory
+not ok 182 - credential -h output and SYNOPSIS agree # TODO known breakage
+not ok 188 - credential-cache -h output and SYNOPSIS agree # TODO known breakage
+not ok 200 - credential-store -h output and SYNOPSIS agree # TODO known breakage
+not ok 1 - setup
+not ok 2 - read-tree without .git/info/sparse-checkout
+not ok 3 - read-tree with .git/info/sparse-checkout but disabled
+not ok 4 - read-tree --no-sparse-checkout with empty .git/info/sparse-checkout and enabled
+not ok 5 - read-tree with empty .git/info/sparse-checkout
+not ok 6 - match directories with trailing slash
+not ok 7 - match directories without trailing slash
+not ok 8 - match directories with negated patterns
+not ok 9 - match directories with negated patterns (2)
+not ok 10 - match directory pattern
+not ok 11 - checkout area changes
+not ok 12 - read-tree updates worktree, absent case
+not ok 254 - fast-export -h output and SYNOPSIS agree # TODO known breakage
+not ok 13 - read-tree will not throw away dirty changes, non-sparse
+not ok 14 - read-tree will not throw away dirty changes, sparse
+not ok 108 - --batch-check with %(rest) # TODO known breakage
+not ok 15 - read-tree updates worktree, dirty case
+not ok 16 - read-tree removes worktree, dirty case
+not ok 17 - read-tree adds to worktree, absent case
+not ok 18 - read-tree adds to worktree, dirty case
+not ok 19 - index removal and worktree narrowing at the same time
+not ok 260 - fast-import -h output and SYNOPSIS agree # TODO known breakage
+not ok 20 - read-tree --reset removes outside worktree
+not ok 21 - print warnings when some worktree updates disabled
+not ok 22 - checkout without --ignore-skip-worktree-bits
+not ok 23 - checkout with --ignore-skip-worktree-bits
+not ok 272 - fetch-pack -h output and SYNOPSIS agree # TODO known breakage
+not ok 278 - fmt-merge-msg -h output and SYNOPSIS agree # TODO known breakage
+not ok 296 - format-patch -h output and SYNOPSIS agree # TODO known breakage
+not ok 314 - fsck-objects -h output and SYNOPSIS agree # TODO known breakage
+not ok 14 - clone --local detects misnamed objects # TODO known breakage
+not ok 320 - fsmonitor--daemon -h output and SYNOPSIS agree # TODO known breakage
+not ok 326 - gc -h output and SYNOPSIS agree # TODO known breakage
+not ok 4 - gitdir not required mode
+not ok 338 - grep -h output and SYNOPSIS agree # TODO known breakage
+not ok 32 - lazy-fetch when accessing object not in the_repository
+not ok 368 - index-pack -h output and SYNOPSIS agree # TODO known breakage
+not ok 7 - ignore .git/ with invalid repository version # TODO known breakage
+not ok 8 - ignore .git/ with invalid config # TODO known breakage
+not ok 33 - sparse-checkout reapply # TODO known breakage
+not ok 380 - init-db -h output and SYNOPSIS agree # TODO known breakage
+not ok 398 - log -h output and SYNOPSIS agree # TODO known breakage
+not ok 404 - ls-files -h output and SYNOPSIS agree # TODO known breakage
+not ok 416 - ls-tree -h output and SYNOPSIS agree # TODO known breakage
+not ok 422 - mailinfo -h output and SYNOPSIS agree # TODO known breakage
+not ok 428 - mailsplit -h output and SYNOPSIS agree # TODO known breakage
+not ok 434 - maintenance -h output and SYNOPSIS agree # TODO known breakage
+not ok 440 - merge -h output and SYNOPSIS agree # TODO known breakage
+not ok 452 - merge-file -h output and SYNOPSIS agree # TODO known breakage
+not ok 458 - merge-index -h output and SYNOPSIS agree # TODO known breakage
+not ok 9 - git read-tree -u -m --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 266 - --batch-check is unbuffered by default
+not ok 267 - --batch-command info is unbuffered by default
+not ok 524 - name-rev -h output and SYNOPSIS agree # TODO known breakage
+not ok 530 - notes -h output and SYNOPSIS agree # TODO known breakage
+not ok 182 - git config fails with invalid count
+not ok 183 - git config fails with missing config key
+not ok 184 - git config fails with missing config value
+not ok 185 - git config fails with invalid config pair key
+not ok 23 - reflog with non-commit entries displays all entries # TODO known breakage
+not ok 584 - push -h output and SYNOPSIS agree # TODO known breakage
+not ok 12 - branch -m can rename from a bad ref name # TODO known breakage
+not ok 590 - range-diff -h output and SYNOPSIS agree # TODO known breakage
+not ok 14 - push --mirror can delete badly named ref # TODO known breakage
+not ok 602 - rebase -h output and SYNOPSIS agree # TODO known breakage
+not ok 198 - --unset last key removes section (except if commented)
+not ok 626 - remote -h output and SYNOPSIS agree # TODO known breakage
+not ok 632 - remote-ext -h output and SYNOPSIS agree # TODO known breakage
+not ok 638 - remote-fd -h output and SYNOPSIS agree # TODO known breakage
+not ok 214 - --show-origin blob ref
+not ok 54 - basic atom: refs/heads/main *objecttype
+not ok 28 - test --parseopt help output: "wrapped" options normal "or:" lines
+not ok 31 - reflog for symref with unborn target can be listed
+not ok 15 - email with embedded > is not okay
+not ok 651 - replay -h output has no \t
+not ok 578 - ls-files --eol attr=auto  aeol=crlf core.autocrlf=false core.eol=lf
+not ok 34 - GIT_DIR=../.git, core.bare = false: --is-inside-work-tree
+not ok 12 - checkout orphan then non-orphan
+not ok 15 - subdir of work tree
+not ok 114 - stdin verify succeeds for missing reference
+not ok 22 - delete ref with dangling packed version
+not ok 24 - update-ref --no-deref -d can delete symref with broken name
+not ok 16 - git read-tree -u -m --recurse-submodules: replace submodule with a directory # TODO known breakage
+not ok 8 - config: write to reftable backend, . dir
+not ok 216 - --show-scope with --list
+not ok 29 - test --parseopt invalid opt-spec
+not ok 55 - basic atom: refs/heads/main author
+not ok 16 - missing < email delimiter is reported nicely
+not ok 13 - files -> reftable: special refs are left alone
+not ok 115 - stdin verify treats no value as missing
+not ok 32 - reflog with invalid object ID can be listed
+not ok 23 - delete ref while another dangling packed ref
+not ok 25 - branch -d can delete symref with broken name
+not ok 35 - GIT_DIR=../.git, core.bare = false: --show-prefix
+not ok 17 - git read-tree -u -m --recurse-submodules: replace submodule containing a .git directory with a directory must absorb the git dir # TODO known breakage
+not ok 17 - missing email is reported nicely
+not ok 56 - basic atom: refs/heads/main authorname
+not ok 217 - --show-scope with --blob
+not ok 14 - files -> reftable: a bunch of refs
+not ok 116 - stdin verify fails for wrong value
+not ok 17 - outside
+not ok 9 - config: with worktree and reftable backend, . dir
+not ok 13 - add outside sparse cone
+not ok 30 - test --parseopt help output: multi-line blurb after empty line
+not ok 33 - reflog drop non-existent ref
+not ok 26 - update-ref --no-deref -d can delete dangling symref with broken name
+not ok 24 - pack ref directly below refs/
+not ok 18 - > in name is reported
+not ok 653 - replay -h output has consistent spacing
+not ok 57 - basic atom: refs/heads/main authorname:mailmap
+not ok 18 - git read-tree -u -m --recurse-submodules: replace submodule with a file works ignores ignored files in submodule
+not ok 117 - stdin verify fails for mistaken null value
+not ok 218 - --show-scope with --local
+not ok 18 - in repo.git
+not ok 36 - GIT_DIR=../.git, core.bare = false: --git-dir
+not ok 15 - files -> reftable: dry-run migration does not modify repository
+not ok 34 - reflog drop
+not ok 31 - test --parseopt help output for optionspec-neg
+not ok 27 - branch -d can delete dangling symref with broken name
+not ok 19 - integer overflow in timestamps is reported
+not ok 58 - basic atom: refs/heads/main authoremail
+not ok 10 - migrating repository to reftable with alternate refs directory
+not ok 25 - do not pack ref in refs/bisect
+not ok 14 - commit including unstaged changes
+not ok 19 - inside work tree
+not ok 118 - stdin verify fails for mistaken empty value
+not ok 219 - --show-scope getting a single value
+not ok 28 - update-ref -d cannot delete non-ref in .git dir
+not ok 19 - git -c submodule.recurse=true read-tree -u -m: modified submodule updates submodule work tree
+not ok 32 - test --parseopt valid options for optionspec-neg
+not ok 16 - files -> reftable: reflogs of symrefs with target deleted
+not ok 37 - GIT_DIR=../.git, core.bare = false: --absolute-git-dir
+not ok 20 - commit with NUL in header
+not ok 35 - reflog drop multiple references
+not ok 26 - disable reflogs
+not ok 59 - basic atom: refs/heads/main authoremail:trim
+not ok 29 - update-ref -d cannot delete absolute path
+not ok 11 - config: read from files backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 20 - subdir of work tree
+not ok 220 - --show-scope with --show-origin
+not ok 38 - GIT_DIR=../.git, core.bare = true: --is-bare-repository
+not ok 119 - stdin update refs works with identity updates
+not ok 27 - create packed foo/bar/baz branch
+not ok 60 - basic atom: refs/heads/main authoremail:localpart
+not ok 33 - test --parseopt positivated option for optionspec-neg
+not ok 20 - git read-tree -u -m --recurse-submodules: modified submodule updates submodule recursively
+not ok 17 - files -> reftable: reflogs order is retained
+not ok 36 - reflog drop multiple references some non-existent
+not ok 30 - update-ref --stdin fails create with bad ref name
+not ok 21 - tree object with duplicate entries
+not ok 15 - status/add: outside sparse cone
+not ok 221 - --show-scope with --default
+not ok 61 - basic atom: refs/heads/main authoremail:trim,localpart
+not ok 39 - GIT_DIR=../.git, core.bare = true: --is-inside-git-dir
+not ok 12 - config: write to files backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 120 - stdin update refs fails with wrong old value
+not ok 28 - notice d/f conflict with existing directory
+not ok 18 - files -> reftable: stash is retained
+not ok 31 - update-ref --stdin fails update with bad ref name
+not ok 21 - git read-tree -u --reset --recurse-submodules: added submodule is checked out
+not ok 21 - find work tree from repo
+not ok 37 - reflog drop --all
+not ok 34 - test --parseopt invalid switch --no-positive-only help output for optionspec-neg
+not ok 62 - basic atom: refs/heads/main authoremail:mailmap
+not ok 656 - replay -h output and SYNOPSIS agree
+not ok 121 - stdin delete refs works with packed and loose refs
+not ok 40 - GIT_DIR=../.git, core.bare = true: --is-inside-work-tree
+not ok 13 - config: with worktree and files backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 32 - update-ref --stdin fails delete with bad ref name
+not ok 29 - existing directory reports concrete ref
+not ok 19 - files -> reftable: skip reflog with --skip-reflog
+not ok 22 - find work tree from work tree
+not ok 63 - basic atom: refs/heads/main authoremail:mailmap,trim
+not ok 22 - git read-tree -u --reset --recurse-submodules: added submodule is checked out in empty dir
+not ok 16 - checkout and reset --hard
+not ok 584 - setup config for checkout attr=-text ident= aeol= core.autocrlf=input
+not ok 38 - reflog drop --all multiple worktrees
+not ok 122 - stdin -z works on empty input
+not ok 657 - repo -h output has no \t
+not ok 35 - test --parseopt invalid switch --negative help output for optionspec-neg
+not ok 30 - notice d/f conflict with existing ref
+not ok 64 - basic atom: refs/heads/main authoremail:trim,mailmap
+not ok 33 - update-ref --stdin -z fails create with bad ref name
+not ok 41 - GIT_DIR=../.git, core.bare = true: --show-prefix
+not ok 14 - config: read from files backend, . dir
+not ok 23 - _gently() groks relative GIT_DIR & GIT_WORK_TREE
+not ok 20 - reftable: migration to same format fails
+not ok 23 - git read-tree -u --reset --recurse-submodules: replace tracked file with submodule checks out submodule
+not ok 123 - stdin -z fails on empty line
+not ok 585 - setup LF checkout  with -c core.eol=lf
+not ok 65 - basic atom: refs/heads/main authoremail:mailmap,localpart
+not ok 34 - update-ref --stdin -z fails update with bad ref name
+not ok 39 - reflog drop --all --single-worktree
+not ok 222 - override global and system config
+not ok 42 - GIT_DIR=../.git, core.bare undefined: --is-bare-repository
+not ok 31 - reject packed-refs with unterminated line
+not ok 36 - test --parseopt invalid switch --no-no-negative help output for optionspec-neg
+not ok 17 - diff --cached
+not ok 15 - config: write to files backend, . dir
+not ok 21 - reftable -> files: migration with worktree fails
+not ok 124 - stdin -z fails on empty command
+not ok 66 - basic atom: refs/heads/main authoremail:localpart,mailmap
+not ok 35 - update-ref --stdin -z fails delete with bad ref name
+not ok 22 - tree object with duplicate names: x x.1 x/
+not ok 24 - git read-tree -u --reset --recurse-submodules: replace directory with submodule
+not ok 43 - GIT_DIR=../.git, core.bare undefined: --is-inside-git-dir
+not ok 40 - reflog drop --all with reference
+not ok 67 - basic atom: refs/heads/main authoremail:mailmap,trim,localpart,mailmap,trim
+not ok 586 - setup CRLF checkout  with -c core.eol=lf
+not ok 659 - repo -h output has consistent spacing
+not ok 24 - diff-index respects work tree under .git dir
+not ok 22 - reftable -> files: unborn HEAD
+not ok 125 - stdin -z fails on only whitespace
+not ok 223 - override global and system config with missing file
+not ok 16 - config: with worktree and files backend, . dir
+not ok 32 - reject packed-refs containing junk
+not ok 36 - branch rejects HEAD as a branch name
+not ok 37 - ambiguous: --no matches both --noble and --no-noble
+not ok 41 - expire with pattern config
+not ok 44 - GIT_DIR=../.git, core.bare undefined: --is-inside-work-tree
+not ok 68 - basic atom: refs/heads/main authordate
+not ok 25 - git read-tree -u --reset --recurse-submodules: nested submodules are checked out
+not ok 18 - diff with renames and conflicts
+not ok 126 - stdin -z fails on leading whitespace
+not ok 37 - checkout -b rejects HEAD as a branch name
+not ok 587 - setup LF_mix_CR checkout  with -c core.eol=lf
+not ok 25 - diff-files respects work tree under .git dir
+not ok 23 - reftable -> files: single ref
+not ok 69 - basic atom: refs/heads/main committer
+not ok 45 - GIT_DIR=../.git, core.bare undefined: --show-prefix
+not ok 17 - migrating repository to files with alternate refs directory
+not ok 33 - reject packed-refs with a short SHA-1
+not ok 127 - stdin -z fails on unknown command
+not ok 224 - system override has no effect with GIT_CONFIG_NOSYSTEM
+not ok 70 - basic atom: refs/heads/main committername
+not ok 38 - update-ref can operate on refs/heads/HEAD
+not ok 26 - git read-tree -u --reset --recurse-submodules: removed submodule removes submodules working tree
+not ok 588 - setup CRLF_mix_LF checkout  with -c core.eol=lf
+not ok 24 - reftable -> files: bare repository
+not ok 19 - diff with directory/file conflicts
+not ok 128 - stdin -z fails create with no ref
+not ok 71 - basic atom: refs/heads/main committername:mailmap
+not ok 18 - env: URI is invalid
+not ok 46 - GIT_DIR=../repo.git, core.bare = false: --is-bare-repository
+not ok 34 - timeout if packed-refs.lock exists
+not ok 225 - write to overridden global and system config
+not ok 39 - branch -d can remove refs/heads/HEAD
+not ok 26 - git diff respects work tree under .git dir
+not ok 129 - stdin -z fails create with no new value
+not ok 27 - git read-tree -u --reset --recurse-submodules: removed submodule absorbs submodules .git directory
+not ok 589 - setup LF_nul checkout  with -c core.eol=lf
+not ok 25 - reftable -> files: dangling symref
+not ok 72 - basic atom: refs/heads/main committeremail
+not ok 23 - tree object with duplicate names: x x.1.2 x.1/ x/
+not ok 40 - branch -m can rename refs/heads/HEAD
+not ok 47 - GIT_DIR=../repo.git, core.bare = false: --is-inside-git-dir
+not ok 130 - stdin -z fails create with too many arguments
+not ok 19 - env: URI ends with colon
+not ok 73 - basic atom: refs/heads/main committeremail:trim
+not ok 27 - git grep
+not ok 28 - git read-tree -u --reset --recurse-submodules: replace submodule with a file
+not ok 20 - log with pathspec outside sparse definition
+not ok 26 - reftable -> files: broken ref
+not ok 226 - --local requires a repo
+not ok 41 - branch -d can remove refs/heads/-dash
+not ok 662 - repo -h output and SYNOPSIS agree
+not ok 131 - stdin -z fails update with no ref
+not ok 48 - GIT_DIR=../repo.git, core.bare = false: --is-inside-work-tree
+not ok 74 - basic atom: refs/heads/main committeremail:localpart
+not ok 28 - git commit
+not ok 20 - env: unknown reference backend
+not ok 42 - branch -m can rename refs/heads/-dash
+not ok 132 - stdin -z fails update with too few args
+not ok 27 - reftable -> files: pseudo-refs
+not ok 29 - git read-tree -u --reset --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 227 - --worktree requires a repo
+not ok 75 - basic atom: refs/heads/main committeremail:localpart,trim
+not ok 663 - rerere -h output has no \t
+not ok 29 - absolute pathspec should fail gracefully
+not ok 49 - GIT_DIR=../repo.git, core.bare = false: --show-prefix
+not ok 35 - retry acquiring packed-refs.lock
+not ok 21 - blame with pathspec inside sparse definition
+not ok 30 - git read-tree -u --reset --recurse-submodules: worktrees of nested submodules are removed
+not ok 133 - stdin -z emits warning with empty new value
+not ok 21 - env: read from reftable backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 28 - reftable -> files: special refs are left alone
+not ok 76 - basic atom: refs/heads/main committeremail:mailmap
+not ok 24 - tree object with duplicate names: x x.1 x.1.2 x/
+not ok 228 - identical modern --type specifiers are allowed
+not ok 50 - GIT_DIR=../repo.git, core.bare = false: --git-dir
+not ok 134 - stdin -z fails update with no new value
+not ok 31 - git read-tree -u --reset --recurse-submodules: modified submodule updates submodule work tree
+not ok 22 - env: write to reftable backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 590 - ls-files --eol attr=-text  aeol= core.autocrlf=input core.eol=lf
+not ok 77 - basic atom: refs/heads/main committeremail:mailmap,trim
+not ok 229 - identical legacy --type specifiers are allowed
+not ok 22 - blame with pathspec outside sparse definition
+not ok 29 - reftable -> files: a bunch of refs
+not ok 30 - make_relative_path handles double slashes in GIT_DIR
+not ok 51 - GIT_DIR=../repo.git, core.bare = false: --absolute-git-dir
+not ok 36 - pack symlinked packed-refs
+not ok 135 - stdin -z fails update with no old value
+not ok 32 - git read-tree -u --reset --recurse-submodules: updating to a missing submodule commit fails
+not ok 78 - basic atom: refs/heads/main committeremail:trim,mailmap
+not ok 230 - identical mixed --type specifiers are allowed
+not ok 23 - env: with worktree and reftable backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 30 - reftable -> files: dry-run migration does not modify repository
+not ok 665 - rerere -h output has consistent spacing
+not ok 31 - relative $GIT_WORK_TREE and git subprocesses
+not ok 37 - refs/worktree must not be packed
+not ok 52 - GIT_DIR=../repo.git, core.bare = true: --is-bare-repository
+not ok 79 - basic atom: refs/heads/main committeremail:mailmap,localpart
+not ok 136 - stdin -z fails update with too many arguments
+not ok 231 - non-identical modern --type specifiers are not allowed
+not ok 33 - git read-tree -u --reset --recurse-submodules: submodule branch is not changed, detach HEAD instead
+not ok 591 - checkout attr=-text  aeol= core.autocrlf=input core.eol=lf file=LF
+not ok 24 - env: read from reftable backend, . dir
+not ok 38 - create packed-refs file with broken ref
+not ok 23 - checkout and reset (mixed)
+not ok 31 - reftable -> files: reflogs of symrefs with target deleted
+not ok 80 - basic atom: refs/heads/main committeremail:localpart,mailmap
+not ok 137 - stdin -z fails delete with no ref
+not ok 232 - non-identical legacy --type specifiers are not allowed
+not ok 53 - GIT_DIR=../repo.git, core.bare = true: --is-inside-git-dir
+not ok 39 - ${pack_refs} does not silently delete broken packed ref
+not ok 34 - git read-tree -u --reset --recurse-submodules: added submodule does remove untracked unignored file with same name when forced
+not ok 81 - basic atom: refs/heads/main committeremail:trim,mailmap,trim,trim,localpart
+not ok 25 - env: write to reftable backend, . dir
+not ok 138 - stdin -z fails delete with no old value
+not ok 32 - reftable -> files: reflogs order is retained
+not ok 233 - non-identical mixed --type specifiers are not allowed
+not ok 33 - GIT_DIR set (1)
+not ok 24 - checkout and reset (merge)
+not ok 54 - GIT_DIR=../repo.git, core.bare = true: --is-inside-work-tree
+not ok 40 - ${pack_refs} does not drop broken refs during deletion
+not ok 592 - checkout attr=-text  aeol= core.autocrlf=input core.eol=lf file=CRLF
+not ok 25 - unparseable tree object
+not ok 139 - stdin -z fails delete with too many arguments
+not ok 35 - git read-tree -u --reset --recurse-submodules: replace submodule with a directory
+not ok 234 - --type allows valid type specifiers
+not ok 26 - env: with worktree and reftable backend, . dir
+not ok 33 - reftable -> files: stash is retained
+not ok 82 - basic atom: refs/heads/main committerdate
+not ok 55 - GIT_DIR=../repo.git, core.bare = true: --show-prefix
+not ok 140 - stdin -z fails verify with too many arguments
+not ok 41 - git refs optimize --all --auto does not repack below 16 refs without packed-refs
+not ok 34 - GIT_DIR set (2)
+not ok 235 - --no-type unsets type specifiers
+not ok 83 - basic atom: refs/heads/main tag
+not ok 34 - reftable -> files: skip reflog with --skip-reflog
+not ok 36 - git read-tree -u --reset --recurse-submodules: replace submodule containing a .git directory with a directory must fail
+not ok 56 - GIT_DIR=../repo.git, core.bare undefined: --is-bare-repository
+not ok 141 - stdin -z fails verify with no old value
+not ok 25 - checkout and reset (keep)
+not ok 593 - checkout attr=-text  aeol= core.autocrlf=input core.eol=lf file=CRLF_mix_LF
+not ok 236 - unset type specifiers may be reset to conflicting ones
+not ok 42 - git refs optimize --all --auto does not repack below 16 refs with small packed-refs
+not ok 84 - basic atom: refs/heads/main tagger
+not ok 27 - migrating repository to reftable with alternate refs directory
+not ok 668 - rerere -h output and SYNOPSIS agree
+not ok 35 - Auto discovery
+not ok 35 - multiple reftable blocks with multiple entries
+not ok 142 - stdin -z fails option with unknown name
+not ok 57 - GIT_DIR=../repo.git, core.bare undefined: --is-inside-git-dir
+not ok 37 - git read-tree -u --reset --recurse-submodules: replace submodule with a file ignoring ignored files
+not ok 85 - basic atom: refs/heads/main taggername
+not ok 237 - list --type=int shows only canonicalizable int values
+not ok 43 - git refs optimize --all --auto scales with size of packed-refs
+not ok 28 - env: read from files backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 26 - reset with pathspecs inside sparse definition
+not ok 58 - GIT_DIR=../repo.git, core.bare undefined: --is-inside-work-tree
+not ok 36 - $GIT_DIR/common overrides core.worktree
+not ok 143 - stdin -z fails with duplicate refs
+not ok 86 - basic atom: refs/heads/main taggeremail
+not ok 38 - git read-tree -u --reset --recurse-submodules: modified submodule does update submodule work tree from invalid commit
+not ok 669 - reset -h output has no \t
+not ok 36 - migrating from files format deletes backend files
+not ok 238 - list --type=bool shows only canonicalizable bool values
+not ok 26 - tree entry with type mismatch
+not ok 59 - GIT_DIR=../repo.git, core.bare undefined: --show-prefix
+not ok 594 - checkout attr=-text  aeol= core.autocrlf=input core.eol=lf file=LF_mix_CR
+not ok 29 - env: write to files backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 87 - basic atom: refs/heads/main taggeremail:trim
+not ok 44 - git maintenance run --task=refs optimize --auto does not repack below 16 refs without packed-refs
+not ok 37 - $GIT_WORK_TREE overrides $GIT_DIR/common
+not ok 37 - migrating from reftable format deletes backend files
+not ok 144 - stdin -z create ref works
+not ok 39 - git read-tree -u --reset --recurse-submodules: updating submodules fixes .git links
+not ok 60 - rev-parse --path-format=absolute
+not ok 27 - reset with pathspecs outside sparse definition
+not ok 88 - basic atom: refs/heads/main taggeremail:localpart
+not ok 30 - env: with worktree and files backend, /home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/t/trash directory.t1423-ref-backend/repo/.git dir
+not ok 239 - list --type=bool-or-int shows only canonicalizable values
+not ok 145 - stdin -z update ref creates with zero old value
+not ok 45 - git maintenance run --task=refs optimize --auto does not repack below 16 refs with small packed-refs
+not ok 40 - git read-tree -u --reset --recurse-submodules: changed submodule worktree is reset
+not ok 38 - error out gracefully on invalid $GIT_WORK_TREE
+not ok 595 - checkout attr=-text  aeol= core.autocrlf=input core.eol=lf file=LF_nul
+not ok 61 - rev-parse --path-format=relative
+not ok 89 - basic atom: refs/heads/main taggerdate
+not ok 671 - reset -h output has consistent spacing
+not ok 240 - list --type=path shows only canonicalizable path values
+not ok 146 - stdin -z update ref creates with empty old value
+not ok 31 - env: read from files backend, . dir
+not ok 46 - git maintenance run --task=refs optimize --auto scales with size of packed-refs
+not ok 596 - setup config for checkout attr=-text ident= aeol=lf core.autocrlf=input
+not ok 62 - --path-format=relative does not affect --absolute-git-dir
+not ok 28 - reset with wildcard pathspec
+not ok 90 - basic atom: refs/heads/main creator
+not ok 39 - refs work with relative gitdir and work tree
+not ok 41 - git_test_func: added submodule creates empty directory
+not ok 147 - stdin -z create ref works with path with space to blob
+not ok 27 - tree entry with bogus mode
+not ok 241 - list --type=expiry-date shows only canonicalizable dates
+not ok 32 - env: write to files backend, . dir
+not ok 63 - --path-format can change in the middle of the command line
+not ok 91 - basic atom: refs/heads/main creatordate
+not ok 47 - pack-refs does not store invalid peeled tag value
+not ok 42 - git_test_func: added submodule leaves existing empty directory alone
+not ok 597 - setup LF checkout  with -c core.eol=lf
+not ok 148 - stdin -z update ref fails with wrong old value
+not ok 29 - reset hard with removed sparse dir
+not ok 33 - env: with worktree and files backend, . dir
+not ok 242 - list --type=color shows only canonicalizable color values
+not ok 92 - basic atom: refs/heads/main subject
+not ok 64 - --path-format does not segfault without an argument
+not ok 28 - tag pointing to nonexistent
+not ok 149 - stdin -z update ref fails with bad old value
+not ok 598 - setup CRLF checkout  with -c core.eol=lf
+not ok 243 - --type rejects unknown specifiers
+not ok 43 - git_test_func: replace tracked file with submodule creates empty directory
+not ok 65 - git-common-dir from worktree root
+not ok 93 - basic atom: refs/heads/main subject:sanitize
+not ok 30 - update-index modify outside sparse definition
+not ok 150 - stdin -z create ref fails when ref exists
+not ok 34 - migrating repository to files with alternate refs directory
+not ok 44 - git_test_func: replace directory with submodule
+not ok 244 - --type=int requires at least one digit
+not ok 29 - tag pointing to something else than its type
+not ok 94 - basic atom: refs/heads/main contents:subject
+not ok 599 - setup LF_mix_CR checkout  with -c core.eol=lf
+not ok 151 - stdin -z create ref fails with bad new value
+not ok 95 - basic atom: refs/heads/main body
+not ok 30 - tag with incorrect tag name & missing tagger
+not ok 66 - git-common-dir inside sub-dir
+not ok 45 - git_test_func: removed submodule leaves submodule directory and its contents in place
+not ok 31 - update-index --add outside sparse definition
+not ok 152 - stdin -z create ref fails with empty new value
+not ok 674 - reset -h output and SYNOPSIS agree # TODO known breakage
+not ok 96 - basic atom: refs/heads/main contents:body
+not ok 600 - setup CRLF_mix_LF checkout  with -c core.eol=lf
+not ok 67 - git-path from worktree root
+not ok 245 - --replace-all does not invent newlines
+not ok 35 - initializing repository with alt ref directory
+not ok 31 - tag with bad tagger
+not ok 97 - basic atom: refs/heads/main contents:signature
+not ok 675 - restore -h output has no \t
+not ok 46 - git_test_func: removed submodule leaves submodule containing a .git directory alone
+not ok 153 - stdin -z create ref fails with non commit object
+not ok 601 - setup LF_nul checkout  with -c core.eol=lf
+not ok 32 - tag with NUL in header
+not ok 246 - set all config with value-pattern
+not ok 98 - basic atom: refs/heads/main contents
+not ok 32 - update-index --remove outside sparse definition
+not ok 68 - git-path inside sub-dir
+not ok 36 - cloning repository with alt ref directory
+not ok 154 - stdin -z update ref fails with non commit object
+not ok 69 - rev-parse --is-shallow-repository in shallow repo
+not ok 247 - --replace-all and value-pattern
+not ok 47 - git_test_func: replace submodule with a directory must fail
+not ok 33 - tag accepts gpgsig header even if not validly signed
+not ok 677 - restore -h output has consistent spacing
+not ok 155 - stdin -z update ref works with right old value
+not ok 99 - basic atom: refs/heads/main contents:size
+not ok 33 - update-index with directories
+not ok 70 - rev-parse --is-shallow-repository in non-shallow repo
+not ok 156 - stdin -z delete ref fails with wrong old value
+not ok 248 - refuse --fixed-value for incompatible actions
+not ok 48 - git_test_func: replace submodule containing a .git directory with a directory must fail
+not ok 100 - basic atom: refs/heads/main HEAD
+not ok 71 - rev-parse --show-object-format in repo
+not ok 34 - tag rejects invalid headers
+not ok 157 - stdin -z delete ref fails with zero old value
+not ok 101 - basic atom: refs/tags/testtag refname
+not ok 49 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 249 - --fixed-value uses exact string matching
+not ok 34 - update-index --again file outside sparse definition
+not ok 35 - cleaned up
+not ok 50 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 158 - stdin -z update symref works option no-deref
+not ok 102 - basic atom: refs/tags/testtag refname:short
+not ok 602 - ls-files --eol attr=-text  aeol=lf core.autocrlf=input core.eol=lf
+not ok 51 - git_test_func: modified submodule does not update submodule work tree
+not ok 250 - --get and --get-all with --fixed-value
+not ok 36 - rev-list --verify-objects
+not ok 159 - stdin -z delete symref works option no-deref
+not ok 103 - basic atom: refs/tags/testtag upstream
+not ok 35 - update-index --cacheinfo
+not ok 73 - rev-parse --show-ref-format
+not ok 52 - git_test_func: modified submodule does not update submodule work tree to invalid commit
+not ok 160 - stdin -z delete ref works with right old value
+not ok 104 - basic atom: refs/tags/testtag push
+not ok 251 - --fixed-value with value-less configuration
+not ok 680 - restore -h output and SYNOPSIS agree # TODO known breakage
+not ok 37 - rev-list --verify-objects with bad sha1
+not ok 161 - stdin -z update/create/verify combination works
+not ok 603 - checkout attr=-text  aeol=lf core.autocrlf=input core.eol=lf file=LF
+not ok 74 - rev-parse --show-ref-format with invalid storage
+not ok 105 - basic atom: refs/tags/testtag objecttype
+not ok 681 - rev-list -h output has no \t
+not ok 36 - 'read-tree -mu base HEAD update-folder2' with files outside sparse definition
+not ok 53 - git_test_func: modified submodule does not update submodule work tree from invalid commit
+not ok 252 - includeIf.hasconfig:remote.*.url
+not ok 38 - rev-list --verify-objects notices swapped commits
+not ok 162 - stdin -z verify succeeds for correct value
+not ok 75 - --show-toplevel from subdir of working tree
+not ok 106 - basic atom: refs/tags/testtag objectsize
+not ok 253 - includeIf.hasconfig:remote.*.url respects last-config-wins
+not ok 39 - set up repository with commit-graph
+not ok 54 - git_test_func: added submodule doesn't remove untracked unignored file with same name
+not ok 163 - stdin -z verify succeeds for missing reference
+not ok 76 - --show-toplevel from inside .git
+not ok 37 - 'read-tree -mu update-folder1 update-folder2' with files outside sparse definition
+not ok 604 - checkout attr=-text  aeol=lf core.autocrlf=input core.eol=lf file=CRLF
+not ok 254 - includeIf.hasconfig:remote.*.url globs
+not ok 40 - rev-list --verify-objects with commit graph (tip)
+not ok 55 - git_test_func: added submodule creates empty directory
+not ok 164 - stdin -z verify treats no value as missing
+not ok 107 - basic atom: refs/tags/testtag objectsize:disk
+not ok 77 - showing the superproject correctly
+not ok 255 - includeIf.hasconfig:remote.*.url forbids remote url in such included files
+not ok 683 - rev-list -h output has consistent spacing
+not ok 41 - rev-list --verify-objects with commit graph (parent)
+not ok 78 - rev-parse --since= unsqueezed ordering
+not ok 56 - git_test_func: added submodule leaves existing empty directory alone
+not ok 38 - 'read-tree -mu update-folder2' with files outside sparse definition
+not ok 165 - stdin -z verify fails for wrong value
+not ok 605 - checkout attr=-text  aeol=lf core.autocrlf=input core.eol=lf file=CRLF_mix_LF
+not ok 256 - negated mode causes failure
+not ok 42 - force fsck to ignore double author
+not ok 257 - specifying multiple modes causes failure
+not ok 108 - basic atom: refs/tags/testtag *objectsize:disk
+not ok 79 - rev-parse --bisect includes bad, excludes good
+not ok 166 - stdin -z verify fails for mistaken null value
+not ok 57 - git_test_func: replace tracked file with submodule creates empty directory
+not ok 109 - basic atom: refs/tags/testtag deltabase
+not ok 39 - read-tree --merge with edit/edit conflicts in sparse directories
+not ok 258 - writing to stdin is rejected
+not ok 80 - rev-parse --bisect works with alternate terms
+not ok 43 - fsck notices blob entry pointing to null sha1
+not ok 167 - stdin -z verify fails for mistaken empty value
+not ok 606 - checkout attr=-text  aeol=lf core.autocrlf=input core.eol=lf file=LF_mix_CR
+not ok 110 - basic atom: refs/tags/testtag *deltabase
+not ok 58 - git_test_func: replace directory with submodule
+not ok 81 - --short= truncates to the actual hash length
+not ok 168 - stdin -z update refs works with identity updates
+not ok 260 - no internal whitespace
+not ok 44 - fsck notices submodule entry pointing to null sha1
+not ok 40 - read-tree --prefix
+not ok 169 - stdin -z update refs fails with wrong old value
+not ok 111 - basic atom: refs/tags/testtag objectname
+not ok 59 - git_test_func: removed submodule leaves submodule directory and its contents in place
+not ok 82 - :/ and HEAD^{/} favor more recent matching commits
+not ok 45 - fsck notices excessively large tree entry name
+not ok 607 - checkout attr=-text  aeol=lf core.autocrlf=input core.eol=lf file=LF_nul
+not ok 170 - stdin -z delete refs works with packed and loose refs
+not ok 686 - rev-list -h output and SYNOPSIS agree
+not ok 261 - internal whitespace
+not ok 60 - git_test_func: removed submodule leaves submodule containing a .git directory alone
+not ok 112 - basic atom: refs/tags/testtag objectname:short
+not ok 46 - fsck notices . as blob
+not ok 41 - read-tree --merge with directory-file conflicts
+not ok 608 - setup config for checkout attr=-text ident= aeol=crlf core.autocrlf=input
+not ok 171 - fails with duplicate HEAD update
+not ok 61 - git_test_func: replace submodule with a directory must fail # TODO known breakage
+not ok 687 - rev-parse -h output has no \t
+not ok 113 - basic atom: refs/heads/main objectname:short=1
+not ok 262 - internal and trailing whitespace
+not ok 62 - git_test_func: replace submodule containing a .git directory with a directory must fail # TODO known breakage
+not ok 47 - fsck notices . as tree
+not ok 609 - setup LF checkout  with -c core.eol=lf
+not ok 172 - fails with duplicate ref update via symref
+not ok 63 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 114 - basic atom: refs/heads/main objectname:short=10
+not ok 64 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 48 - fsck notices .. as blob
+not ok 263 - internal and trailing whitespace, all quoted
+not ok 610 - setup CRLF checkout  with -c core.eol=lf
+not ok 115 - basic atom: refs/tags/testtag tree
+not ok 65 - git_test_func: modified submodule does not update submodule work tree
+not ok 49 - fsck notices .. as tree
+not ok 689 - rev-parse -h output has consistent spacing
+not ok 116 - basic atom: refs/tags/testtag tree:short
+not ok 611 - setup LF_mix_CR checkout  with -c core.eol=lf
+not ok 42 - merge, cherry-pick, and rebase
+not ok 264 - internal and more trailing whitespace
+not ok 66 - git_test_func: modified submodule does not update submodule work tree to invalid commit
+not ok 50 - fsck notices .git as blob
+not ok 117 - basic atom: refs/tags/testtag tree:short=1
+not ok 173 - large transaction creating branches does not burst open file limit
+not ok 612 - setup CRLF_mix_LF checkout  with -c core.eol=lf

@@ -1,0 +1,116 @@
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitweb'
+install -m 755 gitweb/gitweb.cgi '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitweb'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitweb/static'
+install -m 644 gitweb/static/gitweb.js gitweb/static/gitweb.css gitweb/static/git-logo.png gitweb/static/git-favicon.png \
+	'/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitweb/static'
+make -C git-gui  gitexecdir='/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core' all
+make[1]: Entering directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git-gui'
+GITGUI_VERSION=0.21.GITGUI
+/home/haritha/zopen_23may/zopen/usr/local/zopen/bash/bash-5.3.20260622_045430.zos/bin/bash generate-git-gui.sh "git-gui.sh" "git-gui" ./GIT-GUI-BUILD-OPTIONS ./GIT-VERSION-FILE
+make[1]: Leaving directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git-gui'
+make -C gitk-git  all
+make[1]: Entering directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/gitk-git'
+make[1]: Leaving directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/gitk-git'
+make -C templates  SHELL_PATH='/bin/env bash' PERL_PATH='/bin/perl'
+make[1]: Entering directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/templates'
+: no custom templates yet
+make[1]: Leaving directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/templates'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/bin'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+install   git-daemon git-http-backend git-imap-send git-sh-i18n--envsubst git-shell git-http-fetch git-http-push git-remote-http git-remote-https git-remote-ftp git-remote-ftps '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+install git-difftool--helper git-filter-branch git-merge-octopus git-merge-one-file git-merge-resolve git-mergetool git-quiltimport git-request-pull git-submodule git-web--browse git-archimport git-cvsexportcommit git-cvsimport git-cvsserver git-send-email git-svn git-p4 git-instaweb '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+install -m 644 git-mergetool--lib git-sh-i18n git-sh-setup '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+install  git scalar git-receive-pack git-shell git-upload-archive git-upload-pack '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/bin'
+install git-cvsserver '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/bin'
+make -C templates DESTDIR='' install
+make[1]: Entering directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/templates'
+: no custom templates yet
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-core/templates'
+(cd blt && gtar cf - .) | \
+(cd '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-core/templates' && umask 022 && gtar xof -)
+make[1]: Leaving directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/templates'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core/mergetools'
+install -m 644 mergetools/* '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core/mergetools'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/locale'
+(cd po/build/locale && gtar cf - .) | \
+(cd '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/locale' && umask 022 && gtar xof -)
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/perl5'
+(cd perl/build/lib && gtar cf - .) | \
+(cd '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/perl5' && umask 022 && gtar xof -)
+make -C gitk-git install
+make[1]: Entering directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/gitk-git'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/bin'
+install -m 755 gitk-wish '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/bin'/gitk
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs'
+install -m 644 po/bg.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/ca.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/de.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/es.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/fr.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/hu.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/it.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/ja.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/pt_br.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/pt_pt.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/ru.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/sv.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/ta.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/vi.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' &&  install -m 644 po/zh_cn.msg '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/gitk/lib/msgs' && true
+make[1]: Leaving directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/gitk-git'
+make -C git-gui gitexecdir='/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core' install
+make[1]: Entering directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git-gui'
+GITGUI_VERSION=0.21.GITGUI-dirty
+/home/haritha/zopen_23may/zopen/usr/local/zopen/bash/bash-5.3.20260622_045430.zos/bin/bash generate-git-gui.sh "git-gui.sh" "git-gui" ./GIT-GUI-BUILD-OPTIONS ./GIT-VERSION-FILE
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core' 
+install -m 755 git-gui  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+install -m 755 git-gui--askpass  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+install -m 755 git-gui--askyesno  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core'
+rm -f '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core/git-citool' && ln '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core/git-gui' '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core/git-citool'  && true
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' 
+install -m 644 lib/tclIndex  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib'
+install -m 644 lib/about.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/blame.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/branch.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/branch_checkout.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/branch_create.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/branch_delete.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/branch_rename.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/browser.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/checkout_op.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/choose_font.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/choose_repository.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/choose_rev.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/chord.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/class.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/commit.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/console.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/database.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/date.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/diff.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/encoding.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/error.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/index.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/line.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/logo.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/merge.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/mergetool.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/option.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/remote.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/remote_add.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/remote_branch_delete.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/search.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/shortcut.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/spellcheck.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/sshkey.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/status_bar.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/themed.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/tools.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/tools_dlg.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/transport.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/win32.tcl  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/git-gui.ico  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' &&  install -m 644 lib/win32_shortcut.js  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib' && true
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' 
+install -m 644 po/bg.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/de.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/el.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/fr.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/hu.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/it.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/ja.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/nb.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/pt_br.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/pt_pt.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/ru.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/sv.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/vi.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' &&  install -m 644 po/zh_cn.msg  '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/git-gui/lib/msgs' && true
+make[1]: Leaving directory '/home/haritha/code/bazel-7.2.0/git_255_iconv_translit_3waymerge/gitport/git/git-gui'
+install -d -m 755 '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions' && \
+install -m 644 contrib/completion/git-completion.bash '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions/git'
+bindir=$(cd '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/bin' && pwd) && \
+execdir=$(cd '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core' && pwd) && \
+destdir_from_execdir_SQ=$(echo 'libexec/git-core' | sed -e 's|[^/][^/]*|..|g') && \
+{ test "$bindir/" = "$execdir/" || \
+  for p in git scalar git-shell git-cvsserver; do \
+	rm -f "$execdir/$p" && \
+	test -n "" && \
+	ln -s "$destdir_from_execdir_SQ/bin/$p" "$execdir/$p" || \
+	{ test -z "" && \
+	  ln "$bindir/$p" "$execdir/$p" 2>/dev/null || \
+	  cp "$bindir/$p" "$execdir/$p" || exit; } \
+  done; \
+} && \
+for p in git-receive-pack git-upload-archive git-upload-pack; do \
+	rm -f "$bindir/$p" && \
+	test -n "" && \
+	ln -s "git" "$bindir/$p" || \
+	{ test -z "" && \
+	  ln "$bindir/git" "$bindir/$p" 2>/dev/null || \
+	  ln -s "git" "$bindir/$p" 2>/dev/null || \
+	  cp "$bindir/git" "$bindir/$p" || exit; }; \
+done && \
+for p in git-add git-am git-annotate git-apply git-archive git-backfill git-bisect git-blame git-branch git-bugreport git-bundle git-cat-file git-check-attr git-check-ignore git-check-mailmap git-check-ref-format git-checkout--worker git-checkout-index git-checkout git-clean git-clone git-column git-commit-graph git-commit-tree git-commit git-config git-count-objects git-credential-cache--daemon git-credential-cache git-credential-store git-credential git-describe git-diagnose git-diff-files git-diff-index git-diff-pairs git-diff-tree git-diff git-difftool git-fast-export git-fast-import git-fetch-pack git-fetch git-fmt-merge-msg git-for-each-ref git-for-each-repo git-fsck git-fsmonitor--daemon git-gc git-get-tar-commit-id git-grep git-hash-object git-help git-history git-hook git-index-pack git-init-db git-interpret-trailers git-last-modified git-log git-ls-files git-ls-remote git-ls-tree git-mailinfo git-mailsplit git-merge-base git-merge-file git-merge-index git-merge-ours git-merge-recursive git-merge-tree git-merge git-mktag git-mktree git-multi-pack-index git-mv git-name-rev git-notes git-pack-objects git-pack-redundant git-pack-refs git-patch-id git-prune-packed git-prune git-pull git-push git-range-diff git-read-tree git-rebase git-receive-pack git-reflog git-refs git-remote-ext git-remote-fd git-remote git-repack git-replace git-replay git-repo git-rerere git-reset git-rev-list git-rev-parse git-revert git-rm git-send-pack git-shortlog git-show-branch git-show-index git-show-ref git-sparse-checkout git-stash git-stripspace git-submodule--helper git-symbolic-ref git-tag git-unpack-file git-unpack-objects git-update-index git-update-ref git-update-server-info git-upload-archive git-upload-pack git-url-parse git-var git-verify-commit git-verify-pack git-verify-tag git-worktree git-write-tree git-cherry git-cherry-pick git-format-patch git-format-rev git-fsck-objects git-init git-maintenance git-merge-subtree git-restore git-show git-stage git-status git-switch git-version git-whatchanged; do \
+	rm -f "$execdir/$p" && \
+	if test -z ""; \
+	then \
+		test -n "" && \
+		ln -s "$destdir_from_execdir_SQ/bin/git" "$execdir/$p" || \
+		{ test -z "" && \
+		  ln "$execdir/git" "$execdir/$p" 2>/dev/null || \
+		  ln -s "git" "$execdir/$p" 2>/dev/null || \
+		  cp "$execdir/git" "$execdir/$p" || exit; }; \
+	fi \
+done && \
+remote_curl_aliases="git-remote-https git-remote-ftp git-remote-ftps" && \
+for p in $remote_curl_aliases; do \
+	rm -f "$execdir/$p" && \
+	test -n "" && \
+	ln -s "git-remote-http" "$execdir/$p" || \
+	{ test -z "" && \
+	  ln "$execdir/git-remote-http" "$execdir/$p" 2>/dev/null || \
+	  ln -s "git-remote-http" "$execdir/$p" 2>/dev/null || \
+	  cp "$execdir/git-remote-http" "$execdir/$p" || exit; } \
+done
+make: Nothing to be done for 'install'.
+install -d -m 755 /home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core
+install -m 755 git-subtree /home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/libexec/git-core
+make: 'install' is up to date.
+'contrib/completion/git-completion.bash' -> '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions/git-completion.bash'
+'contrib/completion/git-completion.tcsh' -> '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions/git-completion.tcsh'
+'contrib/completion/git-completion.zsh' -> '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions/git-completion.zsh'
+'contrib/completion/git-prompt.sh' -> '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions/git-prompt.sh'
+'contrib/completion/meson.build' -> '/home/haritha/zopen_23may/zopen/usr/local/zopen/git/git-HEAD/share/bash-completion/completions/meson.build'

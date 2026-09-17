@@ -1,0 +1,1293 @@
+not ok 3 - test-tool env-helper --type=bool
+not ok 5 - run-command formats empty args properly
+not ok 6 - tracing a shell alias with arguments shows trace of prepared command
+not ok 7 - plain with GIT_WORK_TREE
+not ok 5 - test-tool env-helper reads config thanks to trace2
+not ok 9 - plain bare with GIT_WORK_TREE
+not ok 26 - show date (format-local:%Z:1466000000 +0200)
+not ok 14 - GIT_DIR & GIT_WORK_TREE (2)
+not ok 3 - safe.directory in the environment
+not ok 4 - safe.directory in GIT_CONFIG_PARAMETERS
+not ok 36 - implicit bare & --separate-git-dir incompatible
+not ok 11 - filter that does not read is fine
+not ok 27 - superfluous value provided: boolean, abbreviated
+not ok 32 - ambiguously abbreviated option
+not ok 17 - required process filter should filter data
+not ok 31 - diff without repository with attr source
+not ok 18 - required process filter should filter data for various subcommands
+not ok 65 - init with GIT_DEFAULT_REF_FORMAT=garbage
+not ok 4 - xgettext sanity: Comment extraction with --add-comments
+not ok 23 - process filter should restart after unexpected write failure
+not ok 24 - process filter should not be restarted if it signals an error
+not ok 25 - process filter abort stops processing of all further files
+not ok 2 - normal stream, return code 1
+not ok 5 - normal stream, exit code 1
+not ok 7 - BUG messages are written to trace2
+not ok 2 - perf stream, return code 1
+not ok 8 - bug messages with BUG_if_bug() are written to trace2
+not ok 9 - bug messages without explicit BUG_if_bug() are written to trace2
+not ok 10 - bug messages followed by BUG() are written to trace2
+not ok 96 - invalid default branch name
+not ok 103 - init honors GIT_OBJECT_DIRECTORY
+not ok 8 - add -h output and SYNOPSIS agree # TODO known breakage
+not ok 14 - am -h output and SYNOPSIS agree # TODO known breakage
+not ok 7 - promisor lazy-fetching can be re-enabled
+not ok 13 - expect def_params for remote-curl and _run_dashed_
+not ok 14 - expect def_params for http-fetch and _run_dashed_
+not ok 26 - apply -h output and SYNOPSIS agree # TODO known breakage
+not ok 32 - archive -h output and SYNOPSIS agree # TODO known breakage
+not ok 50 - blame -h output and SYNOPSIS agree # TODO known breakage
+not ok 56 - branch -h output and SYNOPSIS agree # TODO known breakage
+not ok 98 - check-ref-format -h output and SYNOPSIS agree # TODO known breakage
+not ok 104 - checkout -h output and SYNOPSIS agree # TODO known breakage
+not ok 116 - checkout-index -h output and SYNOPSIS agree # TODO known breakage
+not ok 140 - clone -h output and SYNOPSIS agree # TODO known breakage
+not ok 146 - column -h output and SYNOPSIS agree # TODO known breakage
+not ok 10 - 3-way not overwriting local changes (our side)
+not ok 14 - set up crlf tests
+not ok 15 - check that appropriate filter is invoke when --path is used
+not ok 11 - 3-way not overwriting local changes (their side)
+not ok 16 - gitattributes also work in a subdirectory
+not ok 17 - --path works in a subdirectory
+not ok 182 - credential -h output and SYNOPSIS agree # TODO known breakage
+not ok 188 - credential-cache -h output and SYNOPSIS agree # TODO known breakage
+not ok 200 - credential-store -h output and SYNOPSIS agree # TODO known breakage
+not ok 1 - setup
+not ok 2 - read-tree without .git/info/sparse-checkout
+not ok 3 - read-tree with .git/info/sparse-checkout but disabled
+not ok 4 - read-tree --no-sparse-checkout with empty .git/info/sparse-checkout and enabled
+not ok 5 - read-tree with empty .git/info/sparse-checkout
+not ok 6 - match directories with trailing slash
+not ok 7 - match directories without trailing slash
+not ok 8 - match directories with negated patterns
+not ok 9 - match directories with negated patterns (2)
+not ok 10 - match directory pattern
+not ok 108 - --batch-check with %(rest) # TODO known breakage
+not ok 11 - checkout area changes
+not ok 12 - read-tree updates worktree, absent case
+not ok 13 - read-tree will not throw away dirty changes, non-sparse
+not ok 14 - read-tree will not throw away dirty changes, sparse
+not ok 15 - read-tree updates worktree, dirty case
+not ok 16 - read-tree removes worktree, dirty case
+not ok 17 - read-tree adds to worktree, absent case
+not ok 18 - read-tree adds to worktree, dirty case
+not ok 19 - index removal and worktree narrowing at the same time
+not ok 20 - read-tree --reset removes outside worktree
+not ok 21 - print warnings when some worktree updates disabled
+not ok 22 - checkout without --ignore-skip-worktree-bits
+not ok 23 - checkout with --ignore-skip-worktree-bits
+not ok 254 - fast-export -h output and SYNOPSIS agree # TODO known breakage
+not ok 260 - fast-import -h output and SYNOPSIS agree # TODO known breakage
+not ok 14 - clone --local detects misnamed objects # TODO known breakage
+not ok 272 - fetch-pack -h output and SYNOPSIS agree # TODO known breakage
+not ok 278 - fmt-merge-msg -h output and SYNOPSIS agree # TODO known breakage
+not ok 4 - gitdir not required mode
+not ok 296 - format-patch -h output and SYNOPSIS agree # TODO known breakage
+not ok 314 - fsck-objects -h output and SYNOPSIS agree # TODO known breakage
+not ok 32 - lazy-fetch when accessing object not in the_repository
+not ok 320 - fsmonitor--daemon -h output and SYNOPSIS agree # TODO known breakage
+not ok 326 - gc -h output and SYNOPSIS agree # TODO known breakage
+not ok 7 - ignore .git/ with invalid repository version # TODO known breakage
+not ok 8 - ignore .git/ with invalid config # TODO known breakage
+not ok 338 - grep -h output and SYNOPSIS agree # TODO known breakage
+not ok 33 - sparse-checkout reapply # TODO known breakage
+not ok 368 - index-pack -h output and SYNOPSIS agree # TODO known breakage
+not ok 380 - init-db -h output and SYNOPSIS agree # TODO known breakage
+not ok 398 - log -h output and SYNOPSIS agree # TODO known breakage
+not ok 404 - ls-files -h output and SYNOPSIS agree # TODO known breakage
+not ok 266 - --batch-check is unbuffered by default
+not ok 267 - --batch-command info is unbuffered by default
+not ok 416 - ls-tree -h output and SYNOPSIS agree # TODO known breakage
+not ok 9 - git read-tree -u -m --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 422 - mailinfo -h output and SYNOPSIS agree # TODO known breakage
+not ok 428 - mailsplit -h output and SYNOPSIS agree # TODO known breakage
+not ok 434 - maintenance -h output and SYNOPSIS agree # TODO known breakage
+not ok 440 - merge -h output and SYNOPSIS agree # TODO known breakage
+not ok 452 - merge-file -h output and SYNOPSIS agree # TODO known breakage
+not ok 458 - merge-index -h output and SYNOPSIS agree # TODO known breakage
+not ok 182 - git config fails with invalid count
+not ok 183 - git config fails with missing config key
+not ok 184 - git config fails with missing config value
+not ok 185 - git config fails with invalid config pair key
+not ok 23 - reflog with non-commit entries displays all entries # TODO known breakage
+not ok 12 - branch -m can rename from a bad ref name # TODO known breakage
+not ok 198 - --unset last key removes section (except if commented)
+not ok 14 - push --mirror can delete badly named ref # TODO known breakage
+not ok 524 - name-rev -h output and SYNOPSIS agree # TODO known breakage
+not ok 530 - notes -h output and SYNOPSIS agree # TODO known breakage
+not ok 214 - --show-origin blob ref
+not ok 223 - override global and system config with missing file
+not ok 584 - push -h output and SYNOPSIS agree # TODO known breakage
+not ok 590 - range-diff -h output and SYNOPSIS agree # TODO known breakage
+not ok 16 - git read-tree -u -m --recurse-submodules: replace submodule with a directory # TODO known breakage
+not ok 37 - ambiguous: --no matches both --noble and --no-noble
+not ok 602 - rebase -h output and SYNOPSIS agree # TODO known breakage
+not ok 17 - git read-tree -u -m --recurse-submodules: replace submodule containing a .git directory with a directory must absorb the git dir # TODO known breakage
+not ok 626 - remote -h output and SYNOPSIS agree # TODO known breakage
+not ok 632 - remote-ext -h output and SYNOPSIS agree # TODO known breakage
+not ok 638 - remote-fd -h output and SYNOPSIS agree # TODO known breakage
+not ok 1 - setup
+not ok 3 - ref^{}
+not ok 4 - ref^{commit}
+not ok 674 - reset -h output and SYNOPSIS agree # TODO known breakage
+not ok 5 - ref^{tree}
+not ok 6 - ref^{tag}
+not ok 7 - ref^{/.}
+not ok 9 - ref^{/Initial}
+not ok 12 - ref^{/!!Exp}
+not ok 680 - restore -h output and SYNOPSIS agree # TODO known breakage
+not ok 15 - ref^{/!-non-existent}
+not ok 16 - ref^{/!-Changed}
+not ok 17 - ref^{/!-!Exp}
+not ok 692 - rev-parse -h output and SYNOPSIS agree # TODO known breakage
+not ok 17 - two semi-ambiguous commit-ish # TODO known breakage
+not ok 18 - three semi-ambiguous tree-ish # TODO known breakage
+not ok 21 - parse describe name taking advantage of generation # TODO known breakage
+not ok 722 - show -h output and SYNOPSIS agree # TODO known breakage
+not ok 4 - apply a patch outside repository
+not ok 6 - modify original file, base index untouched
+not ok 7 - add another file, which stays index
+not ok 20 - 'git archimport -h' outside a repository # TODO known breakage
+not ok 8 - remove file not in base index
+not ok 21 - 'git archimport --help-all' outside a repository # TODO known breakage
+not ok 22 - 'git archimport -h' outside a repository # TODO known breakage
+not ok 23 - 'git archimport --help-all' outside a repository # TODO known breakage
+not ok 10 - add original file back
+not ok 752 - stage -h output and SYNOPSIS agree # TODO known breakage
+not ok 11 - add new file
+not ok 12 - unify index, two files remain
+not ok 14 - set core.splitIndex config variable to true
+not ok 15 - set core.splitIndex config variable to false
+not ok 782 - switch -h output and SYNOPSIS agree # TODO known breakage
+not ok 23 - split index respects core.sharedrepository 0666
+not ok 24 - split index respects core.sharedrepository 0642
+not ok 82 - 'git cvsexportcommit -h' outside a repository # TODO known breakage
+not ok 83 - 'git cvsexportcommit --help-all' outside a repository # TODO known breakage
+not ok 84 - 'git cvsexportcommit -h' outside a repository # TODO known breakage
+not ok 85 - 'git cvsexportcommit --help-all' outside a repository # TODO known breakage
+not ok 812 - update-index -h output and SYNOPSIS agree # TODO known breakage
+not ok 86 - 'git cvsimport -h' outside a repository # TODO known breakage
+not ok 818 - update-ref -h output and SYNOPSIS agree # TODO known breakage
+not ok 87 - 'git cvsimport --help-all' outside a repository # TODO known breakage
+not ok 88 - 'git cvsimport -h' outside a repository # TODO known breakage
+not ok 35 - stdin to multiple hooks
+not ok 89 - 'git cvsimport --help-all' outside a repository # TODO known breakage
+not ok 90 - 'git cvsserver -h' outside a repository # TODO known breakage
+not ok 91 - 'git cvsserver --help-all' outside a repository # TODO known breakage
+not ok 92 - 'git cvsserver -h' outside a repository # TODO known breakage
+not ok 93 - 'git cvsserver --help-all' outside a repository # TODO known breakage
+not ok 94 - 'git daemon -h' outside a repository # TODO known breakage
+not ok 95 - 'git daemon --help-all' outside a repository # TODO known breakage
+not ok 29 - git read-tree -u --reset --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 439 - git config fails with invalid count
+not ok 440 - git config fails with missing config key
+not ok 441 - git config fails with missing config value
+not ok 442 - git config fails with invalid config pair key
+not ok 112 - 'git difftool--helper -h' outside a repository # TODO known breakage
+not ok 113 - 'git difftool--helper --help-all' outside a repository # TODO known breakage
+not ok 114 - 'git difftool--helper -h' outside a repository # TODO known breakage
+not ok 45 - git hook run a hook with a bad shebang
+not ok 115 - 'git difftool--helper --help-all' outside a repository # TODO known breakage
+not ok 884 - whatchanged -h output and SYNOPSIS agree # TODO known breakage
+not ok 124 - 'git filter-branch -h' outside a repository # TODO known breakage
+not ok 125 - 'git filter-branch --help-all' outside a repository # TODO known breakage
+not ok 126 - 'git filter-branch -h' outside a repository # TODO known breakage
+not ok 127 - 'git filter-branch --help-all' outside a repository # TODO known breakage
+not ok 455 - --unset last key removes section (except if commented)
+not ok 136 - 'git format-rev -h' outside a repository # TODO known breakage
+not ok 137 - 'git format-rev --help-all' outside a repository # TODO known breakage
+not ok 140 - 'git fsck-objects -h' outside a repository # TODO known breakage
+not ok 141 - 'git fsck-objects --help-all' outside a repository # TODO known breakage
+not ok 146 - 'git get-tar-commit-id -h' outside a repository # TODO known breakage
+not ok 147 - 'git get-tar-commit-id --help-all' outside a repository # TODO known breakage
+not ok 471 - --show-origin blob ref
+not ok 158 - 'git http-backend -h' outside a repository # TODO known breakage
+not ok 159 - 'git http-backend --help-all' outside a repository # TODO known breakage
+not ok 160 - 'git http-fetch -h' outside a repository # TODO known breakage
+not ok 161 - 'git http-fetch --help-all' outside a repository # TODO known breakage
+not ok 162 - 'git http-push -h' outside a repository # TODO known breakage
+not ok 480 - override global and system config with missing file
+not ok 163 - 'git http-push --help-all' outside a repository # TODO known breakage
+not ok 170 - 'git init-db -h' outside a repository # TODO known breakage
+not ok 171 - 'git init-db --help-all' outside a repository # TODO known breakage
+not ok 91 - detect corrupt index file in fsck
+not ok 202 - 'git merge-octopus -h' outside a repository # TODO known breakage
+not ok 203 - 'git merge-octopus --help-all' outside a repository # TODO known breakage
+not ok 96 - fsck reports problems in current worktree index without filename
+not ok 204 - 'git merge-octopus -h' outside a repository # TODO known breakage
+not ok 5 - force checkout a conflict file creates stage zero entry
+not ok 205 - 'git merge-octopus --help-all' outside a repository # TODO known breakage
+not ok 206 - 'git merge-one-file -h' outside a repository # TODO known breakage
+not ok 207 - 'git merge-one-file --help-all' outside a repository # TODO known breakage
+not ok 208 - 'git merge-one-file -h' outside a repository # TODO known breakage
+not ok 209 - 'git merge-one-file --help-all' outside a repository # TODO known breakage
+not ok 218 - 'git merge-resolve -h' outside a repository # TODO known breakage
+not ok 219 - 'git merge-resolve --help-all' outside a repository # TODO known breakage
+not ok 220 - 'git merge-resolve -h' outside a repository # TODO known breakage
+not ok 22 - blame with pathspec outside sparse definition
+not ok 221 - 'git merge-resolve --help-all' outside a repository # TODO known breakage
+not ok 226 - 'git mergetool -h' outside a repository # TODO known breakage
+not ok 227 - 'git mergetool --help-all' outside a repository # TODO known breakage
+not ok 228 - 'git mergetool -h' outside a repository # TODO known breakage
+not ok 229 - 'git mergetool --help-all' outside a repository # TODO known breakage
+not ok 1 - parallel-checkout with ident
+not ok 230 - 'git mktag -h' outside a repository # TODO known breakage
+not ok 231 - 'git mktag --help-all' outside a repository # TODO known breakage
+not ok 242 - 'git p4 -h' outside a repository # TODO known breakage
+not ok 243 - 'git p4 --help-all' outside a repository # TODO known breakage
+not ok 244 - 'git p4 -h' outside a repository # TODO known breakage
+not ok 245 - 'git p4 --help-all' outside a repository # TODO known breakage
+not ok 254 - 'git pickaxe -h' outside a repository # TODO known breakage
+not ok 255 - 'git pickaxe --help-all' outside a repository # TODO known breakage
+not ok 3 - update-index --remove --again
+not ok 5 - update-index again
+not ok 6 - update-index --update from subdir
+not ok 7 - update-index --update with pathspec
+not ok 10 - rerere and rerere forget
+not ok 11 - rerere and rerere forget (subdirectory)
+not ok 286 - 'git remote-ftp -h' outside a repository # TODO known breakage
+not ok 287 - 'git remote-ftp --help-all' outside a repository # TODO known breakage
+not ok 288 - 'git remote-ftps -h' outside a repository # TODO known breakage
+not ok 289 - 'git remote-ftps --help-all' outside a repository # TODO known breakage
+not ok 290 - 'git remote-http -h' outside a repository # TODO known breakage
+not ok 291 - 'git remote-http --help-all' outside a repository # TODO known breakage
+not ok 292 - 'git remote-https -h' outside a repository # TODO known breakage
+not ok 293 - 'git remote-https --help-all' outside a repository # TODO known breakage
+not ok 298 - 'git replay -h' outside a repository # TODO known breakage
+not ok 299 - 'git replay --help-all' outside a repository # TODO known breakage
+not ok 22 - disambiguate dwim branch and checkout path (1)
+not ok 5 - intent to add is just an ordinary empty blob
+not ok 6 - intent to add does not clobber existing paths
+not ok 7 - i-t-a entry is simply ignored
+not ok 15 - git checkout --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 320 - 'git send-email -h' outside a repository # TODO known breakage
+not ok 15 - rename detection finds the right names
+not ok 321 - 'git send-email --help-all' outside a repository # TODO known breakage
+not ok 322 - 'git send-email -h' outside a repository # TODO known breakage
+not ok 323 - 'git send-email --help-all' outside a repository # TODO known breakage
+not ok 16 - double rename detection in status
+not ok 326 - 'git sh-i18n--envsubst -h' outside a repository # TODO known breakage
+not ok 327 - 'git sh-i18n--envsubst --help-all' outside a repository # TODO known breakage
+not ok 328 - 'git shell -h' outside a repository # TODO known breakage
+not ok 329 - 'git shell --help-all' outside a repository # TODO known breakage
+not ok 17 - i-t-a files shown as new for "diff", "diff-files"; not-new for "diff --cached"
+not ok 332 - 'git show -h' outside a repository # TODO known breakage
+not ok 18 - "diff HEAD" includes ita as new files
+not ok 333 - 'git show --help-all' outside a repository # TODO known breakage
+not ok 5 - "list" all worktrees from main core.quotepath=true
+not ok 342 - 'git stage -h' outside a repository # TODO known breakage
+not ok 343 - 'git stage --help-all' outside a repository # TODO known breakage
+not ok 350 - 'git submodule -h' outside a repository # TODO known breakage
+not ok 351 - 'git submodule --help-all' outside a repository # TODO known breakage
+not ok 354 - 'git submodule -h' outside a repository # TODO known breakage
+not ok 355 - 'git submodule --help-all' outside a repository # TODO known breakage
+not ok 356 - 'git svn -h' outside a repository # TODO known breakage
+not ok 357 - 'git svn --help-all' outside a repository # TODO known breakage
+not ok 4 - submodule is checked out just after worktree add # TODO known breakage
+not ok 358 - 'git svn -h' outside a repository # TODO known breakage
+not ok 359 - 'git svn --help-all' outside a repository # TODO known breakage
+not ok 378 - 'git upload-archive--writer -h' outside a repository # TODO known breakage
+not ok 379 - 'git upload-archive--writer --help-all' outside a repository # TODO known breakage
+not ok 380 - 'git upload-pack -h' outside a repository # TODO known breakage
+not ok 381 - 'git upload-pack --help-all' outside a repository # TODO known breakage
+not ok 7 - compare the working trees
+not ok 394 - 'git web--browse -h' outside a repository # TODO known breakage
+not ok 395 - 'git web--browse --help-all' outside a repository # TODO known breakage
+not ok 396 - 'git web--browse -h' outside a repository # TODO known breakage
+not ok 397 - 'git web--browse --help-all' outside a repository # TODO known breakage
+not ok 398 - 'git whatchanged -h' outside a repository # TODO known breakage
+not ok 399 - 'git whatchanged --help-all' outside a repository # TODO known breakage
+not ok 7 - git rebase --autostash and untracked files # TODO known breakage
+not ok 11 - refuse to overwrite during rebase with --update-refs
+not ok 9 - parallel checkout respects --[no]-force
+not ok 56 - local clone --shared from linked checkout
+not ok 49 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 8 - git stash and untracked files # TODO known breakage
+not ok 59 - put a worktree under rebase
+not ok 10 - parallel checkout checks for symlinks in leading dirs
+not ok 63 - rename a branch under rebase not allowed
+not ok 64 - check out from current worktree branch ok
+not ok 50 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 22 - git checkout --recurse-submodules: replace submodule with a directory # TODO known breakage
+not ok 17 - git ls-files -o untracked_*/ recurses appropriately # TODO known breakage
+not ok 8 - setup
+not ok 23 - git checkout --recurse-submodules: replace submodule containing a .git directory with a directory must absorb the git dir # TODO known breakage
+not ok 4 - ls-tree does not yet support negated pathspec # TODO known breakage
+not ok 24 - wildmatch (via ls-files): match skip '' '' # TODO known breakage
+not ok 26 - iwildmatch (via ls-files): match skip '' '' # TODO known breakage
+not ok 28 - pathmatch (via ls-files): match skip '' '' # TODO known breakage
+not ok 30 - ipathmatch (via ls-files): match skip '' '' # TODO known breakage
+not ok 4 - refusing to add notes in refs/heads/
+not ok 5 - refusing to edit notes in refs/remotes/
+not ok 61 - git_test_func: replace submodule with a directory must fail # TODO known breakage
+not ok 62 - git_test_func: replace submodule containing a .git directory with a directory must fail # TODO known breakage
+not ok 35 - git checkout -f --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 63 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 2 - rebase --interactive: directory rename detected
+not ok 3 - rebase --apply: directory rename detected # TODO known breakage
+not ok 64 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 5 - am: directory rename detected # TODO known breakage
+not ok 7 - rebase -Xtheirs
+not ok 8 - rebase -Xtheirs from orphan
+not ok 5 - rebase -i commit with empty message
+not ok 16 - correct advice upon cherry-picking an empty commit during a rebase
+not ok 17 - correct advice upon multi cherry-pick picking an empty commit during a rebase
+not ok 18 - fixup that empties commit fails
+not ok 3 - rebase -i with empty todo list
+not ok 19 - squash that empties commit fails
+not ok 4 - rebase -i with the exec command
+not ok 5 - rebase -i with the exec command runs from tree root
+not ok 6 - rebase -i with exec allows git commands in subdirs
+not ok 31 - rebase --apply and .gitattributes
+not ok 8 - rebase -i with the exec command checks tree cleanness
+not ok 12 - rebase -i with exec of inexistent command
+not ok 20 - exchange two commits
+not ok 21 - stop on conflicting pick
+not ok 27 - squash
+not ok 28 - retain authorship when squashing
+not ok 494 - wildmatch (via ls-files): no match skip '**/bar/*' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 496 - iwildmatch (via ls-files): no match skip '**/bar/*' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 498 - pathmatch (via ls-files): match skip '**/bar/*' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 500 - ipathmatch (via ls-files): match skip '**/bar/*' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 504 - wildmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 506 - iwildmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 508 - pathmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 510 - ipathmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/baz/' # TODO known breakage
+not ok 31 - multi-squash only fires up editor once
+not ok 2 - merge based rebase --continue with works with touched file
+not ok 32 - multi-fixup does not fire up editor
+not ok 524 - wildmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/' # TODO known breakage
+not ok 526 - iwildmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/' # TODO known breakage
+not ok 528 - pathmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/' # TODO known breakage
+not ok 530 - ipathmatch (via ls-files): match skip '**/bar/**' 'deep/foo/bar/' # TODO known breakage
+not ok 33 - commit message used after conflict
+not ok 34 - commit message retained after conflict
+not ok 35 - squash and fixup generate correct log messages
+not ok 36 - squash ignores comments
+not ok 2 - rebase: fast-forward rebase
+not ok 7 - rebase -r passes merge strategy options correctly
+not ok 37 - squash ignores blank lines
+not ok 3 - rebase: noop rebase
+not ok 38 - squash works as expected
+not ok 39 - interrupted squash works as expected
+not ok 8 - --skip after failed fixup cleans commit message
+not ok 40 - interrupted squash works as expected (case 2)
+not ok 41 - --continue tries to commit, even for "edit"
+not ok 2 - reword without issues functions as intended
+not ok 42 - aborted --continue does not squash commits after "edit"
+not ok 8 - rebase --apply: dirty worktree, non-conflicting rebase
+not ok 9 - rebase --apply --autostash: check output
+not ok 155 - --list during rebase
+not ok 43 - auto-amend only edited commits after "edit"
+not ok 3 - reword after a conflict preserves commit
+not ok 10 - rebase --apply: dirty index, non-conflicting rebase
+not ok 44 - clean error after failed "exec"
+not ok 11 - rebase --apply: conflicting rebase
+not ok 156 - --list during rebase from detached HEAD
+not ok 12 - rebase --apply: --continue
+not ok 45 - rebase a detached HEAD
+not ok 13 - rebase --apply: --skip
+not ok 14 - rebase --apply: --abort
+not ok 15 - rebase --apply: --quit
+not ok 46 - rebase a commit violating pre-commit
+not ok 614 - wildmatch (via ls-files): no match skip '\' '' # TODO known breakage
+not ok 616 - iwildmatch (via ls-files): no match skip '\' '' # TODO known breakage
+not ok 618 - pathmatch (via ls-files): no match skip '\' '' # TODO known breakage
+not ok 620 - ipathmatch (via ls-files): no match skip '\' '' # TODO known breakage
+not ok 16 - rebase --apply: non-conflicting rebase, conflicting stash
+not ok 17 - rebase --apply: check output with conflicting stash
+not ok 2 - rebase (apply-backend) # TODO known breakage
+not ok 47 - rebase with a file named HEAD in worktree
+not ok 21 - rebase --merge: dirty worktree, --no-autostash
+not ok 22 - rebase --merge: dirty worktree, non-conflicting rebase
+not ok 23 - rebase --merge --autostash: check output
+not ok 50 - submodule rebase -i
+not ok 24 - rebase --merge: dirty index, non-conflicting rebase
+not ok 25 - rebase --merge: conflicting rebase
+not ok 26 - rebase --merge: --continue
+not ok 16 - fixup! fixup!
+not ok 27 - rebase --merge: --skip
+not ok 28 - rebase --merge: --abort
+not ok 29 - rebase --merge: --quit
+not ok 30 - rebase --merge: non-conflicting rebase, conflicting stash
+not ok 31 - rebase --merge: check output with conflicting stash
+not ok 17 - fixup! squash!
+not ok 55 - reword
+not ok 56 - reword fast-forwarded empty commit
+not ok 18 - squash! squash!
+not ok 57 - no uncommitted changes when rewording and the todo list is reloaded
+not ok 35 - rebase --interactive: dirty worktree, --no-autostash
+not ok 36 - rebase --interactive: dirty worktree, non-conflicting rebase
+not ok 37 - rebase --interactive --autostash: check output
+not ok 19 - squash! fixup!
+not ok 38 - rebase --interactive: dirty index, non-conflicting rebase
+not ok 39 - rebase --interactive: conflicting rebase
+not ok 40 - rebase --interactive: --continue
+not ok 59 - rebase -i can copy notes over a fixup
+not ok 41 - rebase --interactive: --skip
+not ok 60 - rebase while detaching HEAD
+not ok 42 - rebase --interactive: --abort
+not ok 21 - --reschedule-failed-exec
+not ok 43 - rebase --interactive: --quit
+not ok 22 - rebase.rescheduleFailedExec only affects `rebase -i`
+not ok 44 - rebase --interactive: non-conflicting rebase, conflicting stash
+not ok 45 - rebase --interactive: check output with conflicting stash
+not ok 21 - autosquash with empty custom instructionFormat
+not ok 23 - rebase.rescheduleFailedExec=true & --no-reschedule-failed-exec
+not ok 23 - autosquash with multiple empty patches
+not ok 63 - rebase-i history with funny messages
+not ok 7 - rebase -i --signoff adds a sign-off line when editing commit
+not ok 65 - running "git rebase -i --exec git show HEAD"
+not ok 5 - todo is re-read after reword and squash
+not ok 26 - abort last squash
+not ok 66 - running "git rebase --exec git show HEAD -i"
+not ok 67 - running "git rebase -ix git show HEAD"
+not ok 68 - rebase -ix with several <CMD>
+not ok 69 - rebase -ix with several instances of --exec
+not ok 70 - rebase -ix with --autosquash
+not ok 71 - rebase --exec works without -i 
+not ok 3 - generate correct todo list
+not ok 35 - rebase --apply keeps begin-empty commits # TODO known breakage
+not ok 73 - rebase -i --root re-order and drop commits
+not ok 74 - rebase -i --root retain root commit author and message
+not ok 75 - rebase -i --root temporary sentinel commit
+not ok 5 - `reset` rejects trees
+not ok 55 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 6 - `reset` only looks for labels under refs/rewritten/
+not ok 76 - rebase -i --root fixup root commit
+not ok 77 - rebase -i --root reword original root commit
+not ok 7 - failed `merge -C` writes patch (may be rescheduled, too)
+not ok 8 - failed `merge <branch>` does not crash
+not ok 9 - merge -c commits before rewording and reloads todo-list
+not ok 10 - merge -c rewords when a strategy is given
+not ok 11 - with a branch tip that was cherry-picked already
+not ok 13 - do not rebase cousins unless asked for
+not ok 14 - rebase.rebaseMerges=rebase-cousins is equivalent to --rebase-merges=rebase-cousins
+not ok 4 - --ignore-whitespace is remembered when continuing
+not ok 78 - rebase -i --root reword new root commit
+not ok 5 - detect duplicate GIT_AUTHOR_NAME
+not ok 56 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 5 - --committer-date-is-author-date works with apply backend
+not ok 6 - detect duplicate GIT_AUTHOR_EMAIL
+not ok 6 - --committer-date-is-author-date works with merge backend
+not ok 7 - --committer-date-is-author-date works when rewording
+not ok 7 - detect duplicate GIT_AUTHOR_DATE
+not ok 2 - simple fixup -C works
+not ok 80 - rebase -i --root reword root when root has untracked file conflict
+not ok 18 - --abort cleans up refs/rewritten
+not ok 19 - --quit cleans up refs/rewritten
+not ok 844 - wildmatch (via ls-files): no match skip '[[:digit:][:upper:][:space:]]' '.' # TODO known breakage
+not ok 20 - post-rewrite hook and fixups work for merges
+not ok 3 - simple fixup -c works
+not ok 846 - iwildmatch (via ls-files): no match skip '[[:digit:][:upper:][:space:]]' '.' # TODO known breakage
+not ok 848 - pathmatch (via ls-files): no match skip '[[:digit:][:upper:][:space:]]' '.' # TODO known breakage
+not ok 850 - ipathmatch (via ls-files): no match skip '[[:digit:][:upper:][:space:]]' '.' # TODO known breakage
+not ok 854 - wildmatch (via ls-files): match skip '[[:digit:][:punct:][:space:]]' '.' # TODO known breakage
+not ok 856 - iwildmatch (via ls-files): match skip '[[:digit:][:punct:][:space:]]' '.' # TODO known breakage
+not ok 4 - fixup -C removes amend! from message
+not ok 858 - pathmatch (via ls-files): match skip '[[:digit:][:punct:][:space:]]' '.' # TODO known breakage
+not ok 860 - ipathmatch (via ls-files): match skip '[[:digit:][:punct:][:space:]]' '.' # TODO known breakage
+not ok 82 - rebase --edit-todo can be used to modify todo
+not ok 5 - fixup -C with conflicts gives correct message
+not ok 6 - conflicting fixup -C after fixup with custom comment string
+not ok 7 - skipping fixup -C after fixup gives correct message
+not ok 85 - rebase -i respects core.commentchar=auto
+not ok 8 - sequence of fixup, fixup -C & squash --signoff works
+not ok 24 - A root commit can be a cousin, treat it that way
+not ok 16 - reset-author-date with --committer-date-is-author-date works when rewording
+not ok 25 - labels that are object IDs are rewritten
+not ok 9 - first fixup -C commented out in sequence fixup fixup -C fixup -C
+not ok 10 - multiple fixup -c opens editor once
+not ok 88 - interrupted rebase -i with --strategy and -X
+not ok 904 - wildmatch (via ls-files): match skip '[^[:alnum:][:alpha:][:blank:][:cntrl:][:digit:][:lower:][:space:][:upper:][:xdigit:]]' '.' # TODO known breakage
+not ok 11 - sequence squash, fixup & fixup -c gives combined message
+not ok 906 - iwildmatch (via ls-files): match skip '[^[:alnum:][:alpha:][:blank:][:cntrl:][:digit:][:lower:][:space:][:upper:][:xdigit:]]' '.' # TODO known breakage
+not ok 908 - pathmatch (via ls-files): match skip '[^[:alnum:][:alpha:][:blank:][:cntrl:][:digit:][:lower:][:space:][:upper:][:xdigit:]]' '.' # TODO known breakage
+not ok 910 - ipathmatch (via ls-files): match skip '[^[:alnum:][:alpha:][:blank:][:cntrl:][:digit:][:lower:][:space:][:upper:][:xdigit:]]' '.' # TODO known breakage
+not ok 91 - short commit ID collide
+not ok 27 - with --autosquash and --exec
+not ok 28 - --continue after resolving conflicts after a merge
+not ok 92 - respect core.abbrev
+not ok 29 - --rebase-merges with strategies
+not ok 30 - --rebase-merges with commit that can generate bad characters for filename
+not ok 31 - --rebase-merges with message matched with onto label
+not ok 32 - progress shows the correct total
+not ok 33 - truncate label names
+not ok 95 - rebase -i commits that overwrite untracked files (squash)
+not ok 96 - rebase -i commits that overwrite untracked files (no ff)
+not ok 98 - drop
+not ok 4 - cherry-pick after renaming branch
+not ok 99 - rebase -i respects rebase.missingCommitsCheck = ignore
+not ok 100 - rebase -i respects rebase.missingCommitsCheck = warn
+not ok 101 - rebase -i respects rebase.missingCommitsCheck = error
+not ok 102 - rebase --edit-todo respects rebase.missingCommitsCheck = ignore
+not ok 103 - rebase --edit-todo respects rebase.missingCommitsCheck = warn
+not ok 9 - git_rebase: replace submodule with a file must fail # TODO known breakage
+not ok 104 - rebase --edit-todo respects rebase.missingCommitsCheck = error
+not ok 17 - identification of reverted commit (default)
+not ok 105 - rebase.missingCommitsCheck = error after resolving conflicts
+not ok 18 - identification of reverted commit (--reference)
+not ok 106 - rebase.missingCommitsCheck = error when editing for a second time
+not ok 20 - identification of reverted commit (revert.reference)
+not ok 21 - cherry-pick is unaware of --reference (for now)
+not ok 9 - cherry-pick conflict without rerere
+not ok 10 - git_rebase: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 107 - respects rebase.abbreviateCommands with fixup, squash and exec
+not ok 108 - static check of bad command
+not ok 109 - the first command cannot be a fixup
+not ok 111 - static check of bad SHA-1
+not ok 67 - git_test_func: replace submodule with a directory must fail # TODO known breakage
+not ok 113 - rebase -i --gpg-sign=<key-id>
+not ok 114 - rebase -i --gpg-sign=<key-id> overrides commit.gpgSign
+not ok 68 - git_test_func: replace submodule containing a .git directory with a directory must fail # TODO known breakage
+not ok 115 - valid author header after --root swap
+not ok 116 - valid author header when author contains single quote
+not ok 117 - post-commit hook is called
+not ok 69 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 118 - correct error message for partial commit after empty pick
+not ok 119 - correct error message for commit --amend after empty pick
+not ok 70 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 122 - --update-refs adds label and update-ref commands
+not ok 123 - --update-refs adds commands with --rebase-merges
+not ok 60 - sparse-index is not expanded: merge conflict in cone
+not ok 124 - --update-refs ignores non-branch decorations
+not ok 125 - --update-refs updates refs correctly
+not ok 38 - failed cherry-pick does not forget -s
+not ok 127 - --update-refs: all update-ref lines removed
+not ok 128 - --update-refs: all update-ref lines removed, then some re-added
+not ok 129 - --update-refs: --edit-todo with no update-ref lines
+not ok 130 - --update-refs: check failed ref update
+not ok 14 - reject multi-key input
+not ok 16 - dummy edit works
+not ok 19 - bad edit rejected
+not ok 21 - garbage edit rejected
+not ok 24 - real edit works
+not ok 25 - setup file
+not ok 28 - edit can strip spaces from empty context lines
+not ok 29 - skip files similarly as commit -a
+not ok 28 - git add --ignore-errors
+not ok 29 - git add (add.ignore-errors)
+not ok 3 - check fully quoted output from ls-files
+not ok 4 - check fully quoted output from diff-files
+not ok 5 - check fully quoted output from diff-index
+not ok 6 - check fully quoted output from diff-tree
+not ok 7 - check fully quoted output from ls-tree
+not ok 46 - --signoff is automatically propagated to resolved conflict # TODO known breakage
+not ok 47 - --signoff dropped for implicit commit of resolution, multi-pick case # TODO known breakage
+not ok 48 - sign-off needs to be reaffirmed after conflict resolution, single-pick case # TODO known breakage
+not ok 8 - stash -p with split hunk
+not ok 23 - git_rebase_interactive: replace submodule with a file must fail # TODO known breakage
+not ok 1484 - wildmatch (via ls-files): match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/m/70/iso8859/1' # TODO known breakage
+not ok 1486 - iwildmatch (via ls-files): match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/m/70/iso8859/1' # TODO known breakage
+not ok 9 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 1488 - pathmatch (via ls-files): match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/m/70/iso8859/1' # TODO known breakage
+not ok 1490 - ipathmatch (via ls-files): match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/m/70/iso8859/1' # TODO known breakage
+not ok 1494 - wildmatch (via ls-files): no match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/X/70/iso8859/1' # TODO known breakage
+not ok 1496 - iwildmatch (via ls-files): no match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/X/70/iso8859/1' # TODO known breakage
+not ok 1498 - pathmatch (via ls-files): no match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/X/70/iso8859/1' # TODO known breakage
+not ok 1500 - ipathmatch (via ls-files): no match skip 'XXX/*/*/*/*/*/*/12/*/*/*/m/*/*/*' 'XXX/adobe/courier/bold/o/normal//12/120/75/75/X/70/iso8859/1' # TODO known breakage
+not ok 24 - git_rebase_interactive: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 10 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 52 - stash directory to file # TODO known breakage
+not ok 9 - git_revert: replace submodule with a file must fail # TODO known breakage
+not ok 53 - stash file to directory # TODO known breakage
+not ok 10 - git_revert: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 2 - git_stash: added submodule leaves existing empty directory alone # TODO known breakage
+not ok 2 - validate output from rename/copy detection (#1)
+not ok 3 - validate output from rename/copy detection (#2)
+not ok 4 - validate output from rename/copy detection (#3)
+not ok 1 - setup
+not ok 2 - change file1 with copy-edit of file0 and remove file0
+not ok 3 - run diff with -B (#1)
+not ok 4 - run diff with -B and -M (#2)
+not ok 5 - swap file0 and file1
+not ok 6 - run diff with -B (#3)
+not ok 7 - run diff with -B and -M (#4)
+not ok 3 - git_stash: replace tracked file with submodule creates empty directory # TODO known breakage
+not ok 8 - make file0 into something completely different
+not ok 9 - run diff with -B (#5)
+not ok 10 - run diff with -B -M (#6)
+not ok 11 - run diff with -M (#7)
+not ok 12 - file1 edited to look like file0 and file0 rename-edited to file2
+not ok 2 - prepare work tree
+not ok 13 - run diff with -B (#8)
+not ok 14 - run diff with -B -C (#9)
+not ok 3 - validate output from rename/copy detection (#1)
+not ok 4 - prepare work tree again
+not ok 1 - setup
+not ok 5 - validate output from rename/copy detection (#2)
+not ok 2 - limit to path should show nothing
+not ok 4 - git_stash: replace directory with submodule # TODO known breakage
+not ok 6 - prepare work tree once again
+not ok 3 - limit to path1 should show path1/file1
+not ok 4 - limit to path1/ should show path1/file1
+not ok 7 - validate output from rename/copy detection (#3)
+not ok 5 - "*file1" should show path1/file1
+not ok 6 - limit to file0 should show file0
+not ok 7 - limit to file0/ should emit nothing.
+not ok 9 - diff-tree with wildcard shows dir also matches
+not ok 10 - diff-tree -r with wildcard
+not ok 11 - diff-tree with wildcard shows dir also matches
+not ok 12 - diff-tree -r with wildcard from beginning
+not ok 13 - diff-tree -r with wildcard
+not ok 5 - git_stash: removed submodule leaves submodule directory and its contents in place # TODO known breakage
+not ok 16 - diff multiple wildcard pathspecs
+not ok 8 - symlinks do not respect userdiff config by path
+not ok 6 - git_stash: removed submodule leaves submodule containing a .git directory alone # TODO known breakage
+not ok 1 - setup
+not ok 2 - GIT_EXTERNAL_DIFF environment
+not ok 4 - GIT_EXTERNAL_DIFF environment and --no-ext-diff
+not ok 5 - GIT_EXTERNAL_DIFF and --output
+not ok 16 - additional command line cc (rfc822) # TODO known breakage
+not ok 79 - store updates stash ref and reflog
+not ok 1 - setup
+not ok 3 - show deletion diff without -D
+not ok 4 - suppress deletion diff with -D
+not ok 80 - handle stash specification with spaces
+not ok 20 - command line To: header (rfc822) # TODO known breakage
+not ok 21 - command line To: header (rfc2047) # TODO known breakage
+not ok 8 - diff.external should apply only to diff
+not ok 23 - configuration To: header (rfc822) # TODO known breakage
+not ok 24 - configuration To: header (rfc2047) # TODO known breakage
+not ok 9 - diff.external and --no-ext-diff
+not ok 11 - diff attribute should apply only to diff
+not ok 12 - diff attribute and --no-ext-diff
+not ok 14 - diff attribute should apply only to diff
+not ok 15 - diff attribute and --no-ext-diff
+not ok 18 - no diff with -diff
+not ok 42 - Ray Lehtiniemi's example
+not ok 22 - external diff 'echo output; exit 0;' with trustExitCode=off via GIT_EXTERNAL_DIFF
+not ok 9 - git_stash: replace submodule with a file must fail # TODO known breakage
+not ok 43 - another test, without options
+not ok 44 - ignore-blank-lines: only new lines
+not ok 45 - ignore-blank-lines: only new lines with space
+not ok 46 - ignore-blank-lines: after change
+not ok 47 - ignore-blank-lines: before change
+not ok 48 - ignore-blank-lines: between changes
+not ok 49 - ignore-blank-lines: between changes (with interhunkctx)
+not ok 50 - ignore-blank-lines: scattered spaces
+not ok 25 - external diff 'echo output; exit 1;' with trustExitCode=off via GIT_EXTERNAL_DIFF
+not ok 51 - ignore-blank-lines: spaces coalesce
+not ok 52 - ignore-blank-lines: mix changes and blank lines
+not ok 53 - check mixed spaces and tabs in indent
+not ok 54 - check mixed tabs and spaces in indent
+not ok 55 - check with no whitespace errors
+not ok 83 - grep is not expanded
+not ok 28 - external diff 'echo output; exit 0;' with trustExitCode=on via GIT_EXTERNAL_DIFF
+not ok 1 - diff honors config option, diff.suppressBlankEmpty
+not ok 60 - -w and --exit-code interact sensibly
+not ok 10 - git_stash: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 31 - external diff 'echo output; exit 1;' with trustExitCode=on via GIT_EXTERNAL_DIFF
+not ok 34 - external diff 'echo output; exit 2;' with trustExitCode=on via GIT_EXTERNAL_DIFF
+not ok 11 - git_stash: modified submodule does not update submodule work tree # TODO known breakage
+not ok 37 - external diff 'echo output; exit 0;' with trustExitCode=off via GIT_EXTERNAL_DIFF with --exit-code
+not ok 2 - setup attributes files for tests with patience
+not ok 3 - patience diff from attributes
+not ok 4 - diff from attributes with bare repo with source
+not ok 40 - external diff 'echo output; exit 1;' with trustExitCode=off via GIT_EXTERNAL_DIFF with --exit-code
+not ok 84 - grep within submodules is not expanded # TODO known breakage
+not ok 6 - patience diff from attributes has valid diffstat
+not ok 7 - patience diff
+not ok 8 - patience diff command line precedence before attributes
+not ok 12 - git_stash: modified submodule does not update submodule work tree to invalid commit # TODO known breakage
+not ok 9 - patience diff attributes precedence before config
+not ok 10 - patience diff output is valid
+not ok 43 - external diff 'echo output; exit 0;' with trustExitCode=on via GIT_EXTERNAL_DIFF with --exit-code
+not ok 116 - stash -- <subdir> works with binary files
+not ok 11 - completely different files
+not ok 3 - word diff with runs of whitespace
+not ok 13 - git_stash: modified submodule does not update submodule work tree from invalid commit # TODO known breakage
+not ok 46 - external diff 'echo output; exit 1;' with trustExitCode=on via GIT_EXTERNAL_DIFF with --exit-code
+not ok 4 - --word-diff=porcelain
+not ok 99 - whitespace-only changes reported across renames
+not ok 5 - --word-diff=plain
+not ok 6 - --word-diff=plain --color
+not ok 49 - external diff 'echo output; exit 2;' with trustExitCode=on via GIT_EXTERNAL_DIFF with --exit-code
+not ok 101 - combined diff with autocrlf conversion
+not ok 7 - word diff without context
+not ok 69 - excessive subject
+not ok 121 - stash export and import round-trip stashes
+not ok 8 - word diff with a regular expression
+not ok 103 - diff that introduces a line with only tabs
+not ok 122 - stash import appends commits
+not ok 104 - diff that introduces and removes ws breakages
+not ok 123 - stash export can accept specified stashes
+not ok 9 - word diff with zero length matches
+not ok 105 - ws-error-highlight test setup
+not ok 72 - shortlog of cover-letter wraps overly-long onelines
+not ok 73 - format-patch respects -U
+not ok 106 - test --ws-error-highlight option
+not ok 74 - format-patch -p suppresses stat
+not ok 107 - test diff.wsErrorHighlight config
+not ok 11 - option overrides .gitattributes
+not ok 108 - option overrides diff.wsErrorHighlight
+not ok 126 - stash rejects invalid attempts to import commits
+not ok 12 - use regex supplied by driver
+not ok 58 - external diff 'echo output; exit 0;' with trustExitCode=on via GIT_EXTERNAL_DIFF with --quiet
+not ok 14 - command-line overrides config
+not ok 15 - command-line overrides config: --word-diff-regex
+not ok 16 - .gitattributes override config
+not ok 1 - setup
+not ok 2 - diff-index does not examine assume-unchanged entries
+not ok 64 - external diff 'echo output; exit 2;' with trustExitCode=on via GIT_EXTERNAL_DIFF with --quiet
+not ok 18 - use configured regex
+not ok 111 - detect malicious moved code, inside file
+not ok 65 - force diff with "diff"
+not ok 66 - GIT_EXTERNAL_DIFF with more than one changed files
+not ok 67 - GIT_EXTERNAL_DIFF path counter/total
+not ok 19 - test parsing words for newline
+not ok 112 - plain moved code, inside file
+not ok 69 - external diff with autocrlf = true
+not ok 20 - test when words are only removed at the end
+not ok 70 - diff --cached
+not ok 21 - --word-diff=none
+not ok 85 - format-patch --numstat should produce a patch
+not ok 86 - format-patch -- <path>
+not ok 23 - diff driver 'ada'
+not ok 24 - diff driver 'ada' in Islandic
+not ok 25 - diff driver 'bibtex'
+not ok 26 - diff driver 'bibtex' in Islandic
+not ok 73 - rm across a symlinked leading path (w/ index) # TODO known breakage
+not ok 27 - diff driver 'bash'
+not ok 1 - setup
+not ok 28 - diff driver 'bash' in Islandic
+not ok 12 - typechanged submodule(submodule->blob), --cached
+not ok 2 - -p --relative=subdir/
+not ok 13 - typechanged submodule(submodule->blob)
+not ok 3 - -p --relative=subdir
+not ok 14 - typechanged submodule(submodule->blob)
+not ok 4 - -p --relative
+not ok 29 - diff driver 'cpp'
+not ok 15 - setup submodule anew
+not ok 5 - -p --relative=sub
+not ok 16 - nonexistent commit
+not ok 6 - --numstat --relative=subdir/
+not ok 7 - --numstat --relative=subdir
+not ok 8 - --numstat --relative
+not ok 30 - diff driver 'cpp' in Islandic
+not ok 9 - --numstat --relative=sub
+not ok 10 - --stat --relative=subdir/
+not ok 11 - --stat --relative=subdir
+not ok 12 - --stat --relative
+not ok 31 - diff driver 'csharp'
+not ok 13 - --stat --relative=sub
+not ok 14 - --raw --relative=subdir/
+not ok 15 - --raw --relative=subdir
+not ok 32 - diff driver 'csharp' in Islandic
+not ok 16 - --raw --relative
+not ok 17 - --raw --relative=sub
+not ok 33 - diff driver 'css'
+not ok 18 - config diff.relative false -p 
+not ok 19 - config diff.relative true -p --no-relative
+not ok 34 - diff driver 'css' in Islandic
+not ok 1 - setup attributes files for tests with histogram
+not ok 2 - histogram diff from attributes
+not ok 3 - diff from attributes with bare repo with source
+not ok 143 - apply with custom conflict labels
+not ok 35 - diff driver 'dts'
+not ok 20 - config diff.relative false -p --no-relative
+not ok 5 - histogram diff from attributes has valid diffstat
+not ok 6 - histogram diff
+not ok 21 - config diff.relative false -p 
+not ok 7 - histogram diff command line precedence before attributes
+not ok 8 - histogram diff attributes precedence before config
+not ok 144 - apply with empty conflict labels
+not ok 9 - histogram diff output is valid
+not ok 22 - config diff.relative true -p --no-relative
+not ok 36 - diff driver 'dts' in Islandic
+not ok 145 - stash show --include-untracked includes untracked files
+not ok 23 - config diff.relative false -p --no-relative
+not ok 10 - completely different files
+not ok 37 - diff driver 'fortran'
+not ok 24 - config diff.relative false -p --relative=subdir/
+not ok 25 - config diff.relative false -p --relative=subdir
+not ok 38 - diff driver 'fortran' in Islandic
+not ok 26 - config diff.relative true -p --relative=subdir/
+not ok 39 - diff driver 'html'
+not ok 27 - config diff.relative true -p --relative=subdir
+not ok 17 - diff --no-index allows external diff
+not ok 28 - config diff.relative false -p --relative
+not ok 40 - diff driver 'html' in Islandic
+not ok 29 - config diff.relative true -p --relative
+not ok 30 - config diff.relative true -p 
+not ok 41 - diff driver 'java'
+not ok 31 - config diff.relative false -p --no-relative --relative
+not ok 42 - diff driver 'java' in Islandic
+not ok 32 - config diff.relative true -p --no-relative --relative
+not ok 33 - config diff.relative false -p --no-relative --relative=subdir
+not ok 35 -  context includes begin
+not ok 43 - diff driver 'kotlin'
+not ok 36 -  context includes end
+not ok 37 -  context does not include other functions
+not ok 34 - config diff.relative true -p --no-relative --relative=subdir
+not ok 26 - diff --no-index refuses to diff a named pipe and a directory
+not ok 35 - external diff with --relative
+not ok 40 -  context includes begin
+not ok 27 - diff --no-index reads from pipes
+not ok 41 -  context includes end
+not ok 44 - diff driver 'kotlin' in Islandic
+not ok 45 - diff driver 'matlab'
+not ok 46 - diff driver 'matlab' in Islandic
+not ok 47 - diff driver 'objc'
+not ok 48 - diff driver 'objc' in Islandic
+not ok 49 - diff driver 'pascal'
+not ok 17 - combine diff coalesce three parents # TODO known breakage
+not ok 39 - diff --relative with change in subdir # TODO known breakage
+not ok 50 - diff driver 'pascal' in Islandic
+not ok 51 - diff driver 'perl'
+not ok 52 - diff driver 'perl' in Islandic
+not ok 53 - diff driver 'php'
+not ok 11 - can switch to another branch when status is empty # TODO known breakage
+not ok 20 - setup for --combined-all-paths
+not ok 14 - clean status, switch branches, status still clean # TODO known breakage
+not ok 54 - diff driver 'php' in Islandic
+not ok 21 - --combined-all-paths and --raw
+not ok 16 - fast-forward from duplicate entries to non-duplicate # TODO known breakage
+not ok 22 - --combined-all-paths and --cc
+not ok 55 - diff driver 'python'
+not ok 23 - setup for --combined-all-paths with funny names
+not ok 24 - --combined-all-paths and --raw and funny names
+not ok 56 - diff driver 'python' in Islandic
+not ok 25 - --combined-all-paths and --raw -and -z and funny names
+not ok 26 - --combined-all-paths and --cc and funny names
+not ok 57 - diff driver 'ruby'
+not ok 58 - diff driver 'ruby' in Islandic
+not ok 59 - diff driver 'scheme'
+not ok 60 - diff driver 'scheme' in Islandic
+not ok 202 - git rebase --apply --fork-point --onto B B with our and their changes is work with same HEAD # TODO known breakage
+not ok 12 - typechanged submodule(submodule->blob), --cached
+not ok 13 - typechanged submodule(submodule->blob)
+not ok 61 - diff driver 'tex'
+not ok 14 - typechanged submodule(submodule->blob)
+not ok 15 - setup
+not ok 16 - nonexistent commit
+not ok 62 - diff driver 'tex' in Islandic
+not ok 204 - git rebase --merge --fork-point --onto B B with our and their changes is work with same HEAD # TODO known breakage
+not ok 63 - word-diff with diff.sbe
+not ok 206 - git rebase --merge --fork-point --onto B B (rebase.abbreviateCommands = true) with our and their changes is work with same HEAD # TODO known breakage
+not ok 64 - word-diff with no newline at EOF
+not ok 1 - shifted/merged diff group should re-diff to minimize patch
+not ok 2 - merged diff group with no shift
+not ok 208 - git rebase --apply --fork-point --onto B... B with our and their changes is work with same HEAD # TODO known breakage
+not ok 3 - re-diff should preserve diff flags
+not ok 4 - shifting on either side should trigger re-diff properly
+not ok 210 - git rebase --merge --fork-point --onto B... B with our and their changes is work with same HEAD # TODO known breakage
+not ok 212 - git rebase --merge --fork-point --onto B... B (rebase.abbreviateCommands = true) with our and their changes is work with same HEAD # TODO known breakage
+not ok 97 - diff --check with pathspec outside sparse definition # TODO known breakage
+not ok 48 - diff-index --cached HEAD, path=, depth=0 # TODO known breakage
+not ok 49 - diff-index --cached HEAD, path=, depth=1 # TODO known breakage
+not ok 50 - diff-index --cached HEAD, path=, depth=2 # TODO known breakage
+not ok 51 - diff-index --cached HEAD, path=, depth=3 # TODO known breakage
+not ok 52 - diff-index --cached HEAD, path=one, depth=0 # TODO known breakage
+not ok 53 - diff-index --cached HEAD, path=one, depth=1 # TODO known breakage
+not ok 54 - diff-index --cached HEAD, path=one, depth=2 # TODO known breakage
+not ok 55 - diff-index --cached HEAD, path=one, depth=3 # TODO known breakage
+not ok 56 - diff-index --cached HEAD, path=one/two, depth=0 # TODO known breakage
+not ok 57 - diff-index --cached HEAD, path=one/two, depth=1 # TODO known breakage
+not ok 58 - diff-index --cached HEAD, path=one/two, depth=2 # TODO known breakage
+not ok 59 - diff-index --cached HEAD, path=one/two/three, depth=0 # TODO known breakage
+not ok 60 - diff-index --cached HEAD, path=one/two/three, depth=1 # TODO known breakage
+not ok 62 - diff-files , path=, depth=0 # TODO known breakage
+not ok 63 - diff-files , path=, depth=1 # TODO known breakage
+not ok 64 - diff-files , path=, depth=2 # TODO known breakage
+not ok 65 - diff-files , path=, depth=3 # TODO known breakage
+not ok 66 - diff-files , path=one, depth=0 # TODO known breakage
+not ok 67 - diff-files , path=one, depth=1 # TODO known breakage
+not ok 68 - diff-files , path=one, depth=2 # TODO known breakage
+not ok 69 - diff-files , path=one, depth=3 # TODO known breakage
+not ok 70 - diff-files , path=one/two, depth=0 # TODO known breakage
+not ok 71 - diff-files , path=one/two, depth=1 # TODO known breakage
+not ok 72 - diff-files , path=one/two, depth=2 # TODO known breakage
+not ok 216 - diff -I<regex>: ignore all content changes
+not ok 73 - diff-files , path=one/two/three, depth=0 # TODO known breakage
+not ok 99 - sparse-index is not expanded: git apply
+not ok 74 - diff-files , path=one/two/three, depth=1 # TODO known breakage
+not ok 2 - apply --whitespace=strip
+not ok 6 - symlink escape when modifying file
+not ok 3 - apply --whitespace=strip from config
+not ok 1 - setup
+not ok 7 - symlink escape when deleting file
+not ok 4 - apply --whitespace=strip in subdir
+not ok 5 - apply --whitespace=strip from config in subdir
+not ok 6 - same in subdir but with traditional patch input
+not ok 7 - same but with traditional patch input of depth 1
+not ok 8 - same but with traditional patch input of depth 2
+not ok 9 - same but with traditional patch input of depth 1
+not ok 10 - same but with traditional patch input of depth 2
+not ok 15 - apply binary file patch
+not ok 16 - apply binary file patch with 3way
+not ok 17 - apply full-index patch with 3way
+not ok 15 - with quote, traditional patch # TODO known breakage
+not ok 10 - shortlog from non-git directory refuses extra arguments
+not ok 16 - NUL termination with --stat # TODO known breakage
+not ok 2 - interrupted am --whitespace=fix
+not ok 3 - interrupted am -C1
+not ok 4 - interrupted am -p2
+not ok 5 - interrupted am -C1 -p2
+not ok 56 - trailing whitespace & no newline at the end of file
+not ok 6 - interrupted am --directory="frotz nitfol"
+not ok 25 - patch-id computes same ID with different object hashes # TODO known breakage
+not ok 5 - add files to repository
+not ok 6 - setup export-subst and diff attributes
+not ok 9 - git archive --format=zip
+not ok 19 - git archive --format=zip in a bare repo
+not ok 21 - git archive --format=zip with --output
+not ok 22 - git archive with --output, inferring format (local)
+not ok 23 - git archive with --output, inferring format (remote)
+not ok 24 - git archive --format=zip with prefix
+not ok 34 - git archive -0 --format=zip on large files
+not ok 44 - git archive --format=zip on large files
+not ok 54 - git archive --format=zip --add-file
+not ok 66 - git archive --format=zip --add-file twice
+not ok 125 - wide and decomposed characters column counting # TODO known breakage
+not ok 9 - apply_index: replace submodule with a file must fail # TODO known breakage
+not ok 10 - apply_index: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 75 - am and .gitattibutes
+not ok 9 - am: replace submodule with a file must fail # TODO known breakage
+not ok 48 - pack-objects respects --local (non-local loose)
+not ok 49 - pack-objects respects --honor-pack-keep (local non-bitmapped pack)
+not ok 50 - pack-objects respects --local (non-local pack)
+not ok 4 - fetch any commit from promisor with the usage of the commit graph
+not ok 10 - am: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 1 - convert non-incremental MIDX to incremental
+not ok 6 - bitmapPseudoMerge.sampleRate adjusts commit selection rate
+not ok 21 - warn on base graph chunk incorrect
+not ok 25 - verify across alternates
+not ok 26 - reader bounds-checks base-graph chunk
+not ok 23 - apply_3way: replace submodule with a file must fail # TODO known breakage
+not ok 24 - apply_3way: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 124 - pack-objects respects --local (non-local loose)
+not ok 125 - pack-objects respects --honor-pack-keep (local non-bitmapped pack)
+not ok 126 - pack-objects respects --local (non-local pack)
+not ok 23 - am_3way: replace submodule with a file must fail # TODO known breakage
+not ok 24 - am_3way: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 12 - git rebase -i (unchanged)
+not ok 13 - git rebase -i (skip)
+not ok 14 - git rebase -i (squash)
+not ok 15 - git rebase -i (fixup without conflict)
+not ok 16 - git rebase -i (double edit)
+not ok 17 - git rebase -i (exec)
+not ok 26 - show stale with negative refspecs # TODO known breakage
+not ok 108 - stale commit cannot be parsed when given directly
+not ok 205 - pack-objects respects --local (non-local loose)
+not ok 206 - pack-objects respects --honor-pack-keep (local non-bitmapped pack)
+not ok 207 - pack-objects respects --local (non-local pack)
+not ok 109 - stale commit cannot be parsed when traversing graph
+not ok 58 - add --no-tags
+not ok 13 - parallel
+not ok 68 - rename a remote
+not ok 69 - rename a remote renames repo remote.pushDefault
+not ok 12 - push from/to new branch fails with matching  # TODO known breakage
+not ok 120 - unqualified <dst> refspec DWIM and advice
+not ok 68 - fetch-pack cannot fetch a raw sha1 that is not advertised as a ref
+not ok 3 - fetch plain
+not ok 6 - fetch gzipped
+not ok 9 - push plain
+not ok 12 - push gzipped
+not ok 15 - CONTENT_LENGTH overflow ssite_t
+not ok 16 - empty CONTENT_LENGTH
+not ok 2 - clone calls git upload-pack unqualified with no -u option
+not ok 3 - clone calls specified git upload-pack with -u option
+not ok 34 - clone separate gitdir where target already exists
+not ok 35 - clone --reference from original
+not ok 36 - clone with more than one --reference
+not ok 37 - clone from original with relative alternate
+not ok 4 - cloned HEAD is detached # TODO known breakage
+not ok 4 - clone with --no-tags
+not ok 64 - push does not update local refs on failure
+not ok 59 - clean failure on broken quoting
+not ok 60 - clone c:temp is ssl
+not ok 62 - clone host:rep
+not ok 63 - clone host:rep/home/project
+not ok 64 - clone host:123
+not ok 65 - clone [::1]:rep
+not ok 66 - clone [::1]:rep/home/project
+not ok 67 - clone [::1]:123
+not ok 1 - extra delim packet in v2 ls-refs args
+not ok 68 - clone host:/~repo
+not ok 2 - extra delim packet in v2 fetch args
+not ok 69 - clone [::1]:/~repo
+not ok 73 - clone ssh://host.xz/home/user/repo
+not ok 74 - clone ssh://host.xz/~repo
+not ok 75 - clone ssh://host.xz:/home/user/repo
+not ok 76 - clone ssh://host.xz:/~repo
+not ok 77 - clone ssh://host.xz:22/home/user/repo
+not ok 78 - clone ssh://host.xz:22/~repo
+not ok 79 - clone ssh://::1/home/user/repo
+not ok 80 - clone ssh://[::1]/home/user/repo
+not ok 81 - clone ssh://[::1]:/home/user/repo
+not ok 82 - clone ssh://user@::1/home/user/repo
+not ok 83 - clone ssh://user@[::1]/home/user/repo
+not ok 84 - clone ssh://user@[::1]:/home/user/repo
+not ok 85 - clone ssh://[user@::1]/home/user/repo
+not ok 86 - clone ssh://[user@::1]:/home/user/repo
+not ok 87 - clone ssh://::1/~repo
+not ok 88 - clone ssh://[::1]/~repo
+not ok 89 - clone ssh://user@::1/~repo
+not ok 90 - clone ssh://user@[::1]/~repo
+not ok 91 - clone ssh://[user@::1]/~repo
+not ok 9 - git_pull: replace submodule with a file must fail # TODO known breakage
+not ok 92 - clone ssh://[::1]:22/home/user/repo
+not ok 93 - clone ssh://user@[::1]:22/home/user/repo
+not ok 94 - clone ssh://[user@::1]:22/home/user/repo
+not ok 95 - clone ssh://[::1]:22/~repo
+not ok 96 - clone ssh://user@[::1]:22/~repo
+not ok 97 - clone ssh://[user@::1]:22/~repo
+not ok 10 - git_pull: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 16 - with namespace: want-ref outside namespace is unknown
+not ok 11 - rev-list can show index objects
+not ok 21 - pushing without marks # TODO known breakage
+not ok 28 - push update refs failure
+not ok 29 - proper failure checks for fetching
+not ok 30 - proper failure checks for pushing
+not ok 7 - rev-parse accepts --glob as detached option # TODO known breakage
+not ok 8 - rev-parse is not confused by option-like glob # TODO known breakage
+not ok 23 - git_pull_ff: replace submodule with a file must fail # TODO known breakage
+not ok 24 - git_pull_ff: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 94 - shortlog accepts --glob as detached option # TODO known breakage
+not ok 95 - shortlog --glob is not confused by option-like argument # TODO known breakage
+not ok 99 - fetch exact oid
+not ok 30 - "git bisect run" simple case
+not ok 101 - shallow fetch reachable SHA1 (but not a ref), allowtipsha1inwant=true
+not ok 102 - deny fetch unreachable SHA1, allowtipsha1inwant=true
+not ok 33 - bisect run accepts exit code 126 as bad
+not ok 103 - shallow fetch reachable SHA1 (but not a ref), allowtipsha1inwant=false
+not ok 35 - bisect run accepts exit code 127 as bad
+not ok 104 - deny fetch unreachable SHA1, allowtipsha1inwant=false
+not ok 39 - bisect run & skip: cannot tell between 2
+not ok 40 - bisect run & skip: find first bad
+not ok 106 - peeled advertisements are not considered ref tips
+not ok 9 - merge without conflict (missing LF at EOF) # TODO known breakage
+not ok 10 - merge result added missing LF # TODO known breakage
+not ok 25 - binary files cannot be merged with --object-id
+not ok 4 - check merge result in working tree
+not ok 7 - setup
+not ok 10 - set up mode change in both branches
+not ok 8 - initial merge
+not ok 9 - merge update
+not ok 10 - initial ambiguous subtree
+not ok 11 - merge using explicit
+not ok 11 - detect conflict on double mode change (recursive)
+not ok 12 - merge2 using explicit
+not ok 13 - detect conflict on double mode change (resolve)
+not ok 69 - bisect: demonstrate identification of damage boundary
+not ok 2 - plain recursive - should conflict
+not ok 3 - recursive favouring theirs
+not ok 4 - recursive favouring ours
+not ok 102 - describe --candidates=2 HEAD # TODO known breakage
+not ok 105 - describe --candidates=2 HEAD # TODO known breakage
+not ok 2 - rename/modify/add-source conflict resolvable # TODO known breakage
+not ok 14 - do not lose untracked in merge (resolve) # TODO known breakage
+not ok 3 - conflict caused if rename not detected # TODO known breakage
+not ok 4 - missed conflict if rename not detected # TODO known breakage
+not ok 37 - git_pull_ff_only: replace submodule with a file must fail # TODO known breakage
+not ok 9 - git_bisect: replace submodule with a file must fail # TODO known breakage
+not ok 5 - detect rename/add-source and preserve all data # TODO known breakage
+not ok 6 - detect rename/add-source and preserve all data, merge other way # TODO known breakage
+not ok 38 - git_pull_ff_only: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 10 - git_bisect: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 2 - check no merge base
+not ok 1 - setup 1
+not ok 2 - setup 2
+not ok 3 - setup 3
+not ok 4 - setup 4
+not ok 5 - setup 5
+not ok 6 - setup 6
+not ok 7 - setup 7
+not ok 4 - check unique merge base
+not ok 8 - setup 8
+not ok 9 - setup 9
+not ok 10 - merge-recursive simple
+not ok 11 - merge-recursive result
+not ok 12 - fail if the index has unresolved entries
+not ok 13 - merge-recursive remove conflict
+not ok 14 - merge-recursive remove conflict
+not ok 15 - merge-recursive d/f simple
+not ok 16 - merge-recursive result
+not ok 17 - merge-recursive d/f conflict
+not ok 18 - merge-recursive d/f conflict result
+not ok 19 - merge-recursive d/f conflict the other way
+not ok 20 - merge-recursive d/f conflict result the other way
+not ok 21 - merge-recursive d/f conflict
+not ok 22 - merge-recursive d/f conflict result
+not ok 23 - merge-recursive d/f conflict
+not ok 6 - check multiple merge bases
+not ok 24 - merge-recursive d/f conflict result
+not ok 7 - rebase --merge describes parent of commit being picked
+not ok 26 - reset and 3-way merge
+not ok 8 - rebase --apply describes fake ancestor base
+not ok 27 - reset and bind merge
+not ok 28 - merge-recursive w/ empty work tree - ours has rename
+not ok 29 - merge-recursive w/ empty work tree - theirs has rename
+not ok 2 - naive merge fails
+not ok 30 - merge removes empty directories
+not ok 31 - merge-recursive simple w/submodule
+not ok 32 - merge-recursive simple w/submodule result
+not ok 33 - merge-recursive copy vs. rename
+not ok 34 - merge-recursive rename vs. rename/symlink
+not ok 4 - naive cherry-pick fails
+not ok 35 - merging with triple rename across D/F conflict
+not ok 36 - merge-recursive internal merge resolves to the sameness
+not ok 6 - --ignore-space-change: our w/s-only change wins
+not ok 7 - --ignore-space-change: their real change wins over w/s
+not ok 8 - --ignore-space-change: does not ignore new spaces
+not ok 9 - --ignore-all-space drops their new spaces
+not ok 10 - --ignore-all-space keeps our new spaces
+not ok 18 - merge of D2 & E4 merges a2s & reports conflict for a/file # TODO known breakage
+not ok 14 - detect conflict with rename/rename(1to2)/add-source merge # TODO known breakage
+not ok 15 - rename/rename/add-source still tracks new a file # TODO known breakage
+not ok 22 - detect rename/rename/add-source for virtual merge-base # TODO known breakage
+not ok 17 - rad-check: rename/add/delete conflict
+not ok 14 - 5c: Transitive rename would cause rename/rename/rename/add/add/add
+not ok 18 - rrdd-check: rename/rename(2to1)/delete/delete conflict
+not ok 15 - file/submodule conflict
+not ok 18 - directory/submodule conflict; keep submodule clean # TODO known breakage
+not ok 20 - directory/submodule conflict; merge --abort works afterward # TODO known breakage
+not ok 36 - check conflicting modes for regular file # TODO known breakage
+not ok 79 - bad editor causes panic when only --trailer is given
+not ok 3 - read-tree updates worktree, dirty case
+not ok 4 - read-tree removes worktree, absent case
+not ok 51 - git_pull_noff: replace submodule with a file must fail # TODO known breakage
+not ok 6 - index setup
+not ok 52 - git_pull_noff: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 85 - git tag --format with ahead-behind
+not ok 9 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 142 - message in editor has initial comment: first line
+not ok 5 - make first commit, confirm HEAD oid and branch
+not ok 7 - after first commit, stash existing changes
+not ok 9 - after first commit, stage existing changes
+not ok 10 - rename causes 2 path lines
+not ok 10 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 11 - rename causes 2 path lines (-z)
+not ok 12 - make second commit, confirm clean and new HEAD oid
+not ok 13 - confirm ignored files are not printed
+not ok 14 - ignored files are printed with --ignored
+not ok 15 - create and commit permanent ignore file
+not ok 16 - verify --intent-to-add output
+not ok 17 - verify AA (add-add) conflict
+not ok 18 - verify UU (edit-edit) conflict
+not ok 3 - reset --merge is ok when switching back
+not ok 4 - reset --keep is ok with changes in file it does not touch
+not ok 5 - reset --keep is ok when switching back
+not ok 6 - reset --merge discards changes added to index (1)
+not ok 7 - reset --merge is ok again when switching back (1)
+not ok 10 - reset --merge is ok again when switching back (2)
+not ok 11 - reset --keep keeps changes it does not touch
+not ok 12 - reset --keep keeps changes when switching back
+not ok 27 - stage submodule in super and commit
+not ok 31 - create/modify files, some of which are gitignored
+not ok 24 - test --mixed <paths>
+not ok 36 - nested (empty) bare repositories should be cleaned even when in .git # TODO known breakage
+not ok 38 - 9g: Renamed directory that only contained immediate subdirs, immediate subdirs renamed # TODO known breakage
+not ok 37 - nested (non-empty) bare repositories should be cleaned even when in .git # TODO known breakage
+not ok 12 - typechanged submodule(submodule->blob), --cached
+not ok 13 - typechanged submodule(submodule->blob), --files
+not ok 14 - typechanged submodule(submodule->blob)
+not ok 15 - setup submodule
+not ok 16 - nonexistent commit
+not ok 47 - 11b: Avoid losing dirty file involved in directory rename
+not ok 48 - 11c: Avoid losing not-uptodate with rename + D/F conflict
+not ok 48 - custom merge driver with checkout -m
+not ok 23 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 49 - 11d: Avoid losing not-uptodate with rename + D/F conflict
+not ok 9 - git reset --keep --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 24 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 6 - add evil submodule
+not ok 61 - 12h: renaming a file within a renamed directory # TODO known breakage
+not ok 16 - git reset --keep --recurse-submodules: replace submodule with a directory # TODO known breakage
+not ok 17 - git reset --keep --recurse-submodules: replace submodule containing a .git directory with a directory must absorb the git dir # TODO known breakage
+not ok 29 - merge --continue remembers --no-verify # TODO known breakage
+not ok 43 - fsck detects non-blob .gitmodules
+not ok 37 - deny to create amend! commit if its commit msg body is empty
+not ok 37 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 18 - git submodule status --recursive propagates SIGPIPE
+not ok 38 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 28 - custom `gpg.program`
+not ok 2 - edit hunk "commit -p -m message"
+not ok 3 - edit hunk "commit --dry-run -p -m message"
+not ok 1 - race to create orphan commit
+not ok 2 - race to create non-orphan commit
+not ok 10 - status when rebasing -i in edit mode
+not ok 2 - commit rejects all-crud name
+not ok 3 - commit does not strip trailing dot
+not ok 11 - status when splitting a commit
+not ok 12 - status after editing the last commit with --amend during a rebase -i
+not ok 14 - status: (continue first edit) second edit
+not ok 15 - status: (continue first edit) second edit and split
+not ok 16 - status: (continue first edit) second edit and amend
+not ok 29 - git reset --hard --recurse-submodules: replace submodule with a file must fail with untracked files # TODO known breakage
+not ok 17 - status: (amend first edit) second edit
+not ok 18 - status: (amend first edit) second edit and split
+not ok 19 - status: (amend first edit) second edit and amend
+not ok 20 - status: (split first edit) second edit
+not ok 21 - status: (split first edit) second edit and split
+not ok 22 - status: (split first edit) second edit and amend
+not ok 3 - merge c2 with a custom strategy
+not ok 4 - loose objects in alternate ODB are not repacked
+not ok 1 - -A with -d option leaves unreachable objects unpacked
+not ok 2 - -A without -d option leaves unreachable objects packed
+not ok 45 - status: two commands done with some white lines in done file
+not ok 3 - unpacked objects receive timestamp of pack file
+not ok 51 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 46 - status: two remaining commands with some white lines in todo file
+not ok 7 - packed obs in alt ODB are repacked even when local repo is packless
+not ok 8 - packed obs in alt ODB are repacked when local repo has packs
+not ok 9 - packed obs in alternate ODB kept pack are repacked
+not ok 52 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 12 - objects made unreachable by grafts only are kept
+not ok 26 - --filter works with --max-pack-size
+not ok 54 - submodule update clone shallow submodule outside of depth
+not ok 12 - git grep .fi a # TODO known breakage
+not ok 80 - killed merge can be completed with --continue
+not ok 49 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 25 - blame file with CRLF core.autocrlf true
+not ok 26 - blame file with CRLF attributes text
+not ok 50 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 5 - basic blame on last commit
+not ok 6 - blame --textconv going through revisions
+not ok 7 - blame --textconv with local changes
+not ok 9 - blame --textconv works with textconvcache
+not ok 12 - blame from previous revision
+not ok 16 - blame on last commit (-C -C, symlink)
+not ok 12 - cat-file --textconv on previous commit
+not ok 26 - grep --textconv: superproject .gitattributes does not affect submodules # TODO known breakage
+not ok 27 - grep --textconv: superproject .gitattributes (from index) does not affect submodules # TODO known breakage
+not ok 28 - grep --textconv: superproject .git/info/attributes does not affect submodules # TODO known breakage
+not ok 29 - grep --textconv correctly reads submodule .gitattributes # TODO known breakage
+not ok 30 - grep --textconv correctly reads submodule .gitattributes (from index) # TODO known breakage
+not ok 31 - grep --textconv correctly reads submodule .git/info/attributes # TODO known breakage
+not ok 20 - invalid smtp server port value # TODO known breakage
+not ok 32 - grep saves textconv cache in the appropriate repository # TODO known breakage
+not ok 63 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 38 - reject long lines
+not ok 64 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 3 - lookups after checkpoint works
+not ok 49 - --validate respects relative core.hooksPath path
+not ok 50 - --validate respects absolute core.hooksPath path
+not ok 51 - --validate hook supports multiple addresses in arguments
+not ok 61 - start and stop macOS maintenance
+not ok 63 - fake editor dies with error
+not ok 48 - no exact-ref revisions included # TODO known breakage
+not ok 75 - maintenance aborts with existing lock file
+not ok 14 - scalar reconfigure
+not ok 75 - git_test_func: replace submodule with a directory must fail # TODO known breakage
+not ok 76 - git_test_func: replace submodule containing a .git directory with a directory must fail # TODO known breakage
+not ok 133 - R: export-marks feature results in a marks file being created
+not ok 134 - R: export-marks options can be overridden by commandline options
+not ok 77 - git_test_func: replace submodule with a file must fail # TODO known breakage
+not ok 142 - R: multiple --import-marks= should be honoured
+not ok 78 - git_test_func: replace submodule containing a .git directory with a file must fail # TODO known breakage
+not ok 174 - S: filemodify with garbage after sha1 must fail
+not ok 177 - S: notemodify with garbage after sha1 dataref must fail
+not ok 184 - S: ls with garbage after sha1 must fail
+not ok 185 - S: paths at EOL with quoted spaces must work
+not ok 186 - S: paths at EOL with unquoted spaces must work
+not ok 187 - S: paths at EOL with octal escapes must work
+not ok 188 - S: paths before space with quoted spaces must work
+not ok 189 - S: paths before space with no unquoted spaces must work
+not ok 190 - S: paths before space with octal escapes must work
+not ok 155 - refusing to send cover letter template
+not ok 230 - complete with tilde expansion # TODO known breakage
+not ok 233 - __git_complete_remote_or_refspec - push other -d # TODO known breakage
+not ok 235 - __git_complete_remote_or_refspec - push other --delete # TODO known breakage
+not ok 208 - invoke hook
