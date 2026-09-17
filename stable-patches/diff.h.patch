@@ -1,0 +1,15 @@
+--- a/diff.h
++++ b/diff.h
+@@ -374,10 +374,14 @@ struct diff_options {
+ 
+ 	FILE *file;
+ 	int close_file;
+ 
++#ifdef __MVS__
++	char *output_path;  /* For z/OS file tagging */
++#endif
++
+ #define OUTPUT_INDICATOR_NEW 0
+ #define OUTPUT_INDICATOR_OLD 1
+ #define OUTPUT_INDICATOR_CONTEXT 2
+ 	char output_indicators[3];
