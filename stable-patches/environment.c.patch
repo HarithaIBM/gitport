@@ -32,7 +32,10 @@ index ba2c601..d51e16f 100644
 +			return 0;
 +	}
 +	if (!strcmp(var, "core.iconvtranslit")) {
-+		iconv_translit = git_config_bool(var, value);
++		/* Environment variable takes precedence over config */
++		if (getenv("GIT_ICONV_TRANSLIT") == NULL) {
++			iconv_translit = git_config_bool(var, value);
++		}
 +		return 0;
 +	}
 +	if (!strcmp(var, "core.utf8ccsid")) {
