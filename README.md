@@ -88,15 +88,40 @@ ls -lT # you will notice that all files are now tagged as 819
 ### Encoding conversion fallback
 When Git on z/OS performs encoding conversion (e.g., from UTF-8 to IBM-1047), it may encounter characters that cannot be exactly represented in the target encoding. You can control how Git handles these cases using the `core.iconvtranslit` configuration:
 
-**Using environment variable (takes precedence):**
-- `export GIT_ICONV_TRANSLIT=false` (Default): Git will stop with an error if a character cannot be converted.
-- `export GIT_ICONV_TRANSLIT=true`: Git will use iconv's transliteration feature to substitute the character with a similar-looking one (e.g., `é` becomes `e`), and will issue a warning.
+**Using environment variable (recommended, takes precedence):**
+- `export GIT_ICONV_TRANSLIT=0` or `false` (Default): Git will stop with an error if a character cannot be converted.
+- `export GIT_ICONV_TRANSLIT=1` or `true`: Git will use iconv's transliteration feature to substitute the character with a similar-looking one (e.g., `é` becomes `e`), and will issue a warning.
 
 **Using git config:**
 - `git config --global core.iconvtranslit false` (Default): Strict mode - fail on conversion errors.
 - `git config --global core.iconvtranslit true`: Lenient mode - transliterate unconvertible characters.
 
-**Note:** The environment variable `GIT_ICONV_TRANSLIT` takes precedence over the `core.iconvtranslit` configuration setting. You can use values like `true`/`false`, `yes`/`no`, or `1`/`0` for both the environment variable and config option.
+**Precedence order:**
+1. `GIT_ICONV_TRANSLIT` environment variable (highest priority)
+2. `core.iconvtranslit` configuration setting
+3. Default (`false` - strict mode)
+
+**Note:** You can use values like `true`/`false`, `yes`/`no`, `on`/`off`, or `1`/`0` for both the environment variable and config option.
+
+**Example use case:**
+```bash
+# Enable transliteration for a specific operation
+export GIT_ICONV_TRANSLIT=1
+git clone https://github.com/example/repo-with-special-chars.git
+
+# Or set globally via config
+git config --global core.iconvtranslit true
+```
+
+**When to enable transliteration:**
+- You're cloning repositories with international characters (accents, umlauts, etc.)
+- You encounter "failed to encode" errors during clone/checkout
+- You prefer approximate conversion over strict failure
+
+**When to keep it disabled (default):**
+- You need exact character preservation
+- You want to be notified of encoding issues immediately
+- You're working with data that must not be approximated
 
 ### Binary files
 To specify a binary encoding, you can use the binary attribute as follows:
