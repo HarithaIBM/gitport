@@ -85,12 +85,22 @@ cd git
 ls -lT # you will notice that all files are now tagged as 819
 ```
 
-### Encoding conversion fallback
-When Git on z/OS performs encoding conversion (e.g., from UTF-8 to IBM-1047), it may encounter characters that cannot be exactly represented in the target encoding. You can control how Git handles these cases using the `core.iconvtranslit` configuration:
+### Encoding conversion fallback (Transliteration)
+
+When Git on z/OS performs encoding conversion (e.g., from UTF-8 to IBM-1047), it may encounter characters that cannot be exactly represented in the target encoding. The `core.iconvtranslit` setting controls how Git handles these unmappable characters.
+
+**What is Transliteration?**
+
+Transliteration uses the iconv `//TRANSLIT` suffix to convert unmappable characters to similar-looking alternatives:
+- Accented characters → base characters: `café` → `cafe`, `naïve` → `naive`, `Müller` → `Muller`
+- Special symbols → ASCII equivalents: `€` → `EUR`, `©` → `(C)`
+- Unmappable characters → `?` (if no alternative exists)
+
+**Configuration:**
 
 **Using environment variable (recommended, takes precedence):**
 - `export GIT_ICONV_TRANSLIT=0` or `false` (Default): Git will stop with an error if a character cannot be converted.
-- `export GIT_ICONV_TRANSLIT=1` or `true`: Git will use iconv's transliteration feature to substitute the character with a similar-looking one (e.g., `é` becomes `e`), and will issue a warning.
+- `export GIT_ICONV_TRANSLIT=1` or `true`: Git will use iconv's transliteration feature to substitute the character with a similar-looking one, and will issue a warning.
 
 **Using git config:**
 - `git config --global core.iconvtranslit false` (Default): Strict mode - fail on conversion errors.
@@ -101,27 +111,80 @@ When Git on z/OS performs encoding conversion (e.g., from UTF-8 to IBM-1047), it
 2. `core.iconvtranslit` configuration setting
 3. Default (`false` - strict mode)
 
-**Note:** You can use values like `true`/`false`, `yes`/`no`, `on`/`off`, or `1`/`0` for both the environment variable and config option.
+**Accepted values:** `true`/`false`, `yes`/`no`, `on`/`off`, or `1`/`0`
 
-**Example use case:**
+**Example use cases:**
+
 ```bash
-# Enable transliteration for a specific operation
+# Example 1: Enable for a single operation (temporary)
 export GIT_ICONV_TRANSLIT=1
+git clone https://github.com/example/repo-with-international-chars.git
+unset GIT_ICONV_TRANSLIT  # Disable after use
+
+# Example 2: Enable globally via config (permanent)
+git config --global core.iconvtranslit true
 git clone https://github.com/example/repo-with-special-chars.git
 
-# Or set globally via config
-git config --global core.iconvtranslit true
+# Example 3: Check current setting
+git config --get core.iconvtranslit
+echo $GIT_ICONV_TRANSLIT
+
+# Example 4: Test what characters will be transliterated
+echo "café naïve Müller €" | iconv -f UTF-8 -t IBM-1047//TRANSLIT
 ```
 
 **When to enable transliteration:**
-- You're cloning repositories with international characters (accents, umlauts, etc.)
-- You encounter "failed to encode" errors during clone/checkout
-- You prefer approximate conversion over strict failure
+- ✅ Cloning repositories with international characters (accents, umlauts, currency symbols)
+- ✅ You encounter "failed to encode" errors during clone/checkout/add
+- ✅ Working with documentation/comments containing special characters
+- ✅ You prefer approximate conversion over strict failure
+- ✅ Content quality isn't critical (comments, documentation, examples)
 
 **When to keep it disabled (default):**
-- You need exact character preservation
-- You want to be notified of encoding issues immediately
-- You're working with data that must not be approximated
+- ✅ You need exact character preservation (code, data files, legal documents)
+- ✅ You want to be notified of encoding issues immediately
+- ✅ You're working with data that must not be approximated
+- ✅ Source code identifiers or strings that must remain exact
+- ✅ Data integrity is critical
+
+**Common scenarios:**
+
+| Scenario | Recommendation | Reason |
+|----------|----------------|--------|
+| Cloning public repos | Enable | Many contain international chars in comments/docs |
+| Source code only | Disable | Code should be ASCII-safe |
+| Documentation repos | Enable | Likely to have special characters |
+| Database schemas | Disable | Must preserve exact data |
+| Configuration files | Disable | Must be exact |
+| User content (names, etc.) | Depends | Consider if approximation acceptable |
+
+**Error messages:**
+
+```bash
+# With transliteration DISABLED (default):
+$ git clone repo-with-special-chars
+error: failed to encode 'file.txt' from UTF-8 to IBM-1047 
+       at line 5, col 12 (char: 0xc3a9)
+fatal: unable to checkout working tree
+
+# With transliteration ENABLED:
+$ export GIT_ICONV_TRANSLIT=1
+$ git clone repo-with-special-chars
+warning: transliteration (best-effort) conversion used for 'file.txt'
+         from UTF-8 to IBM-1047 at line 5, col 12 (char: 0xc3a9)
+Cloning into 'repo-with-special-chars'... done.
+```
+
+**Checking your system's transliteration support:**
+
+```bash
+# Test if your system supports transliteration
+echo "café" | iconv -f UTF-8 -t IBM-1047//TRANSLIT
+# If it outputs without error, transliteration is supported
+
+# See all available encodings
+iconv -l
+```
 
 ### Binary files
 To specify a binary encoding, you can use the binary attribute as follows:
