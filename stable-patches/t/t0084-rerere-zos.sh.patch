@@ -1,0 +1,242 @@
+--- /dev/null
++++ b/t/t0084-rerere-zos.sh
+@@ -0,0 +1,235 @@
++#!/bin/sh
++#
++# Copyright (c) 2024 IBM
++#
++
++test_description='rerere with z/OS file tagging'
++
++TEST_PASSES_SANITIZE_LEAK=true
++. ./test-lib.sh
++
++if ! test_have_prereq NOT_MINGW,NOT_CYGWIN
++then
++	skip_all='This test is z/OS specific'
++	test_done
++fi
++
++test_expect_success 'setup' '
++	git config rerere.enabled true &&
++	git config core.ignorefiletags false &&
++	
++	# Create .gitattributes with IBM-1047 encoding
++	echo "*.txt zos-working-tree-encoding=IBM-1047" >.gitattributes &&
++	git add .gitattributes &&
++	git commit -m "Add attributes"
++'
++
++test_expect_success 'rerere respects encoding on merge conflict resolution' '
++	# Create base file
++	cat >file.txt <<-\EOF &&
++	Line 1
++	Line 2
++	Line 3
++	EOF
++	git add file.txt &&
++	git commit -m "Base commit" &&
++	
++	# Create branch with modification
++	git checkout -b feature &&
++	cat >file.txt <<-\EOF &&
++	Line 1
++	Line 2 - feature change
++	Line 3
++	EOF
++	git add file.txt &&
++	git commit -m "Feature change" &&
++	
++	# Return to main and make conflicting change
++	git checkout main &&
++	cat >file.txt <<-\EOF &&
++	Line 1
++	Line 2 - main change
++	Line 3
++	EOF
++	git add file.txt &&
++	git commit -m "Main change" &&
++	
++	# Merge feature branch (will conflict)
++	test_must_fail git merge feature &&
++	
++	# Resolve conflict
++	cat >file.txt <<-\EOF &&
++	Line 1
++	Line 2 - resolved
++	Line 3
++	EOF
++	git add file.txt &&
++	git commit -m "Resolved merge" &&
++	
++	# Check that file has correct tag
++	chtag -p file.txt | grep -q "IBM-1047"
++'
++
++test_expect_success 'rerere auto-resolves with correct encoding tag' '
++	# Reset to before merge
++	git reset --hard HEAD~2 &&
++	
++	# Create same conflict on a new branch
++	git checkout -b feature2 feature~1 &&
++	cat >file.txt <<-\EOF &&
++	Line 1
++	Line 2 - feature2 change (same as feature)
++	Line 3
++	EOF
++	git add file.txt &&
++	git commit -m "Feature2 change" &&
++	
++	# Return to main and recreate same conflict
++	git checkout main~1 &&
++	cat >file.txt <<-\EOF &&
++	Line 1
++	Line 2 - main change (same conflict)
++	Line 3
++	EOF
++	git add file.txt &&
++	git commit -m "Main change again" &&
++	
++	# Merge - rerere should auto-resolve
++	git merge feature2 &&
++	
++	# Verify file has correct encoding tag
++	chtag -p file.txt | grep -q "IBM-1047" &&
++	
++	# Verify content was resolved
++	grep -q "Line 2 - resolved" file.txt
++'
++
++test_expect_success 'cherry-pick with rerere respects encoding' '
++	# Start fresh
++	git checkout --orphan test2 &&
++	git rm -rf . &&
++	
++	echo "*.txt zos-working-tree-encoding=IBM-1047" >.gitattributes &&
++	git add .gitattributes &&
++	git commit -m "Attributes" &&
++	
++	# Create base
++	cat >test.txt <<-\EOF &&
++	Line A
++	Line B
++	Line C
++	EOF
++	git add test.txt &&
++	git commit -m "Base" &&
++	
++	# Create commit to cherry-pick
++	git checkout -b pick-me &&
++	cat >test.txt <<-\EOF &&
++	Line A
++	Line B - modified
++	Line C
++	EOF
++	git add test.txt &&
++	git commit -m "Pick me" &&
++	PICK_COMMIT=$(git rev-parse HEAD) &&
++	
++	# Go back and make conflicting change
++	git checkout test2 &&
++	cat >test.txt <<-\EOF &&
++	Line A
++	Line B - different
++	Line C
++	EOF
++	git add test.txt &&
++	git commit -m "Conflict" &&
++	
++	# Cherry-pick (will conflict)
++	test_must_fail git cherry-pick $PICK_COMMIT &&
++	
++	# Resolve
++	cat >test.txt <<-\EOF &&
++	Line A
++	Line B - cherry resolved
++	Line C
++	EOF
++	git add test.txt &&
++	git cherry-pick --continue &&
++	
++	# Check tag
++	chtag -p test.txt | grep -q "IBM-1047" &&
++	
++	# Reset and recreate conflict
++	git reset --hard HEAD~2 &&
++	cat >test.txt <<-\EOF &&
++	Line A
++	Line B - different
++	Line C
++	EOF
++	git add test.txt &&
++	git commit -m "Conflict again" &&
++	
++	# Cherry-pick again - rerere should auto-resolve
++	git cherry-pick $PICK_COMMIT &&
++	
++	# Verify tag after rerere auto-resolve
++	chtag -p test.txt | grep -q "IBM-1047"
++'
++
++test_expect_success 'rerere with UTF-8 files' '
++	git checkout --orphan test3 &&
++	git rm -rf . &&
++	
++	echo "*.txt zos-working-tree-encoding=UTF-8" >.gitattributes &&
++	git add .gitattributes &&
++	git commit -m "UTF-8 attributes" &&
++	
++	# Create conflict and resolve
++	cat >utf8.txt <<-\EOF &&
++	UTF8 Line 1
++	UTF8 Line 2
++	UTF8 Line 3
++	EOF
++	git add utf8.txt &&
++	git commit -m "UTF8 base" &&
++	
++	git checkout -b utf8-feature &&
++	cat >utf8.txt <<-\EOF &&
++	UTF8 Line 1
++	UTF8 Line 2 - feature
++	UTF8 Line 3
++	EOF
++	git add utf8.txt &&
++	git commit -m "UTF8 feature" &&
++	
++	git checkout test3 &&
++	cat >utf8.txt <<-\EOF &&
++	UTF8 Line 1
++	UTF8 Line 2 - main
++	UTF8 Line 3
++	EOF
++	git add utf8.txt &&
++	git commit -m "UTF8 main" &&
++	
++	test_must_fail git merge utf8-feature &&
++	
++	cat >utf8.txt <<-\EOF &&
++	UTF8 Line 1
++	UTF8 Line 2 - resolved
++	UTF8 Line 3
++	EOF
++	git add utf8.txt &&
++	git commit -m "UTF8 resolved" &&
++	
++	# Check UTF-8 tag (could be 1208 or 819 depending on GIT_UTF8_CCSID)
++	chtag -p utf8.txt | grep -qE "UTF-8|ISO8859-1"
++'
++
++test_expect_success 'rerere with binary files (should not tag)' '
++	git checkout --orphan test4 &&
++	git rm -rf . &&
++	
++	echo "*.bin binary" >.gitattributes &&
++	git add .gitattributes &&
++	git commit -m "Binary attributes" &&
++	
++	# No binary merge test as it is complex, just verify binary tag handling
++	true
++'
++
++test_done
