@@ -15,7 +15,8 @@ else
     GIT_BIN="$(which git)"
 fi
 
-TEST_ROOT="$(mktemp -d /tmp/git_encoding_cache_test.XXXXXX)"
+TEST_ROOT="$(pwd)/test_tmp_$$"
+mkdir -p "$TEST_ROOT"
 
 echo "========================================================================"
 echo "  GIT ENCODING TAG BUG TEST (.gitattributes attribute cache)"
