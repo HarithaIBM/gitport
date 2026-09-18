@@ -1,5 +1,5 @@
 diff --git a/apply.c b/apply.c
-index 4aa1694..887b349 100644
+index 5e54453f79..5d5a40ece4 100644
 --- a/apply.c
 +++ b/apply.c
 @@ -33,6 +33,8 @@
@@ -11,16 +11,18 @@ index 4aa1694..887b349 100644
  #include "apply.h"
  #include "entry.h"
  #include "setup.h"
-@@ -2398,7 +2400,7 @@ static void show_stats(struct apply_state *state, struct patch *patch)
+@@ -2398,8 +2400,8 @@ static void show_stats(struct apply_state *state, struct patch *patch)
  		add, pluses, del, minuses);
  }
  
 -static int read_old_data(struct stat *st, struct patch *patch,
+-			 const char *path, struct strbuf *buf)
 +static int read_old_data(struct index_state *istate, struct stat *st, struct patch *patch,
- 			 const char *path, struct strbuf *buf)
++			 const const char *path, struct strbuf *buf)
  {
  	int conv_flags = patch->crlf_in_old ?
-@@ -2411,15 +2413,8 @@ static int read_old_data(struct stat *st, struct patch *patch,
+ 		CONV_EOL_KEEP_CRLF : CONV_EOL_RENORMALIZE;
+@@ -2411,15 +2413,7 @@ static int read_old_data(struct stat *st, struct patch *patch,
  	case S_IFREG:
  		if (strbuf_read_file(buf, path, st->st_size) != st->st_size)
  			return error(_("unable to open or read %s"), path);
@@ -33,31 +35,30 @@ index 4aa1694..887b349 100644
 -		 * is given.
 -		 */
 -		convert_to_git(NULL, path, buf->buf, buf->len, buf, conv_flags);
-+		
 +		convert_to_git(istate, path, buf->buf, buf->len, buf, conv_flags);
  		return 0;
  	default:
  		return -1;
-@@ -3522,6 +3517,22 @@ static int verify_index_match(struct apply_state *state,
+@@ -3522,6 +3516,23 @@ static int verify_index_match(struct apply_state *state,
  			      const struct cache_entry *ce,
  			      struct stat *st)
  {
 +#ifdef __MVS__
-+    /*
-+     * On z/OS, for EBCDIC-encoded files during 3-way merge, skip stat matching.
-+     * The working tree file is in EBCDIC with different size than the UTF-8 index.
-+     * The 3-way merge will read, convert, and properly compare the content.
-+     */
-+    if (state->threeway) {
-+        struct conv_attrs ca;
-+        convert_attrs(state->repo->index, &ca, ce->name);
++	/*
++	 * On z/OS, for EBCDIC-encoded files during 3-way merge, skip stat matching.
++	 * The working tree file is in EBCDIC with different size than the UTF-8 index.
++	 * The 3-way merge will read, convert, and properly compare the content.
++	 */
++	if (state->threeway) {
++		struct conv_attrs ca;
++		convert_attrs(state->repo->index, &ca, ce->name);
 +
-+        if (ca.working_tree_encoding &&
-+            !strcmp(ca.working_tree_encoding, "IBM-1047")) {
-+            /* Let 3-way merge handle the verification after conversion */
-+            return 0;
-+        }
-+    }
++		if (ca.working_tree_encoding &&
++		    !strcmp(ca.working_tree_encoding, "IBM-1047")) {
++			/* Let 3-way merge handle the verification after conversion */
++			return 0;
++		}
++	}
 +#endif
  	if (S_ISGITLINK(ce->ce_mode)) {
  		if (!S_ISDIR(st->st_mode))
@@ -99,7 +100,7 @@ index 4aa1694..887b349 100644
  	res = write_in_full(fd, buf, size) < 0;
 +
 +#ifdef __MVS__
-+    tag_file_as_working_tree_encoding(state->repo->index, conf_path, fd, ret);
++	tag_file_as_working_tree_encoding(state->repo->index, conf_path, fd, ret);
 +#endif
 +
  	if (res)
@@ -132,7 +133,7 @@ index 4aa1694..887b349 100644
  			if (res < 0)
  				goto out;
  			if (!res) {
-@@ -5097,6 +5119,15 @@ int apply_all_patches(struct apply_state *state,
+@@ -5099,6 +5121,15 @@ int apply_all_patches(struct apply_state *state,
  	int errs = 0;
  	int read_stdin = 1;
  
