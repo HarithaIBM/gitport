@@ -1,5 +1,5 @@
 diff --git a/parallel-checkout.c b/parallel-checkout.c
-index 0bf4bd6..5aee95c 100644
+index 0bf4bd6d4a..fec1f8b780 100644
 --- a/parallel-checkout.c
 +++ b/parallel-checkout.c
 @@ -3,6 +3,7 @@
@@ -19,7 +19,7 @@ index 0bf4bd6..5aee95c 100644
  		size_t newsize;
  		free(blob);
  		blob = strbuf_detach(&buf, &newsize);
-@@ -317,6 +318,10 @@ static int write_pc_item_to_fd(struct parallel_checkout_item *pc_item, int fd,
+@@ -317,6 +318,11 @@ static int write_pc_item_to_fd(struct parallel_checkout_item *pc_item, int fd,
  	if (wrote < 0)
  		return error("unable to write file '%s'", path);
  
@@ -31,7 +31,7 @@ index 0bf4bd6..5aee95c 100644
  	return 0;
  }
  
-@@ -360,6 +365,13 @@ void write_pc_item(struct parallel_checkout_item *pc_item,
+@@ -360,6 +366,13 @@ void write_pc_item(struct parallel_checkout_item *pc_item,
  
  	fd = open(path.buf, O_WRONLY | O_CREAT | O_EXCL, mode);
  

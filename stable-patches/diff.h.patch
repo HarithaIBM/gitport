@@ -1,7 +1,8 @@
+diff --git a/diff.h b/diff.h
+index bb5cddaf34..d9b2ab9f46 100644
 --- a/diff.h
 +++ b/diff.h
-@@ -374,10 +374,14 @@ struct diff_options {
- 
+@@ -375,6 +375,10 @@ struct diff_options {
  	FILE *file;
  	int close_file;
  
@@ -12,4 +13,3 @@
  #define OUTPUT_INDICATOR_NEW 0
  #define OUTPUT_INDICATOR_OLD 1
  #define OUTPUT_INDICATOR_CONTEXT 2
- 	char output_indicators[3];

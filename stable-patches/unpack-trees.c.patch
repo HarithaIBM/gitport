@@ -1,8 +1,8 @@
 diff --git a/unpack-trees.c b/unpack-trees.c
-index b42020f..5d249d7 100644
+index b42020f16b..1a1d18fd00 100644
 --- a/unpack-trees.c
 +++ b/unpack-trees.c
-@@ -481,9 +481,56 @@ static int check_updates(struct unpack_trees_options *o,
+@@ -481,9 +481,65 @@ static int check_updates(struct unpack_trees_options *o,
  
  	get_parallel_checkout_configs(&pc_workers, &pc_threshold);
  
@@ -68,7 +68,7 @@ index b42020f..5d249d7 100644
  	for (i = 0; i < index->cache_nr; i++) {
  		struct cache_entry *ce = index->cache[i];
  
-@@ -494,6 +541,15 @@ static int check_updates(struct unpack_trees_options *o,
+@@ -494,6 +550,15 @@ static int check_updates(struct unpack_trees_options *o,
  				BUG("both update and delete flags are set on %s",
  				    ce->name);
  			ce->ce_flags &= ~CE_UPDATE;

@@ -1,6 +1,8 @@
+diff --git a/rerere.c b/rerere.c
+index 8232542585..e8ca73dd49 100644
 --- a/rerere.c
 +++ b/rerere.c
-@@ -19,6 +19,7 @@
+@@ -21,6 +21,7 @@
  #include "object-file.h"
  #include "odb.h"
  #include "strmap.h"
@@ -8,8 +10,7 @@
  
  #define RESOLVED 0
  #define PUNTED 1
-@@ -692,10 +693,23 @@ static int merge(struct index_state *istate, const struct rerere_id *id, const 
- 	/* Update "path" with the resolution */
+@@ -692,8 +693,23 @@ static int merge(struct index_state *istate, const struct rerere_id *id, const c
  	f = fopen(path, "w");
  	if (!f)
  		return error_errno(_("could not open '%s'"), path);

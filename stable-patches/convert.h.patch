@@ -1,8 +1,8 @@
 diff --git a/convert.h b/convert.h
-index 0a6e408..9ae5fca 100644
+index 0a6e4086b8..c9b7e95645 100644
 --- a/convert.h
 +++ b/convert.h
-@@ -237,4 +237,9 @@ enum conv_attrs_classification {
+@@ -237,4 +237,10 @@ enum conv_attrs_classification {
  enum conv_attrs_classification classify_conv_attrs(
  	const struct conv_attrs *ca);
  
