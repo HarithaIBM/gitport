@@ -340,7 +340,9 @@ $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "v1" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
 echo "v2" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "c" 2>/dev/null
-$GIT_BIN rebase -i HEAD~1 2>/dev/null || true
+
+# Use non-interactive rebase
+GIT_SEQUENCE_EDITOR=true $GIT_BIN rebase -i HEAD~1 2>/dev/null || true
 
 TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
 if [ "$TAG" = "IBM-1047" ]; then
