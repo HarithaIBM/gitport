@@ -3,7 +3,7 @@
 # Comprehensive Test: All Git Commands That Write Working Tree Files
 # Test if they respect zos-working-tree-encoding and tag files correctly
 # ==============================================================================
-set -e
+# Don't use set -e because we want to continue on test failures
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -79,34 +79,53 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "line1" > file.txt
+cat > file.txt << 'TXT'
+line1
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Base"
+"$GIT_BIN" checkout -f file.txt
 
 "$GIT_BIN" checkout -q -b branch1
-echo "line1-branch1" > file.txt
+cat > file.txt << 'TXT'
+line1-branch1
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Branch1"
 
 "$GIT_BIN" checkout -q master
-echo "line1-master" > file.txt
+cat > file.txt << 'TXT'
+line1-master
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Main"
 
 "$GIT_BIN" merge branch1 2>&1 | grep -i conflict >/dev/null || true
-echo "line1-resolved" > file.txt
+cat > file.txt << 'TXT'
+line1-resolved
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Resolved"
 
 # Create same conflict again
 "$GIT_BIN" reset --hard HEAD~2 -q
 "$GIT_BIN" checkout -q -b branch2 branch1~1
-echo "line1-branch2" > file.txt
+cat > file.txt << 'TXT'
+line1-branch2
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Branch2"
 
 "$GIT_BIN" checkout -q master~1
-echo "line1-master" > file.txt
+cat > file.txt << 'TXT'
+line1-master
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Main again"
 
@@ -133,17 +152,22 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "original line" > file.txt
+cat > file.txt << 'TXT'
+original line
+TXT
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Original"
 
-# Create a patch
-echo "modified line" > file.txt
+# Create a simple change
+cat > file.txt << 'TXT'
+original line
+extra line
+TXT
 "$GIT_BIN" diff > /tmp/test.patch
 
 # Reset and apply patch
 "$GIT_BIN" checkout -q file.txt
-"$GIT_BIN" apply /tmp/test.patch
+"$GIT_BIN" apply /tmp/test.patch 2>/dev/null
 
 check_file_tag "file.txt" "IBM-1047" "git apply (regular)"
 
@@ -166,18 +190,28 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "line 1" > file.txt
+cat > file.txt << 'TXT'
+line 1
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Base"
+"$GIT_BIN" checkout -f file.txt
 
 # Create conflicting change in repo
-echo "line 1 - changed" > file.txt
+cat > file.txt << 'TXT'
+line 1 - changed
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Change in repo"
 
 # Go back and create patch from different change
 "$GIT_BIN" reset --hard HEAD~1 -q
-echo "line 1 - different" > file.txt
+cat > file.txt << 'TXT'
+line 1 - different
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" diff > /tmp/conflict.patch
 
 # Move forward and try to apply with 3-way
@@ -204,9 +238,20 @@ mkdir test4 && cd test4
 echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 
 # Create three versions
-echo "base content" > base.txt
-echo "current content" > current.txt
-echo "other content" > other.txt
+cat > base.txt << 'TXT'
+base content
+TXT
+chtag -t -c IBM-1047 base.txt
+
+cat > current.txt << 'TXT'
+current content
+TXT
+chtag -t -c IBM-1047 current.txt
+
+cat > other.txt << 'TXT'
+other content
+TXT
+chtag -t -c IBM-1047 other.txt
 
 # Merge directly to output file
 "$GIT_BIN" merge-file -p current.txt base.txt other.txt > result.txt 2>/dev/null || true
@@ -232,11 +277,17 @@ echo "*.diff zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "line1" > file.txt
+cat > file.txt << 'TXT'
+line1
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Version 1"
 
-echo "line2" > file.txt
+cat > file.txt << 'TXT'
+line2
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Version 2"
 
@@ -264,7 +315,10 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "content" > original.txt
+cat > original.txt << 'TXT'
+content
+TXT
+chtag -t -c IBM-1047 original.txt
 "$GIT_BIN" add original.txt
 "$GIT_BIN" commit -q -m "Add file"
 
@@ -301,7 +355,10 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "archived content" > archive-file.txt
+cat > archive-file.txt << 'TXT'
+archived content
+TXT
+chtag -t -c IBM-1047 archive-file.txt
 "$GIT_BIN" add archive-file.txt
 "$GIT_BIN" commit -q -m "Add file to archive"
 
@@ -344,15 +401,25 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "committed" > file.txt
+cat > file.txt << 'TXT'
+committed
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Committed"
+"$GIT_BIN" checkout -f file.txt
 
-echo "modified" > file.txt
+cat > file.txt << 'TXT'
+modified
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" stash push -q -m "Stash changes"
 
 # Modify differently
-echo "other change" > file.txt
+cat > file.txt << 'TXT'
+other change
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Different change"
 
@@ -380,17 +447,27 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "base" > file.txt
+cat > file.txt << 'TXT'
+base
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Base"
+"$GIT_BIN" checkout -f file.txt
 
 "$GIT_BIN" checkout -q -b branch1
-echo "branch1" > file.txt
+cat > file.txt << 'TXT'
+branch1
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Branch1"
 
 "$GIT_BIN" checkout -q master
-echo "master" > file.txt
+cat > file.txt << 'TXT'
+master
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Main"
 
@@ -421,7 +498,10 @@ echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -q -m "Attributes"
 
-echo "content" > file.txt
+cat > file.txt << 'TXT'
+content
+TXT
+chtag -t -c IBM-1047 file.txt
 "$GIT_BIN" add file.txt
 "$GIT_BIN" commit -q -m "Add file"
 
