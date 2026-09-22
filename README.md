@@ -52,6 +52,35 @@ To find out all of the supported encodings by git, run `iconv -l`.
 
 When adding files, you need to make sure that the z/OS file tag matches the working-tree-encoding. Otherwise, you may encounter an error.
 
+### .gitattributes Pattern Ordering
+
+**Important:** Rules at the BOTTOM of `.gitattributes` take precedence over rules at the TOP.
+
+Rules at the BOTTOM of .gitattributes take precedence over rules at the TOP. Therefore, you should place **generic/wildcard rules at the TOP** and **specific exceptions at the BOTTOM**.
+
+**Correct order (wildcard first, specific last):**
+```gitattributes
+# General default for all files
+* zos-working-tree-encoding=ibm-1047
+
+# Specific exceptions
+.gitattributes zos-working-tree-encoding=iso8859-1
+.gitignore zos-working-tree-encoding=iso8859-1
+*.xml zos-working-tree-encoding=utf-8
+```
+**Result:** `.gitattributes` and `.gitignore` will be ISO8859-1, `*.xml` files will be UTF-8, and all other files will be IBM-1047.
+
+**Incorrect order (specific first, wildcard last):**
+```gitattributes
+# Specific rules first
+.gitattributes zos-working-tree-encoding=iso8859-1
+.gitignore zos-working-tree-encoding=iso8859-1
+
+# Wildcard last - OVERRIDES EVERYTHING ABOVE!
+* zos-working-tree-encoding=ibm-1047
+```
+**Result:** ALL files (including `.gitattributes` and `.gitignore`) will be IBM-1047 because the wildcard at the bottom takes precedence.
+
 **Important Note:** If you are relying on the zos-working-tree-encoding support and you are editing your git-managed files on a non-z/OS platform, make sure that the files are encoded in UTF-8 mode. This is because Git assumes such files are encoded in UTF-8 prior to conversion. See [the working-tree-encoding documentation](https://git-scm.com/docs/gitattributes#_working_tree_encoding) for more details.  If you insist on editing your files in a different encoding, make sure to add the `working-tree-encoding` to the .gitattributes to reflect the codepage:
 
 ```
