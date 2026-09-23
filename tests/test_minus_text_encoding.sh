@@ -14,7 +14,9 @@ if [ "$(uname)" != "OS/390" ]; then
     exit 0
 fi
 
-GIT_BIN="${GIT_BIN:-git}"
+# Find git binary relative to test location
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GIT_BIN="${GIT_BIN:-$SCRIPT_DIR/../git/git}"
 TEST_ROOT="/tmp/test_minus_text_$$"
 
 # TAP output
