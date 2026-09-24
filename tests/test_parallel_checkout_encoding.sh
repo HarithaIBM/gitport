@@ -95,6 +95,17 @@ mkdir test2 && cd test2
 "$GIT_BIN" init -q
 "$GIT_BIN" config core.ignorefiletags false
 
+# Determine what UTF-8 files should be tagged as (depends on GIT_UTF8_CCSID)
+# If GIT_UTF8_CCSID=819, UTF-8 files are tagged as ISO8859-1 (correct behavior)
+# If GIT_UTF8_CCSID=1208, UTF-8 files are tagged as UTF-8
+if [ "$GIT_UTF8_CCSID" = "819" ]; then
+    UTF8_EXPECTED_TAG="ISO8859-1"
+else
+    UTF8_EXPECTED_TAG="UTF-8"
+fi
+
+echo "  (UTF-8 files will be tagged as: $UTF8_EXPECTED_TAG based on GIT_UTF8_CCSID=${GIT_UTF8_CCSID:-default})"
+
 # Create many files with alternating encodings
 cat > .gitattributes << 'EOF'
 even_*.txt zos-working-tree-encoding=IBM-1047
@@ -122,10 +133,13 @@ ERRORS=0
 for i in {0..9}; do
     if ! chtag -p "even_$i.txt" 2>/dev/null | grep -q "1047"; then
         echo "  ✗ even_$i.txt has wrong tag"
+        chtag -p "even_$i.txt"
         ERRORS=$((ERRORS + 1))
     fi
-    if ! chtag -p "odd_$i.txt" 2>/dev/null | grep -q "UTF-8"; then
-        echo "  ✗ odd_$i.txt has wrong tag"
+    # Check for expected UTF-8 tag (could be ISO8859-1 or UTF-8)
+    if ! chtag -p "odd_$i.txt" 2>/dev/null | grep -qE "$UTF8_EXPECTED_TAG"; then
+        echo "  ✗ odd_$i.txt has wrong tag (expected $UTF8_EXPECTED_TAG)"
+        chtag -p "odd_$i.txt"
         ERRORS=$((ERRORS + 1))
     fi
 done

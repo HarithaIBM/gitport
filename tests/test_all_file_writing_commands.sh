@@ -253,10 +253,10 @@ other content
 TXT
 chtag -t -c IBM-1047 other.txt
 
-# Merge directly to output file
-"$GIT_BIN" merge-file -p current.txt base.txt other.txt > result.txt 2>/dev/null || true
+# Merge directly (no -p flag, so Git writes to first file and tags it)
+"$GIT_BIN" merge-file current.txt base.txt other.txt 2>/dev/null || true
 
-check_file_tag "result.txt" "IBM-1047" "git merge-file output"
+check_file_tag "current.txt" "IBM-1047" "git merge-file output"
 
 cd ..
 
