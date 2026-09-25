@@ -1,5 +1,5 @@
 diff --git a/convert.c b/convert.c
-index 0365068..6994091 100644
+index 0365068..01fa3e5 100644
 --- a/convert.c
 +++ b/convert.c
 @@ -6,6 +6,7 @@
@@ -377,7 +377,7 @@ index 0365068..6994091 100644
  		src = dst->buf;
  		len = dst->len;
  	}
-@@ -2060,3 +2181,137 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
+@@ -2060,3 +2181,152 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
  
  	return CA_CLASS_STREAMABLE;
  }
@@ -400,17 +400,26 @@ index 0365068..6994091 100644
 +	convert_attrs(istate, &ca, path);
 +	
 +	/*
-+	 * Binary files should never be tagged with text encoding,
-+	 * even if working_tree_encoding is set in .gitattributes.
-+	 * Check binary attribute first.
++	 * File tagging priority:
++	 * 1. If working_tree_encoding is explicitly set, always use it
++	 *    (even if -text is set, which only disables EOL conversion)
++	 * 2. If binary attribute set AND no encoding specified, tag as binary
++	 * 3. Otherwise, use default utf8_ccsid
 +	 */
-+	if (ca.attr_action == CRLF_BINARY) {
++	if (ca.working_tree_encoding) {
++		/* Encoding explicitly set - use it regardless of text/binary */
++		if (!same_encoding(ca.working_tree_encoding, default_encoding)) {
++			__chgfdcodeset(fd, ca.working_tree_encoding);
++		} else {
++			__chgfdccsid(fd, utf8_ccsid);
++		}
++	}
++	else if (ca.attr_action == CRLF_BINARY) {
++		/* Binary with no encoding specified */
 +		__setfdbinary(fd);
 +	}
-+	else if (ca.working_tree_encoding && !same_encoding(ca.working_tree_encoding, default_encoding)) {
-+		__chgfdcodeset(fd, ca.working_tree_encoding);
-+	}
 +	else {
++		/* Default: no encoding specified, not binary */
 +		__chgfdccsid(fd, utf8_ccsid);
 +	}
 +
@@ -428,16 +437,22 @@ index 0365068..6994091 100644
 +		return;
 +	}
 +
-+	if (ca->attr_action != CRLF_BINARY) {
-+		if (ca->working_tree_encoding && !same_encoding(ca->working_tree_encoding, default_encoding)) {
++	/* Same logic as tag_file_as_working_tree_encoding */
++	if (ca->working_tree_encoding) {
++		/* Encoding explicitly set - use it regardless of text/binary */
++		if (!same_encoding(ca->working_tree_encoding, default_encoding)) {
 +			__chgfdcodeset(fd, ca->working_tree_encoding);
-+		}
-+		else {
++		} else {
 +			__chgfdccsid(fd, utf8_ccsid);
 +		}
 +	}
-+	else {
++	else if (ca->attr_action == CRLF_BINARY) {
++		/* Binary with no encoding specified */
 +		__setfdbinary(fd);
++	}
++	else {
++		/* Default: no encoding specified, not binary */
++		__chgfdccsid(fd, utf8_ccsid);
 +	}
 +
 +	__disableautocvt(fd);
