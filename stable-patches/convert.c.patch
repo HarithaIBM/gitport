@@ -1,5 +1,5 @@
 diff --git a/convert.c b/convert.c
-index 0365068..01fa3e5 100644
+index 0365068..26f3879 100644
 --- a/convert.c
 +++ b/convert.c
 @@ -6,6 +6,7 @@
@@ -162,14 +162,14 @@ index 0365068..01fa3e5 100644
  	 */
 -	if (!enc || (src && !src_len))
 +	if (!enc || same_encoding(enc, default_encoding) || (src && !src_len))
-+		return 0;
-+
+ 		return 0;
+ 
 +	#ifdef __MVS__
 +	/* If UTF CCSID == 819 (ISO8859-1), do not convert ISO8859-1 tagged files */
 +	if (utf8_ccsid == 819 && strcasecmp("ISO8859-1", enc) == 0)
- 		return 0;
++		return 0;
 +	#endif
- 
++
  	dst = reencode_string_len(src, src_len, enc, default_encoding,
  				  &dst_len);
  	if (!dst) {
@@ -377,7 +377,7 @@ index 0365068..01fa3e5 100644
  		src = dst->buf;
  		len = dst->len;
  	}
-@@ -2060,3 +2181,152 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
+@@ -2060,3 +2181,180 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
  
  	return CA_CLASS_STREAMABLE;
  }
@@ -400,14 +400,31 @@ index 0365068..01fa3e5 100644
 +	convert_attrs(istate, &ca, path);
 +	
 +	/*
-+	 * File tagging priority:
-+	 * 1. If working_tree_encoding is explicitly set, always use it
-+	 *    (even if -text is set, which only disables EOL conversion)
-+	 * 2. If binary attribute set AND no encoding specified, tag as binary
-+	 * 3. Otherwise, use default utf8_ccsid
++	 * Check if 'binary' attribute is explicitly set.
++	 * This is the key to distinguishing:
++	 *   - 'binary' attribute (binary: set) → ignore encoding, tag as binary
++	 *   - '-text' attribute (binary: unspecified) → use encoding if set
 +	 */
-+	if (ca.working_tree_encoding) {
-+		/* Encoding explicitly set - use it regardless of text/binary */
++	struct attr_check *binary_check = attr_check_initl("binary", NULL);
++	git_check_attr(istate, path, binary_check);
++	const char *binary_value = binary_check->items[0].value;
++	int is_binary_set = ATTR_TRUE(binary_value);
++	attr_check_free(binary_check);
++	
++	/*
++	 * File tagging priority:
++	 * 1. If 'binary' attribute explicitly set AND encoding also set:
++	 *    Binary wins (e.g., '* text encoding=UTF-8' + '*.png binary')
++	 * 2. If working_tree_encoding is set, use it (including -text case)
++	 * 3. If CRLF_BINARY (no encoding), tag as binary
++	 * 4. Otherwise, use default
++	 */
++	if (is_binary_set && ca.working_tree_encoding) {
++		/* Explicit binary attribute overrides wildcard encoding */
++		__setfdbinary(fd);
++	}
++	else if (ca.working_tree_encoding) {
++		/* Encoding set (including -text case where binary is not set) */
 +		if (!same_encoding(ca.working_tree_encoding, default_encoding)) {
 +			__chgfdcodeset(fd, ca.working_tree_encoding);
 +		} else {
@@ -415,18 +432,18 @@ index 0365068..01fa3e5 100644
 +		}
 +	}
 +	else if (ca.attr_action == CRLF_BINARY) {
-+		/* Binary with no encoding specified */
++		/* Binary (no encoding) */
 +		__setfdbinary(fd);
 +	}
 +	else {
-+		/* Default: no encoding specified, not binary */
++		/* Default */
 +		__chgfdccsid(fd, utf8_ccsid);
 +	}
 +
 +	__disableautocvt(fd);
 +}
 +
-+void tag_file_with_conv_attrs(const struct conv_attrs *ca, int fd, int was_converted) {
++void tag_file_with_conv_attrs(const struct conv_attrs *ca, struct index_state *istate, const char *path, int fd, int was_converted) {
 +	struct stat st;
 +	if (fstat(fd, &st) < 0 || !S_ISREG(st.st_mode))
 +		return;
@@ -437,9 +454,20 @@ index 0365068..01fa3e5 100644
 +		return;
 +	}
 +
-+	/* Same logic as tag_file_as_working_tree_encoding */
-+	if (ca->working_tree_encoding) {
-+		/* Encoding explicitly set - use it regardless of text/binary */
++	/* Check if 'binary' attribute is explicitly set (same logic as tag_file_as_working_tree_encoding) */
++	struct attr_check *binary_check = attr_check_initl("binary", NULL);
++	git_check_attr(istate, path, binary_check);
++	const char *binary_value = binary_check->items[0].value;
++	int is_binary_set = ATTR_TRUE(binary_value);
++	attr_check_free(binary_check);
++
++	/* Same priority logic as tag_file_as_working_tree_encoding */
++	if (is_binary_set && ca->working_tree_encoding) {
++		/* Explicit binary attribute overrides wildcard encoding */
++		__setfdbinary(fd);
++	}
++	else if (ca->working_tree_encoding) {
++		/* Encoding set */
 +		if (!same_encoding(ca->working_tree_encoding, default_encoding)) {
 +			__chgfdcodeset(fd, ca->working_tree_encoding);
 +		} else {
@@ -447,11 +475,11 @@ index 0365068..01fa3e5 100644
 +		}
 +	}
 +	else if (ca->attr_action == CRLF_BINARY) {
-+		/* Binary with no encoding specified */
++		/* Binary (no encoding) */
 +		__setfdbinary(fd);
 +	}
 +	else {
-+		/* Default: no encoding specified, not binary */
++		/* Default */
 +		__chgfdccsid(fd, utf8_ccsid);
 +	}
 +

@@ -17,6 +17,7 @@ fi
 
 TEST_ROOT="$(pwd)/test_tmp_$$"
 mkdir -p "$TEST_ROOT"
+trap 'rm -rf "$TEST_ROOT"' EXIT
 
 echo "========================================================================"
 echo "  GIT ENCODING TAG BUG TEST (.gitattributes attribute cache)"
