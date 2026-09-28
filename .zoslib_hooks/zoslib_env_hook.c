@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 #pragma convert("IBM-1047")
-char __zopen_identifier[] = "$Id: Vendor:zopencommunity BuildRev:2990406 2026-09-17 06:56:32 EDT $";
+char __zopen_identifier[] = "$Id: Vendor:zopencommunity BuildRev:8b1b591 2026-09-28 06:14:02 EDT $";
 #pragma convert(pop)
 
 #define PROJECT_ROOT_STR "PROJECT_ROOT"
@@ -126,7 +126,7 @@ __attribute__((visibility("default"))) int zoslib_env_hook(char* root_dir) {
   // by checking if ZOPEN_IN_ZOPEN_BUILD is set to the current build process setting.
   // But this also meant that any dependent tools that set envars via zoslib env hooks would avoid setting those environment variables, effectively breaking them.
   if ((envar_value = getenv("ZOPEN_IN_ZOPEN_BUILD")) &&
-      strcmp(envar_value, "HARITHA.4809.7513") == 0) {
+      strcmp(envar_value, "HARITHA.4693.22043") == 0) {
     return 0;
   }
 

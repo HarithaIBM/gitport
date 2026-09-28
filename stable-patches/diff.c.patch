@@ -12,7 +12,7 @@ index 2a9d0d8..a3daced 100644
 +		 * For files with working-tree-encoding, use read() instead to get raw bytes.
 +		 * See: MMAP_AUTOCONVERT_HYPOTHESIS.md for details.
 +		 */
-+		if (would_convert_to_git(the_repository->index, s->path)) {
++		if (would_convert_to_git(r->index, s->path)) {
 +			/* Only disable autoconversion, don't change file tag */
 +			__disableautocvt(fd);
 +			s->data = xmalloc(s->size);

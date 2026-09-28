@@ -2,6 +2,7 @@
 # Run all tests and output in TAP format
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MANIFEST="$SCRIPT_DIR/TEST_MANIFEST"
 TEST_NUM=0
 PASSED=0
 FAILED=0
@@ -29,24 +30,48 @@ run_test() {
     rm -f "/tmp/${test_name}_$$.out"
 }
 
-echo "TAP version 13"
-echo "1..$(ls -1 "$SCRIPT_DIR"/*.sh | grep -v run_all_tests.sh | wc -l)"
+# Check if manifest exists
+if [ ! -f "$MANIFEST" ]; then
+    echo "Error: TEST_MANIFEST not found at $MANIFEST"
+    echo "# Please create TEST_MANIFEST with list of tests to run"
+    exit 1
+fi
 
-# Run each test script
-for test_script in "$SCRIPT_DIR"/*.sh; do
-    # Skip the run_all_tests.sh script itself
-    if [ "$(basename "$test_script")" = "run_all_tests.sh" ]; then
+# Count tests in manifest (excluding comments and empty lines)
+TEST_COUNT=$(grep -v '^#' "$MANIFEST" | grep -v '^$' | wc -l)
+
+echo "TAP version 13"
+echo "1..$TEST_COUNT"
+echo "# Using TEST_MANIFEST for test discovery"
+echo "# Tests to run: $TEST_COUNT"
+
+# Run each test from manifest
+while IFS= read -r test_name || [ -n "$test_name" ]; do
+    # Skip comments
+    [[ "$test_name" =~ ^#.*$ ]] && continue
+    
+    # Skip empty lines
+    [[ -z "$test_name" ]] && continue
+    
+    # Strip leading/trailing whitespace
+    test_name=$(echo "$test_name" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+    
+    test_script="$SCRIPT_DIR/$test_name"
+    
+    # Check if test file exists
+    if [ ! -f "$test_script" ]; then
+        echo "# Warning: $test_name not found at $test_script, skipping"
         continue
     fi
     
-    # Skip if not executable
+    # Check if test is executable
     if [ ! -x "$test_script" ]; then
-        echo "# Warning: $test_script is not executable, skipping"
+        echo "# Warning: $test_name is not executable, skipping"
         continue
     fi
     
     run_test "$test_script"
-done
+done < "$MANIFEST"
 
 # Summary
 echo "# Tests run: $TEST_NUM"

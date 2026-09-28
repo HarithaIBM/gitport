@@ -14,12 +14,18 @@ for script in test_*.sh; do
         echo "  ✓ Updated TEST_ROOT"
     elif grep -q 'TEST_ROOT="$(pwd)/test_tmp_' "$script"; then
         # Already has new format - check if mkdir is there
-        if ! grep -A1 'TEST_ROOT="$(pwd)/test_tmp_' "$script" | grep -q 'mkdir -p'; then
-            # Add mkdir after TEST_ROOT line
-            sed -i '/TEST_ROOT="$(pwd)\/test_tmp_/a mkdir -p "$TEST_ROOT"' "$script"
-            echo "  ✓ Added mkdir"
-        else
+        # More robust check: look for mkdir in the line immediately after TEST_ROOT
+        if grep -A1 'TEST_ROOT="$(pwd)/test_tmp_' "$script" | tail -1 | grep -q 'mkdir -p.*TEST_ROOT'; then
             echo "  ✓ Already correct"
+        else
+            # Check if mkdir exists anywhere near TEST_ROOT (prevent duplicates)
+            if grep -A5 'TEST_ROOT="$(pwd)/test_tmp_' "$script" | grep -q 'mkdir -p.*TEST_ROOT'; then
+                echo "  ✓ mkdir exists (possibly manual edit)"
+            else
+                # Add mkdir after TEST_ROOT line
+                sed -i '/TEST_ROOT="$(pwd)\/test_tmp_/a mkdir -p "$TEST_ROOT"' "$script"
+                echo "  ✓ Added mkdir"
+            fi
         fi
     fi
     

@@ -48,21 +48,21 @@ chtag -tc 1047 file.txt
 git add file.txt
 git commit -m "Branch A"
 
-# 7. Go back to main and make conflicting change
-git checkout main
+# 7. Go back to master and make conflicting change
+git checkout master
 
 cat > /tmp/t3.txt << 'EOF'
        IDENTIFICATION DIVISION.
        PROGRAM-ID. MAINPROG.
        WORKING-STORAGE SECTION.
        01  WS-COUNT PIC 9(5).
-       01  WS-MAIN PIC X(10).
+       01  WS-MASTER PIC X(10).
 EOF
 
 iconv -f ISO8859-1 -t IBM-1047 < /tmp/t3.txt > file.txt
 chtag -tc 1047 file.txt
 git add file.txt
-git commit -m "Main changes"
+git commit -m "Master changes"
 
 # 8. *** FIRST TEST *** - Cherry-pick (will conflict)
 echo ""

@@ -60,7 +60,7 @@ index 0365068..26f3879 100644
  
  static int encode_to_git(const char *path, const char *src, size_t src_len,
 -			 struct strbuf *buf, const char *enc, int conv_flags)
-+			 struct strbuf *buf, const char *enc, 
++			 struct strbuf *buf, const char *enc,
 +			 enum convert_crlf_action attr_action, int conv_flags)
  {
  	char *dst;
@@ -103,7 +103,7 @@ index 0365068..26f3879 100644
 +
  	dst = reencode_string_len(src, src_len, default_encoding, enc,
  				  &dst_len);
-+	
++
 +	if (!dst) {
 +		dst = reencode_string_len_translit(src, src_len, default_encoding, enc,
 +						  &dst_len);
@@ -320,23 +320,30 @@ index 0365068..26f3879 100644
  	}
  
  	if (!(conv_flags & CONV_EOL_KEEP_CRLF)) {
-@@ -1474,7 +1585,14 @@ void convert_to_git_filter_fd(struct index_state *istate,
+@@ -1474,7 +1585,21 @@ void convert_to_git_filter_fd(struct index_state *istate,
  	if (!apply_filter(path, NULL, 0, fd, dst, ca.drv, CAP_CLEAN, NULL, NULL))
  		die(_("%s: clean filter '%s' failed"), path, ca.drv->name);
  
 -	encode_to_git(path, dst->buf, dst->len, dst, ca.working_tree_encoding, conv_flags);
-+	/* BUGFIX: Do NOT call encode_to_git on filter output!
-+	 * The dst->buf already contains processed data, possibly already encoded.
-+	 * Calling encode_to_git here causes double-conversion on z/OS.
-+	 * See: Call #9 in debug logs - it receives UTF-8 and reconverts it as IBM-1047!
++#ifdef __MVS__
++	/*
++	 * z/OS-specific: Skip encode_to_git on filter output to avoid double conversion.
++	 * On z/OS, clean filters may output data that is already encoded (e.g., UTF-8).
++	 * Calling encode_to_git would cause a second conversion (UTF-8 -> IBM-1047 -> UTF-8),
++	 * resulting in corrupted data in the Git object.
++	 *
++	 * On other platforms, this conversion is necessary and correct.
++	 * See: Call #9 in debug logs for z/OS double-conversion details.
 +	 */
-+#if 0  /* DISABLED - causes double conversion bug! */
++	/* Skip encode_to_git on z/OS - filter output already encoded */
++#else
++	/* Normal Git behavior: encode filter output according to working-tree-encoding */
 +	encode_to_git(path, dst->buf, dst->len, dst, ca.working_tree_encoding, ca.attr_action, conv_flags);
 +#endif
  	crlf_to_git(istate, path, dst->buf, dst->len, dst, ca.crlf_action, conv_flags);
  	ident_to_git(dst->buf, dst->len, dst, ca.ident);
  }
-@@ -1489,7 +1607,7 @@ static int convert_to_working_tree_ca_internal(const struct conv_attrs *ca,
+@@ -1489,7 +1614,7 @@ static int convert_to_working_tree_ca_internal(const struct conv_attrs *ca,
  	int ret = 0, ret_filter = 0;
  
  	ret |= ident_to_worktree(src, len, dst, ca->ident);
@@ -345,7 +352,7 @@ index 0365068..26f3879 100644
  		src = dst->buf;
  		len = dst->len;
  	}
-@@ -1500,16 +1618,19 @@ static int convert_to_working_tree_ca_internal(const struct conv_attrs *ca,
+@@ -1500,16 +1625,19 @@ static int convert_to_working_tree_ca_internal(const struct conv_attrs *ca,
  	 */
  	if ((ca->drv && (ca->drv->smudge || ca->drv->process)) || !normalizing) {
  		ret |= crlf_to_worktree(src, len, dst, ca->crlf_action);
@@ -368,7 +375,7 @@ index 0365068..26f3879 100644
  	}
  
  	ret_filter = apply_filter(
-@@ -1548,7 +1669,7 @@ int renormalize_buffer(struct index_state *istate, const char *path,
+@@ -1548,7 +1676,7 @@ int renormalize_buffer(struct index_state *istate, const char *path,
  	convert_attrs(istate, &ca, path);
  	ret = convert_to_working_tree_ca_internal(&ca, path, src, len, dst, 1,
  						  NULL, NULL);
@@ -377,7 +384,7 @@ index 0365068..26f3879 100644
  		src = dst->buf;
  		len = dst->len;
  	}
-@@ -2060,3 +2181,180 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
+@@ -2060,3 +2188,180 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
  
  	return CA_CLASS_STREAMABLE;
  }
@@ -398,7 +405,7 @@ index 0365068..26f3879 100644
 +
 +	struct conv_attrs ca;
 +	convert_attrs(istate, &ca, path);
-+	
++
 +	/*
 +	 * Check if 'binary' attribute is explicitly set.
 +	 * This is the key to distinguishing:
@@ -410,7 +417,7 @@ index 0365068..26f3879 100644
 +	const char *binary_value = binary_check->items[0].value;
 +	int is_binary_set = ATTR_TRUE(binary_value);
 +	attr_check_free(binary_check);
-+	
++
 +	/*
 +	 * File tagging priority:
 +	 * 1. If 'binary' attribute explicitly set AND encoding also set:
@@ -454,12 +461,13 @@ index 0365068..26f3879 100644
 +		return;
 +	}
 +
-+	/* Check if 'binary' attribute is explicitly set (same logic as tag_file_as_working_tree_encoding) */
-+	struct attr_check *binary_check = attr_check_initl("binary", NULL);
-+	git_check_attr(istate, path, binary_check);
-+	const char *binary_value = binary_check->items[0].value;
-+	int is_binary_set = ATTR_TRUE(binary_value);
-+	attr_check_free(binary_check);
++	/*
++	 * Use pre-computed binary status from ca->attr_action to avoid race condition.
++	 * The attributes were already computed before parallel checkout, so we don't
++	 * need to call git_check_attr() here (which would access shared attribute cache).
++	 * CRLF_BINARY means the file has -text or binary attribute set.
++	 */
++	int is_binary_set = (ca->attr_action == CRLF_BINARY);
 +
 +	/* Same priority logic as tag_file_as_working_tree_encoding */
 +	if (is_binary_set && ca->working_tree_encoding) {

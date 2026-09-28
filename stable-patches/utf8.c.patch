@@ -32,11 +32,12 @@ index 96460cc414..d8dd101f09 100644
  	const char *bom_str = NULL;
  	size_t bom_len = 0;
  
-@@ -837,3 +853,158 @@ void strbuf_utf8_align(struct strbuf *buf, align_type position, unsigned int wid
+@@ -837,3 +853,160 @@ void strbuf_utf8_align(struct strbuf *buf, align_type position, unsigned int wid
  	} else if (position == ALIGN_RIGHT)
  		strbuf_addf(buf, "%*s", width + utf8_compensation, s);
  }
 +
++#ifndef NO_ICONV
 +char *reencode_string_len_translit(const char *in, size_t insz,
 +			  const char *out_encoding, const char *in_encoding,
 +			  size_t *outsz)
@@ -167,9 +168,10 @@ index 96460cc414..d8dd101f09 100644
 +	*line_out = line;
 +	*col_out = col;
 +}
++#endif /* NO_ICONV */
 +
-+void find_first_non_ascii(const char *src, size_t src_len, 
-+			  size_t *line_out, size_t *col_out, 
++void find_first_non_ascii(const char *src, size_t src_len,
++			  size_t *line_out, size_t *col_out,
 +			  unsigned char *bad_char_out)
 +{
 +	size_t line = 1, col = 0;

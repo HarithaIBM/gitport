@@ -25,6 +25,7 @@ echo "TAP version 13"
 echo "1..2"
 
 TEST_NUM=0
+FAILED=0
 
 # Clean up on exit
 cleanup() {
@@ -71,6 +72,7 @@ RESULT=$(cat testfile.txt)
 if echo "$RESULT" | grep -q "Modified content"; then
     echo "not ok $TEST_NUM - improper tagging produces garbled output (expected to fail)"
     echo "  # Unexpected: Got readable output with improper tagging"
+    FAILED=1
 else
     echo "ok $TEST_NUM - improper tagging produces garbled output (expected behavior)"
 fi
@@ -121,11 +123,12 @@ else
     echo "not ok $TEST_NUM - proper tagging produces readable output"
     echo "  # Expected 'Modified content' in conflict markers"
     echo "  # Got: $RESULT"
+    FAILED=1
 fi
 
 # Clean up
 cd /
 rm -rf "$TEST_ROOT"
 
-# Exit successfully (both tests behaved as expected)
-exit 0
+# Exit with failure if any test failed
+exit $FAILED
