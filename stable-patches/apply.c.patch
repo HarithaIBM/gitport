@@ -156,3 +156,4 @@ index 5e54453f79..5d5a40ece4 100644
  	for (i = 0; i < argc; i++) {
  		const char *arg = argv[i];
  		char *to_free = NULL;
+
