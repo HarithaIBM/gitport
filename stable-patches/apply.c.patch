@@ -142,8 +142,15 @@ index 5e54453f79..5d5a40ece4 100644
 +	 * On z/OS, we must ensure the attribute system is configured for
 +	 * checkout operations so that EBCDIC/UTF-8 conversion rules and
 +	 * file tagging work correctly when applying patches.
++	 *
++	 * Only set CHECKOUT direction if we're in a repository with a working tree.
++	 * Outside a repository (or in a bare repository), git apply should still work
++	 * on plain files without crashing. In those cases, attributes are read from
++	 * the filesystem directly and we don't need to set a global direction.
 +	 */
-+	git_attr_set_direction(GIT_ATTR_CHECKOUT);
++	if (state->repo && !is_bare_repository()) {
++		git_attr_set_direction(GIT_ATTR_CHECKOUT);
++	}
 +#endif
 +
  	for (i = 0; i < argc; i++) {
