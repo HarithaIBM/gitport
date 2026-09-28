@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # Survey: Which Git commands write files and check their tagging
+# 
+# Note: This test uses ISO8859-1 encoding (not IBM-1047) because test files
+# are created with 'echo' which produces ASCII/ISO8859-1 content. Using
+# ISO8859-1 in .gitattributes matches the actual file encoding, allowing
+# git apply and git rebase to work correctly.
 # ==============================================================================
 set +e  # Don't exit on errors, we want to see all results
 
@@ -44,7 +49,7 @@ $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config rerere.enabled true
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 echo "v1" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
 $GIT_BIN checkout -q -b br 2>/dev/null
@@ -57,8 +62,8 @@ $GIT_BIN reset --hard HEAD~2 -q 2>/dev/null
 echo "v3" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "f" 2>/dev/null
 $GIT_BIN merge br 2>/dev/null || true
 TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-if [ "$TAG" = "IBM-1047" ]; then
-    echo "  ✓ PASS: Tagged as IBM-1047"
+if [ "$TAG" = "ISO8859-1" ]; then
+    echo "  ✓ PASS: Tagged as ISO8859-1"
     run_test "rerere" "PASS"
 else
     echo "  ✗ FAIL: Tagged as $TAG"
@@ -75,7 +80,7 @@ mkdir t2 && cd t2
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 cat > f.txt << 'TXT'
@@ -96,8 +101,8 @@ $GIT_BIN checkout f.txt 2>/dev/null
 
 if $GIT_BIN apply /tmp/patch.txt 2>/dev/null; then
     TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-    if [ "$TAG" = "IBM-1047" ]; then
-        echo "  ✓ PASS: Tagged as IBM-1047"
+    if [ "$TAG" = "ISO8859-1" ]; then
+        echo "  ✓ PASS: Tagged as ISO8859-1"
         run_test "apply" "PASS"
     else
         echo "  ✗ FAIL: Tagged as $TAG"
@@ -117,7 +122,7 @@ echo "[3/10] Testing: git merge-file"
 mkdir t3 && cd t3
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 
 echo "base" > base.txt
 echo "current" > current.txt
@@ -125,8 +130,8 @@ echo "other" > other.txt
 
 if $GIT_BIN merge-file current.txt base.txt other.txt 2>/dev/null; then
     TAG=$(chtag -p current.txt 2>/dev/null | awk '{print $2}')
-    if [ "$TAG" = "IBM-1047" ]; then
-        echo "  ✓ PASS: Tagged as IBM-1047"
+    if [ "$TAG" = "ISO8859-1" ]; then
+        echo "  ✓ PASS: Tagged as ISO8859-1"
         run_test "merge-file" "PASS"
     else
         echo "  ✗ FAIL: Tagged as $TAG"
@@ -135,8 +140,8 @@ if $GIT_BIN merge-file current.txt base.txt other.txt 2>/dev/null; then
 else
     echo "  ℹ Merge failed (expected), checking tag anyway"
     TAG=$(chtag -p current.txt 2>/dev/null | awk '{print $2}')
-    if [ "$TAG" = "IBM-1047" ]; then
-        echo "  ✓ PASS: Tagged as IBM-1047"
+    if [ "$TAG" = "ISO8859-1" ]; then
+        echo "  ✓ PASS: Tagged as ISO8859-1"
         run_test "merge-file" "PASS"
     else
         echo "  ✗ FAIL: Tagged as $TAG"
@@ -154,7 +159,7 @@ mkdir t4 && cd t4
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.diff zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.diff zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "v1" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -163,8 +168,8 @@ echo "v2" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "c" 2>/dev/null
 $GIT_BIN diff HEAD~1 HEAD --output=out.diff 2>/dev/null
 
 TAG=$(chtag -p out.diff 2>/dev/null | awk '{print $2}')
-if [ "$TAG" = "IBM-1047" ]; then
-    echo "  ✓ PASS: Tagged as IBM-1047"
+if [ "$TAG" = "ISO8859-1" ]; then
+    echo "  ✓ PASS: Tagged as ISO8859-1"
     run_test "diff-output" "PASS"
 else
     echo "  ✗ FAIL: Tagged as $TAG"
@@ -181,7 +186,7 @@ mkdir t5 && cd t5
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "committed" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -192,8 +197,8 @@ echo "other" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "c" 2>/dev/n
 $GIT_BIN stash apply 2>/dev/null || true
 
 TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-if [ "$TAG" = "IBM-1047" ]; then
-    echo "  ✓ PASS: Tagged as IBM-1047"
+if [ "$TAG" = "ISO8859-1" ]; then
+    echo "  ✓ PASS: Tagged as ISO8859-1"
     run_test "stash-apply" "PASS"
 else
     echo "  ✗ FAIL: Tagged as $TAG"
@@ -210,7 +215,7 @@ mkdir t6 && cd t6
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "base" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -223,8 +228,8 @@ $GIT_BIN merge br 2>/dev/null || true
 $GIT_BIN checkout --conflict=diff3 f.txt 2>/dev/null || true
 
 TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-if [ "$TAG" = "IBM-1047" ]; then
-    echo "  ✓ PASS: Tagged as IBM-1047"
+if [ "$TAG" = "ISO8859-1" ]; then
+    echo "  ✓ PASS: Tagged as ISO8859-1"
     run_test "checkout-conflict" "PASS"
 else
     echo "  ✗ FAIL: Tagged as $TAG"
@@ -241,7 +246,7 @@ mkdir t7 && cd t7
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "content" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -250,8 +255,8 @@ $GIT_BIN worktree add /tmp/wt1 HEAD 2>/dev/null || true
 
 if [ -f /tmp/wt1/f.txt ]; then
     TAG=$(chtag -p /tmp/wt1/f.txt 2>/dev/null | awk '{print $2}')
-    if [ "$TAG" = "IBM-1047" ]; then
-        echo "  ✓ PASS: Tagged as IBM-1047"
+    if [ "$TAG" = "ISO8859-1" ]; then
+        echo "  ✓ PASS: Tagged as ISO8859-1"
         run_test "worktree" "PASS"
     else
         echo "  ✗ FAIL: Tagged as $TAG"
@@ -273,7 +278,7 @@ mkdir t8 && cd t8
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "v1" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -286,8 +291,8 @@ PATCH=$(ls /tmp/0001-*.patch 2>/dev/null | head -1)
 if [ -n "$PATCH" ]; then
     $GIT_BIN am "$PATCH" 2>/dev/null || true
     TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-    if [ "$TAG" = "IBM-1047" ]; then
-        echo "  ✓ PASS: Tagged as IBM-1047"
+    if [ "$TAG" = "ISO8859-1" ]; then
+        echo "  ✓ PASS: Tagged as ISO8859-1"
         run_test "am" "PASS"
     else
         echo "  ✗ FAIL: Tagged as $TAG"
@@ -309,7 +314,7 @@ mkdir t9 && cd t9
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "committed" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -318,8 +323,8 @@ echo "modified" > f.txt
 $GIT_BIN restore f.txt 2>/dev/null
 
 TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-if [ "$TAG" = "IBM-1047" ]; then
-    echo "  ✓ PASS: Tagged as IBM-1047"
+if [ "$TAG" = "ISO8859-1" ]; then
+    echo "  ✓ PASS: Tagged as ISO8859-1"
     run_test "restore" "PASS"
 else
     echo "  ✗ FAIL: Tagged as $TAG"
@@ -336,7 +341,7 @@ mkdir t10 && cd t10
 $GIT_BIN init -q 2>/dev/null
 $GIT_BIN config user.name "T" && $GIT_BIN config user.email "t@t.com"
 $GIT_BIN config core.ignorefiletags false
-echo "*.txt zos-working-tree-encoding=IBM-1047" > .gitattributes
+echo "*.txt zos-working-tree-encoding=ISO8859-1" > .gitattributes
 $GIT_BIN add .gitattributes && $GIT_BIN commit -q -m "a" 2>/dev/null
 
 echo "v1" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "b" 2>/dev/null
@@ -346,8 +351,8 @@ echo "v2" > f.txt && $GIT_BIN add f.txt && $GIT_BIN commit -q -m "c" 2>/dev/null
 GIT_SEQUENCE_EDITOR=true $GIT_BIN rebase -i HEAD~1 2>/dev/null || true
 
 TAG=$(chtag -p f.txt 2>/dev/null | awk '{print $2}')
-if [ "$TAG" = "IBM-1047" ]; then
-    echo "  ✓ PASS: Tagged as IBM-1047"
+if [ "$TAG" = "ISO8859-1" ]; then
+    echo "  ✓ PASS: Tagged as ISO8859-1"
     run_test "rebase" "PASS"
 else
     echo "  ℹ INFO: Tagged as $TAG (rebase may not have run)"
@@ -414,7 +419,7 @@ else
         status=$(echo "$result" | cut -d'|' -f2)
         if [[ "$status" == FAIL:* ]]; then
             tag=$(echo "$status" | cut -d':' -f2)
-            echo "  - $name (tagged as $tag instead of IBM-1047)"
+            echo "  - $name (tagged as $tag instead of ISO8859-1)"
         fi
     done
 fi
