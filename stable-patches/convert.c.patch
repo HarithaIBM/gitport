@@ -384,7 +384,7 @@ index 0365068..26f3879 100644
  		src = dst->buf;
  		len = dst->len;
  	}
-@@ -2060,3 +2188,180 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
+@@ -2060,3 +2188,181 @@ enum conv_attrs_classification classify_conv_attrs(const struct conv_attrs *ca)
  
  	return CA_CLASS_STREAMABLE;
  }
