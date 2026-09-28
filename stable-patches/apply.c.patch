@@ -133,7 +133,7 @@ index 5e54453f79..5d5a40ece4 100644
  			if (res < 0)
  				goto out;
  			if (!res) {
-@@ -5099,6 +5121,18 @@ int apply_all_patches(struct apply_state *state,
+@@ -5099,6 +5121,22 @@ int apply_all_patches(struct apply_state *state,
  	int errs = 0;
  	int read_stdin = 1;
  
@@ -156,4 +156,3 @@ index 5e54453f79..5d5a40ece4 100644
  	for (i = 0; i < argc; i++) {
  		const char *arg = argv[i];
  		char *to_free = NULL;
-
