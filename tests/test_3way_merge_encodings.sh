@@ -964,10 +964,10 @@ fi
 # Verify merged file has ALL special characters
 od -t x1 rexx_script.rexx > "$TEST_ROOT/test16_hex.txt"
 
-grep -q "5b" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing $ (0x5B)"; exit 1; }
-grep -q "7c" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing @ (0x7C)"; exit 1; }
-grep -q "7b" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing # (0x7B)"; exit 1; }
-grep -q "50" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing & (0x50)"; exit 1; }
+grep -iq "5b" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing $ (0x5B)"; exit 1; }
+grep -iq "7c" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing @ (0x7C)"; exit 1; }
+grep -iq "7b" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing # (0x7B)"; exit 1; }
+grep -iq "50" "$TEST_ROOT/test16_hex.txt" || { echo "FAIL: missing & (0x50)"; exit 1; }
 
 # Verify content
 chtag -p rexx_script.rexx | grep -q "IBM-1047" || { echo "FAIL: wrong tag"; exit 1; }
