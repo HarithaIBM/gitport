@@ -401,6 +401,13 @@ cd "$TEST_ROOT"
 mkdir test8 && cd test8
 init_git_repo
 
+# Set up .gitattributes for UTF-8
+cat > .gitattributes << 'ATTR'
+*.txt zos-working-tree-encoding=UTF-8
+ATTR
+"$GIT_BIN" add .gitattributes
+"$GIT_BIN" commit -m "setup gitattributes for UTF-8"
+
 # File with 2-byte UTF-8 chars: Ţ=C5A2, ę=C499, ş=C59F, ţ=C5A3
 printf "Ţęşţ\nline2\nline3\n" > utf8_file.txt
 chtag -tc 1208 utf8_file.txt
