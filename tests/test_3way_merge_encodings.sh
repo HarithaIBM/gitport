@@ -17,8 +17,8 @@ fi
 TEST_ROOT="$(pwd)/test_tmp_$$"
 mkdir -p "$TEST_ROOT"
 
-# Cleanup on exit
-trap 'rm -rf "$TEST_ROOT"' EXIT
+# Cleanup on exit - cd out first to avoid "current directory deleted" errors
+trap 'cd /tmp 2>/dev/null || cd / ; rm -rf "$TEST_ROOT"' EXIT
 
 echo "========================================================================"
 echo "      COMPREHENSIVE 3-WAY MERGE & ENCODING TEST SUITE (OURS & THEIRS)  "
