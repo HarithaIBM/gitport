@@ -29,8 +29,8 @@ run_test() {
     local test_output="${SCRIPT_DIR}/test_tmp_${test_name}_$$.out"
     mkdir -p "${SCRIPT_DIR}/test_tmp_${test_name}_$$"
     
-    # Run the test with timeout
-    if timeout "${TEST_TIMEOUT}" bash "$test_script" > "${test_output}" 2>&1; then
+    # Run the test with timeout (run from test directory to ensure correct paths)
+    if (cd "$SCRIPT_DIR" && timeout "${TEST_TIMEOUT}" bash "$(basename "$test_script")") > "${test_output}" 2>&1; then
         PASSED=$((PASSED + 1))
         echo "ok $TEST_NUM - $test_name"
     else
