@@ -432,8 +432,8 @@ chtag -tc 1208 utf8_file.txt
 # Check for Ţęşţ_ŏůŕş = c5a2c499c59fc5a3_c58fc5afc595c59f
 grep -q "side_change" utf8_file.txt || { echo "FAIL: UTF-8 line 3 not merged"; exit 1; }
 
-# Verify byte-exact preservation (check for Ţ=C5A2)
-od -A n -t x1 utf8_file.txt | tr -d " \n" | grep -q "c5a2" || { echo "FAIL: UTF-8 bytes corrupted"; exit 1; }
+# Verify byte-exact preservation (check for Ţ=C5A2, case-insensitive)
+od -A n -t x1 utf8_file.txt | tr -d " \n" | grep -iq "c5a2" || { echo "FAIL: UTF-8 bytes corrupted"; exit 1; }
 
 echo "  -> Test 8 PASSED (UTF-8 2-byte Latin Extended preserved)"
 PASSED=$((PASSED + 1))
