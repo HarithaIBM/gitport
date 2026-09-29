@@ -10,8 +10,6 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 if [ -x "$REPO_ROOT/git/git" ]; then
     GIT_BIN="$REPO_ROOT/git/git"
-elif [ -x "$REPO_ROOT/git_working_4aug/git" ]; then
-    GIT_BIN="$REPO_ROOT/git_working_4aug/git"
 else
     GIT_BIN="$(which git)"
 fi
