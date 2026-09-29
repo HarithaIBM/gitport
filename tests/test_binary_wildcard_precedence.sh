@@ -53,9 +53,6 @@ tap_result() {
     fi
 }
 
-# Clean up
-rm -rf "$TEST_ROOT"
-
 # Test: Wildcard encoding + multiple binary types
 # ===============================================
 cd "$TEST_ROOT"

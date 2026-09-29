@@ -55,8 +55,6 @@ tap_result() {
     fi
 }
 
-rm -rf "$TEST_ROOT"
-
 # Test 1: No .gitattributes file at all
 # ======================================
 cd "$TEST_ROOT"
