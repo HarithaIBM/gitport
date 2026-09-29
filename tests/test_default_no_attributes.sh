@@ -35,6 +35,7 @@ echo "TAP version 13"
 echo "1..4"
 
 TEST_NUM=0
+FAIL_COUNT=0
 
 tap_result() {
     TEST_NUM=$((TEST_NUM + 1))
@@ -46,6 +47,7 @@ tap_result() {
         echo "ok $TEST_NUM - $description"
     else
         echo "not ok $TEST_NUM - $description"
+        FAIL_COUNT=$((FAIL_COUNT + 1))
     fi
     
     if [ -n "$diagnostic" ]; then
@@ -185,4 +187,4 @@ fi
 cd /
 rm -rf "$TEST_ROOT"
 
-exit 0
+exit $FAIL_COUNT
