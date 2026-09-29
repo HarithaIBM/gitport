@@ -403,7 +403,7 @@ init_git_repo
 
 # Set up .gitattributes for UTF-8
 cat > .gitattributes << 'ATTR'
-*.txt zos-working-tree-encoding=UTF-8
+*.txt -text zos-working-tree-encoding=UTF-8
 ATTR
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -m "setup gitattributes for UTF-8"
