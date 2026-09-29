@@ -17,7 +17,9 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_BIN="${GIT_BIN:-$SCRIPT_DIR/../git/git}"
-TEST_ROOT="/tmp/test_default_$$"
+TEST_ROOT="$(pwd)/test_tmp_$$"
+mkdir -p "$TEST_ROOT"
+trap 'rm -rf "$TEST_ROOT"' EXIT
 
 # Get the expected default tag based on GIT_UTF8_CCSID
 if [ "$GIT_UTF8_CCSID" = "819" ]; then
@@ -52,7 +54,6 @@ tap_result() {
 }
 
 rm -rf "$TEST_ROOT"
-mkdir -p "$TEST_ROOT"
 
 # Test 1: No .gitattributes file at all
 # ======================================

@@ -24,8 +24,9 @@ else
     GIT_BIN="$(which git)"
 fi
 
-TEST_ROOT="/tmp/test_binary_commands_$$"
+TEST_ROOT="$(pwd)/test_tmp_$$"
 mkdir -p "$TEST_ROOT"
+trap 'rm -rf "$TEST_ROOT"' EXIT
 
 echo "TAP version 13"
 echo "1..10"

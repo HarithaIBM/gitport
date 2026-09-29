@@ -18,7 +18,7 @@ fi
 # Find git binary relative to test location
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_BIN="${GIT_BIN:-$SCRIPT_DIR/../git/git}"
-TEST_ROOT="/tmp/test_format_patch_$$"
+TEST_ROOT="$(pwd)/test_tmp_$$"
 
 # TAP output
 echo "TAP version 13"

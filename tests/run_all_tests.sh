@@ -6,6 +6,17 @@ MANIFEST="$SCRIPT_DIR/TEST_MANIFEST"
 TEST_NUM=0
 PASSED=0
 FAILED=0
+SKIPPED=0
+
+# Test timeout (default 300 seconds = 5 minutes per test)
+TEST_TIMEOUT="${TEST_TIMEOUT:-300}"
+
+# Allow disabling custom tests via environment variable
+if [ "${SKIP_CUSTOM_TESTS:-0}" = "1" ]; then
+    echo "TAP version 13"
+    echo "1..0 # SKIP Custom tests disabled via SKIP_CUSTOM_TESTS=1"
+    exit 0
+fi
 
 # Function to run a test and capture result
 run_test() {
@@ -14,20 +25,32 @@ run_test() {
     
     TEST_NUM=$((TEST_NUM + 1))
     
-    # Run the test and capture output
-    if bash "$test_script" > "/tmp/${test_name}_$$.out" 2>&1; then
+    # Use local temp directory instead of /tmp
+    local test_output="${SCRIPT_DIR}/test_tmp_${test_name}_$$.out"
+    mkdir -p "${SCRIPT_DIR}/test_tmp_${test_name}_$$"
+    
+    # Run the test with timeout
+    if timeout "${TEST_TIMEOUT}" bash "$test_script" > "${test_output}" 2>&1; then
         PASSED=$((PASSED + 1))
         echo "ok $TEST_NUM - $test_name"
     else
-        FAILED=$((FAILED + 1))
-        echo "not ok $TEST_NUM - $test_name"
-        # Include error details
-        echo "# Test output:"
-        sed 's/^/# /' "/tmp/${test_name}_$$.out"
+        local exit_code=$?
+        if [ $exit_code -eq 124 ]; then
+            # Timeout occurred
+            FAILED=$((FAILED + 1))
+            echo "not ok $TEST_NUM - $test_name # TIMEOUT after ${TEST_TIMEOUT}s"
+            echo "# Test timed out after ${TEST_TIMEOUT} seconds"
+        else
+            FAILED=$((FAILED + 1))
+            echo "not ok $TEST_NUM - $test_name"
+            # Include error details (first 50 lines)
+            echo "# Test output (first 50 lines):"
+            head -50 "${test_output}" | sed 's/^/# /'
+        fi
     fi
     
-    # Clean up temp file
-    rm -f "/tmp/${test_name}_$$.out"
+    # Clean up temp files
+    rm -rf "${SCRIPT_DIR}/test_tmp_${test_name}_$$" "${test_output}"
 }
 
 # Check if manifest exists
@@ -77,6 +100,9 @@ done < "$MANIFEST"
 echo "# Tests run: $TEST_NUM"
 echo "# Passed: $PASSED"
 echo "# Failed: $FAILED"
+echo "# Timeout per test: ${TEST_TIMEOUT}s"
+echo "# To skip custom tests: export SKIP_CUSTOM_TESTS=1"
+echo "# To change timeout: export TEST_TIMEOUT=600"
 
 # Exit with failure if any test failed
 [ $FAILED -eq 0 ]

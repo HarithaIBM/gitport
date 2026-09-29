@@ -19,7 +19,9 @@ fi
 # Find git binary relative to test location
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_BIN="${GIT_BIN:-$SCRIPT_DIR/../git/git}"
-TEST_ROOT="/tmp/test_stash_push_file_$$"
+TEST_ROOT="$(pwd)/test_tmp_$$"
+mkdir -p "$TEST_ROOT"
+trap 'rm -rf "$TEST_ROOT"' EXIT
 
 # TAP output
 echo "TAP version 13"
@@ -47,7 +49,6 @@ tap_result() {
 
 # Clean up
 rm -rf "$TEST_ROOT"
-mkdir -p "$TEST_ROOT"
 
 # Test 1: git stash push <file> with IBM-1047 encoding
 # =====================================================

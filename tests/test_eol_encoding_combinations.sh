@@ -15,7 +15,9 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GIT_BIN="${GIT_BIN:-$SCRIPT_DIR/../git/git}"
-TEST_ROOT="/tmp/test_eol_encoding_$$"
+TEST_ROOT="$(pwd)/test_tmp_$$"
+mkdir -p "$TEST_ROOT"
+trap 'rm -rf "$TEST_ROOT"' EXIT
 
 echo "TAP version 13"
 echo "1..4"
@@ -40,7 +42,6 @@ tap_result() {
 }
 
 rm -rf "$TEST_ROOT"
-mkdir -p "$TEST_ROOT"
 
 # Test 1: -text eol=crlf with encoding
 # =====================================
