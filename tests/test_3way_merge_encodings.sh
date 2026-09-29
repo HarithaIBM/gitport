@@ -973,8 +973,10 @@ echo "  -> Test 16 PASSED (3-way merge preserved all special characters)"
 PASSED=$((PASSED + 1))
 cd ..
 
-rm -rf "$TEST_ROOT"
+# Cleanup is handled by trap, no need to manually remove
 echo ""
 echo "========================================================================"
 echo "  SUMMARY: ALL $PASSED / $TOTAL TESTS PASSED SUCCESSFULLY!"
 echo "========================================================================"
+
+exit 0
