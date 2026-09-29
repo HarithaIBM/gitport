@@ -401,9 +401,9 @@ cd "$TEST_ROOT"
 mkdir test8 && cd test8
 init_git_repo
 
-# Set up .gitattributes for UTF-8
+# Set up .gitattributes for UTF-8 (both working tree and repository)
 cat > .gitattributes << 'ATTR'
-*.txt -text zos-working-tree-encoding=UTF-8
+*.txt -text encoding=UTF-8 zos-working-tree-encoding=UTF-8
 ATTR
 "$GIT_BIN" add .gitattributes
 "$GIT_BIN" commit -m "setup gitattributes for UTF-8"
