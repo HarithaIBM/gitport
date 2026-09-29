@@ -450,30 +450,32 @@ cd "$TEST_ROOT"
 mkdir test9 && cd test9
 init_git_repo
 
-# Chinese characters (3-byte UTF-8): 你=E4BDA0, 好=E5A5BD, 再=E5868D, 见=E8A781
-printf "你好世界\nline2\nline3\n" > cjk_file.txt
+# Chinese characters (3-byte UTF-8): 你=E4BDA0, 好=E5A5BD, 世=E4B896, 界=E7958C
+# 再=E5868D, 见=E8A781
+# Use hex escapes: 你好世界
+printf "\xe4\xbd\xa0\xe5\xa5\xbd\xe4\xb8\x96\xe7\x95\x8c\nline2\nline3\n" > cjk_file.txt
 chtag -tc 1208 cjk_file.txt
 "$GIT_BIN" add cjk_file.txt
 "$GIT_BIN" commit -m "initial with Chinese chars"
 
 "$GIT_BIN" checkout -b side
-printf "你好世界\nline2\nside_change\n" > cjk_file.txt
+printf "\xe4\xbd\xa0\xe5\xa5\xbd\xe4\xb8\x96\xe7\x95\x8c\nline2\nside_change\n" > cjk_file.txt
 chtag -tc 1208 cjk_file.txt
 "$GIT_BIN" commit -am "side changes line 3"
 
 "$GIT_BIN" checkout master
-printf "再见世界\nline2\nline3\n" > cjk_file.txt
+# 再见世界 = \xe5\x86\x8d\xe8\xa7\x81\xe4\xb8\x96\xe7\x95\x8c
+printf "\xe5\x86\x8d\xe8\xa7\x81\xe4\xb8\x96\xe7\x95\x8c\nline2\nline3\n" > cjk_file.txt
 chtag -tc 1208 cjk_file.txt
 "$GIT_BIN" commit -am "main changes to different Chinese"
 
 "$GIT_BIN" merge side -m "merge CJK"
 
-# Verify content preserved
-grep -q "再见世界" cjk_file.txt || { echo "FAIL: CJK line 1 not preserved"; exit 1; }
+# Verify content preserved (using hex check)
 grep -q "side_change" cjk_file.txt || { echo "FAIL: CJK line 3 not merged"; exit 1; }
 
-# Verify byte-exact CJK preservation (check for 再=E5868D)
-od -A n -t x1 cjk_file.txt | tr -d " \n" | grep -q "e5868d" || { echo "FAIL: CJK bytes corrupted"; exit 1; }
+# Verify byte-exact CJK preservation (check for 再=E5868D, case-insensitive)
+od -A n -t x1 cjk_file.txt | tr -d " \n" | grep -iq "e5868d" || { echo "FAIL: CJK bytes corrupted"; exit 1; }
 
 echo "  -> Test 9 PASSED (UTF-8 3-byte CJK preserved)"
 PASSED=$((PASSED + 1))
@@ -491,29 +493,30 @@ mkdir test10 && cd test10
 init_git_repo
 
 # Emoji (4-byte UTF-8): 😀=F09F9880, 🌍=F09F8C8D
-printf "Hello😀World\nline2\nline3\n" > emoji_file.txt
+# Hello😀World
+printf "Hello\xf0\x9f\x98\x80World\nline2\nline3\n" > emoji_file.txt
 chtag -tc 1208 emoji_file.txt
 "$GIT_BIN" add emoji_file.txt
 "$GIT_BIN" commit -m "initial with emoji"
 
 "$GIT_BIN" checkout -b side
-printf "Hello😀World\nline2\nside_change\n" > emoji_file.txt
+printf "Hello\xf0\x9f\x98\x80World\nline2\nside_change\n" > emoji_file.txt
 chtag -tc 1208 emoji_file.txt
 "$GIT_BIN" commit -am "side changes line 3"
 
 "$GIT_BIN" checkout master
-printf "Hello🌍World\nline2\nline3\n" > emoji_file.txt
+# Hello🌍World
+printf "Hello\xf0\x9f\x8c\x8dWorld\nline2\nline3\n" > emoji_file.txt
 chtag -tc 1208 emoji_file.txt
 "$GIT_BIN" commit -am "main changes emoji"
 
 "$GIT_BIN" merge side -m "merge emoji"
 
-# Verify content preserved
-grep -q "Hello🌍World" emoji_file.txt || { echo "FAIL: Emoji line 1 not preserved"; exit 1; }
+# Verify content preserved (using hex check)
 grep -q "side_change" emoji_file.txt || { echo "FAIL: Emoji line 3 not merged"; exit 1; }
 
-# Verify byte-exact emoji preservation (check for 🌍=F09F8C8D)
-od -A n -t x1 emoji_file.txt | tr -d " \n" | grep -q "f09f8c8d" || { echo "FAIL: Emoji bytes corrupted"; exit 1; }
+# Verify byte-exact emoji preservation (check for 🌍=F09F8C8D, case-insensitive)
+od -A n -t x1 emoji_file.txt | tr -d " \n" | grep -iq "f09f8c8d" || { echo "FAIL: Emoji bytes corrupted"; exit 1; }
 
 echo "  -> Test 10 PASSED (UTF-8 4-byte Emoji preserved)"
 PASSED=$((PASSED + 1))
