@@ -30,7 +30,8 @@ run_test() {
     mkdir -p "${SCRIPT_DIR}/test_tmp_${test_name}_$$"
     
     # Run the test with timeout (run from test directory to ensure correct paths)
-    if (cd "$SCRIPT_DIR" && timeout "${TEST_TIMEOUT}" bash "$(basename "$test_script")") > "${test_output}" 2>&1; then
+    # Use ./ to run script directly instead of calling bash explicitly
+    if (cd "$SCRIPT_DIR" && timeout "${TEST_TIMEOUT}" ./"$(basename "$test_script")") > "${test_output}" 2>&1; then
         PASSED=$((PASSED + 1))
         echo "ok $TEST_NUM - $test_name"
     else

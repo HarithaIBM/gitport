@@ -24,6 +24,9 @@ TEST_ROOT="$(pwd)/test_tmp_$$"
 mkdir -p "$TEST_ROOT"
 trap 'rm -rf "$TEST_ROOT"' EXIT
 
+# Source shared helper functions
+source "$SCRIPT_DIR/test_helpers.sh"
+
 # TAP output
 echo "TAP version 13"
 echo "1..7"
@@ -102,11 +105,14 @@ TAG_SPECIFIC=$(chtag -p specific.dat 2>/dev/null | awk '{print $2}')
 TAG_ANOTHER=$(chtag -p another.txt 2>/dev/null | awk '{print $2}')
 TAG_CONFIG=$(chtag -p config.cfg 2>/dev/null | awk '{print $2}')
 
+# Get expected UTF-8 tag based on GIT_UTF8_CCSID
+EXPECTED_UTF8=$(get_expected_utf8_tag)
+
 # Test results
-if [ "$TAG_DEFAULT" = "UTF-8" ]; then
-    tap_result "ok" "Level 1 (global *): default.log tagged as UTF-8"
+if is_expected_utf8_tag "$TAG_DEFAULT"; then
+    tap_result "ok" "Level 1 (global *): default.log tagged as $EXPECTED_UTF8"
 else
-    tap_result "not ok" "Level 1 (global *): default.log tagged as UTF-8" "got: $TAG_DEFAULT, expected: UTF-8"
+    tap_result "not ok" "Level 1 (global *): default.log tagged as $EXPECTED_UTF8" "got: $TAG_DEFAULT, expected: $EXPECTED_UTF8"
 fi
 
 if [ "$TAG_REGULAR" = "IBM-1047" ]; then
@@ -139,10 +145,10 @@ else
     tap_result "not ok" "Level 2 consistency: another.txt also gets IBM-1047" "got: $TAG_ANOTHER, expected: IBM-1047"
 fi
 
-if [ "$TAG_CONFIG" = "UTF-8" ]; then
-    tap_result "ok" "Level 1 consistency: config.cfg gets UTF-8"
+if is_expected_utf8_tag "$TAG_CONFIG"; then
+    tap_result "ok" "Level 1 consistency: config.cfg gets $EXPECTED_UTF8"
 else
-    tap_result "not ok" "Level 1 consistency: config.cfg gets UTF-8" "got: $TAG_CONFIG, expected: UTF-8"
+    tap_result "not ok" "Level 1 consistency: config.cfg gets $EXPECTED_UTF8" "got: $TAG_CONFIG, expected: $EXPECTED_UTF8"
 fi
 
 # Clean up

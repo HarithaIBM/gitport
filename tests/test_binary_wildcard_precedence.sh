@@ -24,6 +24,9 @@ TEST_ROOT="$(pwd)/test_tmp_$$"
 mkdir -p "$TEST_ROOT"
 trap 'rm -rf "$TEST_ROOT"' EXIT
 
+# Source shared helper functions
+source "$SCRIPT_DIR/test_helpers.sh"
+
 # TAP output
 echo "TAP version 13"
 echo "1..8"
@@ -98,6 +101,9 @@ TAG_JAR=$(chtag -p library.jar 2>/dev/null | awk '{print $1, $2}')
 TAG_EXE=$(chtag -p program.exe 2>/dev/null | awk '{print $1, $2}')
 TAG_TXT=$(chtag -p readme.txt 2>/dev/null | awk '{print $2}')
 
+# Get expected UTF-8 tag
+EXPECTED_UTF8=$(get_expected_utf8_tag)
+
 # Test results
 if echo "$TAG_PNG" | grep -q "b binary"; then
     tap_result "ok" "PNG file tagged as binary (not UTF-8)"
@@ -129,10 +135,10 @@ else
     tap_result "not ok" "EXE file tagged as binary (not UTF-8)" "got: $TAG_EXE, expected: b binary"
 fi
 
-if [ "$TAG_TXT" = "UTF-8" ]; then
-    tap_result "ok" "Text file tagged as UTF-8 (wildcard works)"
+if is_expected_utf8_tag "$TAG_TXT"; then
+    tap_result "ok" "Text file tagged as $EXPECTED_UTF8 (wildcard works)"
 else
-    tap_result "not ok" "Text file tagged as UTF-8 (wildcard works)" "got: $TAG_TXT, expected: UTF-8"
+    tap_result "not ok" "Text file tagged as $EXPECTED_UTF8 (wildcard works)" "got: $TAG_TXT, expected: $EXPECTED_UTF8"
 fi
 
 cd "$TEST_ROOT"

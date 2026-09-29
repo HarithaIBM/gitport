@@ -19,6 +19,9 @@ TEST_ROOT="$(pwd)/test_tmp_$$"
 mkdir -p "$TEST_ROOT"
 trap 'rm -rf "$TEST_ROOT"' EXIT
 
+# Source shared helper functions
+source "$SCRIPT_DIR/test_helpers.sh"
+
 echo "TAP version 13"
 echo "1..4"
 
@@ -166,10 +169,13 @@ $GIT_BIN checkout HEAD script.pl 2>/dev/null
 
 TAG4=$(chtag -p script.pl 2>/dev/null | awk '{print $2}')
 
-if [ "$TAG4" = "UTF-8" ]; then
-    tap_result "ok" "text eol=lf + encoding tags as UTF-8"
+# Get expected UTF-8 tag
+EXPECTED_UTF8=$(get_expected_utf8_tag)
+
+if is_expected_utf8_tag "$TAG4"; then
+    tap_result "ok" "text eol=lf + encoding tags as $EXPECTED_UTF8"
 else
-    tap_result "not ok" "text eol=lf + encoding tags as UTF-8" "got: $TAG4, expected: UTF-8"
+    tap_result "not ok" "text eol=lf + encoding tags as $EXPECTED_UTF8" "got: $TAG4, expected: $EXPECTED_UTF8"
 fi
 
 # Clean up
