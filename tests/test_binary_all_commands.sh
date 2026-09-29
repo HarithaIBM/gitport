@@ -64,7 +64,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=UTF-8
-*.png binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.png binary -working-tree-encoding
 EOF
 
 echo -e "\x89PNG\x0D\x0A\x1A\x0A" > image.png
@@ -91,7 +92,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=IBM-1047
-*.dll binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.dll binary -working-tree-encoding
 EOF
 
 echo -e "MZ\x90\x00" > lib.dll
@@ -124,7 +126,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=ISO8859-1
-*.bin binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.bin binary -working-tree-encoding
 EOF
 
 echo -e "\x00\x01\x02\x03" > data.bin
@@ -153,7 +156,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=UTF-8
-*.so binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.so binary -working-tree-encoding
 EOF
 
 echo -e "\x7FELF" > libtest.so
@@ -182,7 +186,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=IBM-1047
-*.exe binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.exe binary -working-tree-encoding
 EOF
 
 echo -e "MZ" > program.exe
@@ -210,7 +215,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=UTF-8
-*.jar binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.jar binary -working-tree-encoding
 EOF
 
 echo -e "PK\x03\x04" > lib.jar
@@ -246,15 +252,18 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=ISO8859-1
-*.o binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.o binary -working-tree-encoding
 EOF
 
 echo -e "\x7FELF" > obj.o
+chtag -b obj.o 2>/dev/null
 $GIT_BIN add .gitattributes obj.o 2>/dev/null
 $GIT_BIN commit -q -m "master" 2>/dev/null
 
 $GIT_BIN checkout -b feature -q 2>/dev/null
 echo -e "\x7FELG" > obj.o
+chtag -b obj.o 2>/dev/null
 $GIT_BIN add obj.o 2>/dev/null
 $GIT_BIN commit -q -m "feature" 2>/dev/null
 
@@ -278,7 +287,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=IBM-1047
-*.dat binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.dat binary -working-tree-encoding
 EOF
 
 echo -e "\xFF\xFE" > data.dat
@@ -311,7 +321,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=UTF-8
-*.pdf binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.pdf binary -working-tree-encoding
 EOF
 
 echo -e "%PDF" > doc.pdf
@@ -339,7 +350,8 @@ $GIT_BIN config core.ignorefiletags false
 
 cat > .gitattributes << 'EOF'
 * text working-tree-encoding=IBM-1047
-*.bin binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.bin binary -working-tree-encoding
 EOF
 
 echo -e "\x00\x01" > file.bin

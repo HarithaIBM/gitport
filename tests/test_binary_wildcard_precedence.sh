@@ -69,11 +69,12 @@ $GIT_BIN config core.ignorefiletags false
 # Create .gitattributes with wildcard + binary overrides
 cat << 'EOF' > .gitattributes
 * text working-tree-encoding=UTF-8
-*.png binary
-*.jpg binary
-*.pdf binary
-*.jar binary
-*.exe binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.png binary -working-tree-encoding
+*.jpg binary -working-tree-encoding
+*.pdf binary -working-tree-encoding
+*.jar binary -working-tree-encoding
+*.exe binary -working-tree-encoding
 EOF
 
 # Create fake binary files (just need them to exist)
@@ -154,16 +155,19 @@ $GIT_BIN config core.ignorefiletags false
 
 cat << 'EOF' > .gitattributes
 * text working-tree-encoding=ISO8859-1
-*.dll binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.dll binary -working-tree-encoding
 EOF
 
 echo -e "MZ\x90\x00" > library.dll
+chtag -b library.dll 2>/dev/null
 $GIT_BIN add .gitattributes library.dll 2>/dev/null
 $GIT_BIN commit -m "master" -q 2>/dev/null
 
 # Create branch
 $GIT_BIN checkout -b feature -q 2>/dev/null
 echo -e "MZ\x90\x01" > library.dll
+chtag -b library.dll 2>/dev/null
 $GIT_BIN add library.dll 2>/dev/null
 $GIT_BIN commit -m "feature" -q 2>/dev/null
 
@@ -192,10 +196,12 @@ $GIT_BIN config core.ignorefiletags false
 
 cat << 'EOF' > .gitattributes
 * text working-tree-encoding=IBM-1047
-*.so binary
+.gitattributes working-tree-encoding=ISO8859-1
+*.so binary -working-tree-encoding
 EOF
 
 echo -e "\x7FELF" > libtest.so
+chtag -b libtest.so 2>/dev/null
 $GIT_BIN add .gitattributes libtest.so 2>/dev/null
 $GIT_BIN commit -m "test" -q 2>/dev/null
 
