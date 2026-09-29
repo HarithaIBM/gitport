@@ -865,7 +865,7 @@ rm special.txt
 # Compare hex dumps
 od -t x1 special.txt | head -10 > "$TEST_ROOT/test15_roundtrip_hex.txt"
 
-if diff -q "$TEST_ROOT/test15_original_hex.txt" "$TEST_ROOT/test15_roundtrip_hex.txt" > /dev/null; then
+if cmp -s "$TEST_ROOT/test15_original_hex.txt" "$TEST_ROOT/test15_roundtrip_hex.txt"; then
   # Verify file is readable
   chtag -p special.txt | grep -q "IBM-1047" || { echo "FAIL: wrong tag"; exit 1; }
   grep -q "¬condition" special.txt || { echo "FAIL: ¬ corrupted"; exit 1; }
